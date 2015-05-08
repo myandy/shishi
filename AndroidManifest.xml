@@ -31,7 +31,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AuthorListActivity" />
-        <activity android:name=".activity.AuthorActivity" />
         <activity android:name=".activity.AuthorPageActivity" />
         <activity android:name=".activity.PoetryActivity" />
         <activity android:name=".activity.ShareActivity" />
@@ -41,6 +40,10 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.AboutActivity" />
         <activity android:name=".activity.ShareEditActivity" />
+        <activity android:name=".activity.WebviewActivity" />
+        <activity android:name=".activity.DuiShiActivity" />
+        <activity android:name=".activity.PoetrySearchActivity" />
+        <activity android:name=".activity.AuthorSearchActivity" />
 
         <meta-data
             android:name="UMENG_APPKEY"

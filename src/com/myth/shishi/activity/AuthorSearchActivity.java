@@ -41,7 +41,7 @@ public class AuthorSearchActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_cipai);
         setBottomGone();
-        ciList = AuthorDatabaseHelper.getAllAuthor();
+        ciList = AuthorDatabaseHelper.getAll();
         initView();
         refreshData();
     }
@@ -90,27 +90,13 @@ public class AuthorSearchActivity extends BaseActivity
             @Override
             public void onItemClick(int position)
             {
-                Intent intent = new Intent(mActivity, EditActivity.class);
+                Intent intent = new Intent(mActivity, AuthorPageActivity.class);
                 intent.putExtra("author", sortList.get(position));
                 startActivity(intent);
-                finish();
             }
         });
         listview.setAdapter(adapter);
 
-        // listview.setOnItemClickListener(new OnItemClickListener()
-        // {
-        //
-        // @Override
-        // public void onItemClick(AdapterView<?> parent, View view, int
-        // position, long id)
-        // {
-        // Intent intent = new Intent(mActivity, EditActivity.class);
-        // intent.putExtra("author", sortList.get(position));
-        // startActivity(intent);
-        // finish();
-        // }
-        // });
 
         search = (EditText) findViewById(R.id.search);
 

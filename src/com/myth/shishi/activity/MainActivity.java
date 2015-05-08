@@ -31,7 +31,6 @@ import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
-import com.myth.shishi.util.PinYinUtil;
 import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.wiget.IntroductionView;
 import com.myth.shishi.wiget.MainView;
@@ -63,6 +62,7 @@ public class MainActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setBottomVisible();
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         layoutItemContainer(viewPager);
@@ -150,7 +150,8 @@ public class MainActivity extends BaseActivity
         List<Author> list = AuthorDatabaseHelper.getAll();
         for (int i = 0; i < list.size(); i++)
         {
-            AuthorDatabaseHelper.update(list.get(i).getAuthor(), PinYinUtil.getPinYin(list.get(i).getAuthor()));
+            // AuthorDatabaseHelper.update(list.get(i).getAuthor(),
+            // PinYinUtil.getPinYin(list.get(i).getAuthor()));
         }
 
     }

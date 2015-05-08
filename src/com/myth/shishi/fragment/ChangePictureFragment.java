@@ -53,8 +53,6 @@ public class ChangePictureFragment extends Fragment
 
     private Bitmap destBitmap;
 
-    private Former former;
-
     private Writing writing;
 
     private int bright = 127;
@@ -65,10 +63,9 @@ public class ChangePictureFragment extends Fragment
     {
     }
 
-    public static ChangePictureFragment getInstance(Former former, Writing writing)
+    public static ChangePictureFragment getInstance( Writing writing)
     {
         ChangePictureFragment fileViewFragment = new ChangePictureFragment();
-        fileViewFragment.former = former;
         fileViewFragment.writing = writing;
         return fileViewFragment;
     }
@@ -153,7 +150,7 @@ public class ChangePictureFragment extends Fragment
         });
         layoutItemContainer(content);
         TextView title = (TextView) view.findViewById(R.id.title);
-        title.setText(former.getName());
+        title.setText(writing.getTitle());
         text = (TextView) view.findViewById(R.id.text);
         title.setTypeface(MyApplication.typeface);
         text.setTypeface(MyApplication.typeface);

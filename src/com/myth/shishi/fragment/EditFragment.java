@@ -23,6 +23,7 @@ import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetryActivity;
+import com.myth.shishi.activity.WebviewActivity;
 import com.myth.shishi.activity.YunSearchActivity;
 import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
@@ -203,9 +204,7 @@ public class EditFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(mContext, PoetryActivity.class);
-                intent.putExtra("former", former);
-                intent.putExtra("num", 0);
+                Intent intent = new Intent(mContext, WebviewActivity.class);
                 startActivity(intent);
             }
         });

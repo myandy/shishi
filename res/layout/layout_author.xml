@@ -22,13 +22,13 @@
             android:text="2"
             android:textSize="48sp" />
 
-        <ImageView
-            android:id="@+id/share"
+        <com.myth.shishi.wiget.TouchEffectImageView
+            android:id="@+id/baike"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="right"
             android:scaleType="fitXY"
-            android:src="@drawable/bt_share3" />
+            android:src="@drawable/director" />
     </LinearLayout>
 
     <com.myth.shishi.wiget.VScrollView

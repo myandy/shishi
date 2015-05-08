@@ -1,6 +1,7 @@
 package com.myth.shishi.db;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,21 +15,14 @@ public class AuthorDatabaseHelper
     public static ArrayList<Author> getAll()
     {
         SQLiteDatabase db = DBManager.getDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by d_num ", null);
         return getAuthorListFromCursor(cursor);
     }
 
-//    public static Author getByAuthor(String author)
-//    {
-//        SQLiteDatabase db = DBManager.getDatabase();
-//        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_author = " + author, null);
-//        return getAuthorListFromCursor(cursor).get(0);
-//    }
-
-    public static void update(String author, String s)
+    public static void update(String author, int s)
     {
         SQLiteDatabase db = DBManager.getDatabase();
-        db.execSQL(" update " + TABLE_NAME +" set en_name= '"+ s+ " ' where d_author like '" + author +"'");
+        db.execSQL(" update " + TABLE_NAME + " set color= " + s + "  where d_author like '" + author + "'");
     }
 
     private static ArrayList<Author> getAuthorListFromCursor(Cursor cursor)
@@ -42,30 +36,29 @@ public class AuthorDatabaseHelper
             author.setIntro(cursor.getString(cursor.getColumnIndex("d_intro")));
             author.setP_num(cursor.getInt(cursor.getColumnIndex("p_num")));
             author.setEn_name(cursor.getString(cursor.getColumnIndex("en_name")));
+            author.setColor(cursor.getInt(cursor.getColumnIndex("color")));
             list.add(author);
         }
         return list;
     }
 
-    public static Author getAuthorById(int ci_id)
+    public static Author getAuthorByName(String name)
     {
-        // TODO Auto-generated method stub
-        return null;
+        SQLiteDatabase db = DBManager.getDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_author like '" + name + "'", null);
+        List<Author> list = getAuthorListFromCursor(cursor);
+        if (list != null && list.size() > 0)
+        {
+            return list.get(0);
+        }
+        return new Author();
     }
 
-    public static ArrayList<Author> getAllShowAuthor()
+    public static ArrayList<Author> getAllAuthorByPNum()
     {
-        return getAll();
-    }
-
-    public static ArrayList<Author> getAllAuthor()
-    {
-        return getAll();
-    }
-
-    public static ArrayList<Author> getAllAuthorByWordCount()
-    {
-        return getAll();
+        SQLiteDatabase db = DBManager.getDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by p_num desc", null);
+        return getAuthorListFromCursor(cursor);
     }
 
 }

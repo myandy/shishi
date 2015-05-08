@@ -4,48 +4,84 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/show_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:text="随机一首诗"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
     <LinearLayout
         android:id="@+id/show_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true" >
+        android:layout_above="@id/show_one"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="浏览所有"
             android:textColor="@color/white"
-            android:textSize="26sp"
-            android:text="浏览所有" />
+            android:textSize="26sp" />
+
         <TextView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:textColor="@color/black_text"
             android:background="@drawable/circle_background"
-            android:padding="5dp"
             android:gravity="center"
-            android:textSize="26sp"
-            android:text="诗" />
+            android:padding="5dp"
+            android:text="诗"
+            android:textColor="@color/black_text"
+            android:textSize="26sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="人"
             android:textColor="@color/white"
-            android:textSize="26sp"
-            android:text="人" />
+            android:textSize="26sp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/show_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_below="@id/show_all"
-            android:textSize="24sp"
-            android:layout_marginTop="40dp"
-            android:gravity="center_horizontal"
-            android:layout_centerInParent="true"
-            android:text="随机一首诗" />
+        android:id="@+id/duishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/show_one"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="智能对诗"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
     
+    <TextView
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/duishi"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="收藏夹"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
     
+    <TextView
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favorite"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="搜索"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
 </RelativeLayout>

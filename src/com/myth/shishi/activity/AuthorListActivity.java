@@ -1,7 +1,9 @@
 package com.myth.shishi.activity;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,13 +18,14 @@ import com.myth.shishi.R;
 import com.myth.shishi.adapter.AuthorListAdapter;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.entity.Author;
+import com.myth.shishi.entity.ColorEntity;
 
 public class AuthorListActivity extends BaseActivity
 {
 
     private RecyclerView listview;
 
-    private ArrayList<Author> ciList;
+    private ArrayList<Author> aList;
 
     private boolean isDefault = true;
 
@@ -90,23 +93,54 @@ public class AuthorListActivity extends BaseActivity
             }
         });
         addView();
-//        try
+        // try
+        // {
+        // listview.smoothScrollToPosition(ciList.size());
+        // }
+        // catch (Exception e)
+        // {
+        // Log.e("AuthorList", e.toString());
+        // }
+
+//        new Thread(new Runnable()
 //        {
-//            listview.smoothScrollToPosition(ciList.size());
-//        }
-//        catch (Exception e)
-//        {
-//            Log.e("AuthorList", e.toString());
-//        }
+//
+//            @Override
+//            public void run()
+//            {
+//                doIt();
+//
+//            }
+//        }).start();
+    }
+
+    public void doIt()
+    {
+
+        List<Author> list = aList;
+
+        for (int i = 0; i < list.size(); i++)
+        {
+            ColorEntity colorEntity = MyApplication.getColorByPos(i / 2);
+            int color = 0xffffff;
+            if (colorEntity != null)
+            {
+                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+            }
+            list.get(i).setColor(color);
+
+            AuthorDatabaseHelper.update(list.get(i).getAuthor(), list.get(i).getColor());
+        }
+
     }
 
     private void addView()
     {
-        if (ciList == null || ciList.size() == 0)
+        if (aList == null || aList.size() == 0)
         {
             finish();
         }
-        adapter.setList(ciList);
+        adapter.setList(aList);
         adapter.notifyDataSetChanged();
     }
 
@@ -116,13 +150,13 @@ public class AuthorListActivity extends BaseActivity
         {
             rectLeft.setBackgroundResource(R.drawable.rect_left_selected);
             rectRight.setBackgroundResource(R.drawable.rect_right);
-            ciList = AuthorDatabaseHelper.getAllShowAuthor();
+            aList = AuthorDatabaseHelper.getAll();
         }
         else
         {
             rectLeft.setBackgroundResource(R.drawable.rect_left);
             rectRight.setBackgroundResource(R.drawable.rect_right_selected);
-            ciList = AuthorDatabaseHelper.getAllAuthorByWordCount();
+            aList = AuthorDatabaseHelper.getAllAuthorByPNum();
         }
     }
 

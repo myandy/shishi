@@ -17,6 +17,7 @@ import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.wiget.AuthorView;
+import com.myth.shishi.wiget.PoetryView;
 
 public class AuthorPageActivity extends BaseActivity
 {
@@ -26,6 +27,8 @@ public class AuthorPageActivity extends BaseActivity
     private Author author;
 
     private ViewPager gallery;
+
+    private int page = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,7 +42,24 @@ public class AuthorPageActivity extends BaseActivity
         }
 
         list = PoetryDatabaseHelper.getAllByAuthor(author.getAuthor());
+        if (getIntent().hasExtra("title"))
+        {
+            page = searchAuthor(getIntent().getStringExtra("title"));
+        }
+
         initView();
+    }
+
+    private int searchAuthor(String word)
+    {
+        for (int i = 0; i < list.size(); i++)
+        {
+            if (list.get(i).getTitle().contains(word))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void initView()
@@ -47,7 +67,14 @@ public class AuthorPageActivity extends BaseActivity
 
         gallery = (ViewPager) findViewById(R.id.viewpage);
         gallery.setAdapter(galleryAdapter);
-        gallery.setCurrentItem(galleryAdapter.getCount() - 1);
+        if (page != -1)
+        {
+            gallery.setCurrentItem(page);
+        }
+        else
+        {
+            gallery.setCurrentItem(galleryAdapter.getCount() - 1);
+        }
 
     }
 
@@ -69,15 +96,7 @@ public class AuthorPageActivity extends BaseActivity
 
             else
             {
-                TextView textView = (TextView) root.findViewById(R.id.textview);
-                textView.setTypeface(MyApplication.typeface);
-                String text = list.get(position).getPoetry();
-                if (!TextUtils.isEmpty(list.get(position).getAuthor()))
-                {
-                    text = list.get(position).getAuthor() + "\n" + text;
-                }
-                textView.setText(text);
-
+                root=new PoetryView(mActivity,author,list.get(position));
             }
             container.addView(root, param);
             return root;

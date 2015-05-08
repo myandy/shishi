@@ -19,11 +19,13 @@ import android.widget.Toast;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
+import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
+import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.util.OthersUtils;
-import com.myth.shishi.wiget.CircleShareView;
+import com.myth.shishi.wiget.CircleImageView;
 import com.myth.shishi.wiget.TouchEffectImageView;
 
 public class PoetryActivity extends BaseActivity
@@ -36,14 +38,18 @@ public class PoetryActivity extends BaseActivity
     private Poetry poetry;
 
     private TextView title;
+
+    CircleImageView shareView;
     
-    CircleShareView editView;
+    private Author author;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ci);
+        setContentView(R.layout.activity_poetry);
+        
+        setBottomVisible();
 
         ciList = PoetryDatabaseHelper.getAll();
         getRandomPoetry();
@@ -54,18 +60,31 @@ public class PoetryActivity extends BaseActivity
     private void getRandomPoetry()
     {
         poetry = ciList.get(new Random().nextInt(ciList.size()));
+        author=AuthorDatabaseHelper.getAuthorByName(poetry.getAuthor());
     }
 
     private void initView()
     {
         LinearLayout topView = (LinearLayout) findViewById(R.id.right);
         LayoutParams param = new LayoutParams(DisplayUtil.dip2px(mActivity, 80), DisplayUtil.dip2px(mActivity, 120));
-         editView = new CircleShareView(mActivity, MyApplication.getRandomColor());
-        topView.addView(editView, 1, param);
+        shareView = new CircleImageView(mActivity,author.getColor(),R.drawable.share3_white);
+        topView.addView(shareView, 1, param);
+        
+        shareView.setOnClickListener(new OnClickListener()
+        {
+            
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mActivity, ShareEditActivity.class);
+                intent.putExtra("data", poetry);
+                startActivity(intent);
+            }
+        });
 
         title = (TextView) findViewById(R.id.title);
         title.setTypeface(MyApplication.typeface);
-        title.setText(poetry.getTitle());
+        title.setText(poetry.getAuthor());
 
         content = (TextView) findViewById(R.id.content);
         content.setTypeface(MyApplication.typeface);
@@ -120,14 +139,14 @@ public class PoetryActivity extends BaseActivity
 
         ((TextView) findViewById(R.id.author)).setTypeface(MyApplication.typeface);
 
-        findViewById(R.id.share).setOnClickListener(new OnClickListener()
+        findViewById(R.id.baike).setOnClickListener(new OnClickListener()
         {
 
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(mActivity, ShareEditActivity.class);
-                intent.putExtra("poetry", poetry);
+                Intent intent = new Intent(mActivity, WebviewActivity.class);
+                intent.putExtra("string", poetry.getAuthor());
                 startActivity(intent);
             }
         });
@@ -161,14 +180,14 @@ public class PoetryActivity extends BaseActivity
 
     private void refreshRandomView()
     {
-        title.setText(poetry.getTitle());
+        title.setText(poetry.getAuthor());
         setColor();
         initContentView();
     }
 
     private void setColor()
     {
-        editView.setmColor( MyApplication.getRandomColor());
+        shareView.setmColor(author.getColor());
     }
 
     private void initContentView()
@@ -181,7 +200,8 @@ public class PoetryActivity extends BaseActivity
         }
         content.setText(poetry.getPoetry());
         ((TextView) findViewById(R.id.note)).setText(note);
-        ((TextView) findViewById(R.id.author)).setText(poetry.getAuthor() + "\n");
+        ((TextView) findViewById(R.id.author)).setText(poetry.getTitle() + "\n");
+
     }
 
 }

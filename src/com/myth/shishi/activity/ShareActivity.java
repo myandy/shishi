@@ -30,8 +30,6 @@ import com.myth.shishi.util.StringUtils;
 public class ShareActivity extends BaseActivity
 {
 
-    private Former former;
-
     private Writing writing;
 
     private LinearLayout content;
@@ -44,11 +42,7 @@ public class ShareActivity extends BaseActivity
         setBottomGone();
 
         writing = (Writing) getIntent().getSerializableExtra("writing");
-        if (writing != null)
-        {
-            former = writing.getFormer();
-        }
-        else
+        if (writing == null)
         {
             finish();
         }
@@ -104,7 +98,7 @@ public class ShareActivity extends BaseActivity
         });
 
         layoutItemContainer(content);
-        title.setText(former.getName());
+        title.setText(writing.getTitle());
         text.setText(writing.getText());
         title.setTypeface(MyApplication.typeface);
         text.setTypeface(MyApplication.typeface);
@@ -154,7 +148,7 @@ public class ShareActivity extends BaseActivity
         String filePath = null;
         try
         {
-            String filename =  writing.getUpdate_dt()+"";
+            String filename = writing.getUpdate_dt() + "";
             filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(content), filename);
         }
         catch (IOException e)

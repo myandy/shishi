@@ -63,6 +63,7 @@ public class BaseActivity extends Activity
             }
         });
         mContentLayout = (FrameLayout) findViewById(R.id.content_layout);
+        setBottomGone();
     }
 
     public static int getStatusBarHeight(Context context)

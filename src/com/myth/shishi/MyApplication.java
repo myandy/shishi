@@ -53,14 +53,14 @@ public class MyApplication extends Application
             return null;
         }
     }
-    public static int getRandomColor()
-    {
-        if (colorList == null)
-        {
-            colorList = ColorDatabaseHelper.getAllColor();
-        }
-        return colorList.get(new Random().nextInt(colorList.size())).toColor();
-    }
+//    public static int getRandomColor()
+//    {
+//        if (colorList == null)
+//        {
+//            colorList = ColorDatabaseHelper.getAllColor();
+//        }
+//        return colorList.get(new Random().nextInt(colorList.size())).toColor();
+//    }
 
     public static void setTypeface(Context context, int type)
     {

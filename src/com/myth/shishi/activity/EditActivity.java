@@ -182,8 +182,8 @@ public class EditActivity extends BaseActivity
 
         // 创建修改实例
         editFragment = EditFragment.getInstance(former, writing);
-        changeBackgroundFrament = ChangeBackgroundFragment.getInstance(former, writing);
-        changePictureFragment = ChangePictureFragment.getInstance(former, writing);
+        changeBackgroundFrament = ChangeBackgroundFragment.getInstance( writing);
+        changePictureFragment = ChangePictureFragment.getInstance( writing);
 
 
         fragments.add(editFragment);

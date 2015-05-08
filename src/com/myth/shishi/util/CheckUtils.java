@@ -52,7 +52,7 @@ public class CheckUtils
         {
             intCode -= 3;
         }
-        if (intCode == 1 || intCode == 3)
+        if (intCode == 1 || intCode == 2)
         {
             int wordStone = YunDatabaseHelper.getWordStone(hanzi + "");
 
@@ -64,7 +64,7 @@ public class CheckUtils
             {
                 return true;
             }
-            else if (wordStone == 20 && intCode == 3)
+            else if (wordStone == 20 && intCode == 2)
             {
                 return true;
             }

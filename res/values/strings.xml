@@ -3,7 +3,7 @@
 
     <string name="app_name">诗Shi</string>
     <string name="search_hint">在%1$s中搜索</string>
-    <string name="search_cipai_hint">搜索词牌</string>
+    <string name="search_cipai_hint">搜索诗</string>
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>
     <string name="delete">删除</string>
@@ -18,7 +18,7 @@
     
     <string name="setting_yun">韵典</string>
     <string name="setting_typeface">简繁切换</string>
-    <string name="setting_about">关于词Ci</string>
+    <string name="setting_about">关于诗Shi</string>
     <string name="setting_check">检查平仄</string>
     <string name="check_true">自动检查</string>
     <string name="check_false">不自动检查</string>

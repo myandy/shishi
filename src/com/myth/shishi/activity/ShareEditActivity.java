@@ -18,6 +18,7 @@ import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.entity.Ci;
 import com.myth.shishi.entity.Former;
+import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.fragment.ChangeBackgroundFragment;
 import com.myth.shishi.fragment.ChangePictureFragment;
@@ -32,7 +33,7 @@ public class ShareEditActivity extends BaseActivity
 
     private Writing writing;
 
-    private Ci ci;
+    private Poetry poetry;
 
     ChangeBackgroundFragment changeBackgroundFrament;
 
@@ -48,12 +49,11 @@ public class ShareEditActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        ci = (Ci) getIntent().getSerializableExtra("ci");
+        poetry = (Poetry) getIntent().getSerializableExtra("data");
 
         writing = new Writing();
-        writing.setText(ci.getText());
-//        former = ci.get;
-//        writing.setCipai(former);
+        writing.setText(poetry.getPoetry());
+        writing.setTitle(poetry.getTitle());
 
         ImageView down = new TouchEffectImageView(mActivity, null);
         down.setImageResource(R.drawable.done);
@@ -86,7 +86,6 @@ public class ShareEditActivity extends BaseActivity
                     }
                 }
                 writing.setBitmap(null);
-                writing.setUpdate_dt(ci.getId());
                 Intent intent = new Intent(mActivity, ShareActivity.class);
                 intent.putExtra("writing", writing);
                 startActivity(intent);
@@ -137,8 +136,8 @@ public class ShareEditActivity extends BaseActivity
         addBottomCenterView(background, lps);
         addBottomCenterView(picture, lps);
 
-        changeBackgroundFrament = ChangeBackgroundFragment.getInstance(former, writing);
-        changePictureFragment = ChangePictureFragment.getInstance(former, writing);
+        changeBackgroundFrament = ChangeBackgroundFragment.getInstance( writing);
+        changePictureFragment = ChangePictureFragment.getInstance(writing);
 
         fragments.add(changeBackgroundFrament);
         fragments.add(changePictureFragment);

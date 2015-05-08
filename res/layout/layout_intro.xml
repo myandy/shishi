@@ -6,7 +6,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="词Ci介绍"
+        android:text="诗Shi介绍"
         android:textColor="@color/white"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"

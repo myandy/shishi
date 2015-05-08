@@ -153,19 +153,19 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
                 }
             });
 
-            ColorEntity colorEntity = MyApplication.getColorByPos(pos / 2);
-            int color = 0xffffff;
-            if (colorEntity != null)
-            {
-                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-            }
-            holder.author.setColor(color);
-            holder.head.setBackgroundColor(color);
-            holder.num.setTextColor(color);
-            holder.name.setTextColor(color);
-            holder.enname.setTextColor(color);
+//            ColorEntity colorEntity = MyApplication.getColorByPos(pos / 2);
+//            int color = 0xffffff;
+//            if (colorEntity != null)
+//            {
+//                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+//            }
+//            holder.author.setColor(color);
+            holder.head.setBackgroundColor( holder.author.getColor());
+            holder.num.setTextColor(holder.author.getColor());
+            holder.name.setTextColor(holder.author.getColor());
+            holder.enname.setTextColor(holder.author.getColor());
 
-            holder.stoneView.setType(holder.author.getDynasty(), color);
+            holder.stoneView.setType(holder.author.getDynasty(), holder.author.getColor());
             String count = holder.author.getP_num() + "";
             if (holder.author.getP_num() < 100)
             {

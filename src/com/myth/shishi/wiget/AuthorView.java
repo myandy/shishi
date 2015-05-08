@@ -16,6 +16,8 @@ import com.myth.shishi.R;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.AuthorListActivity;
+import com.myth.shishi.activity.PoetrySearchActivity;
+import com.myth.shishi.activity.WebviewActivity;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.util.DisplayUtil;
@@ -59,10 +61,32 @@ public class AuthorView extends RelativeLayout
 
         LinearLayout topView = (LinearLayout) root.findViewById(R.id.right);
         LayoutParams param = new LayoutParams(DisplayUtil.dip2px(mContext, 80), DisplayUtil.dip2px(mContext, 120));
-        CircleEditView editView = new CircleEditView(mContext, author.getDynasty());
-        topView.addView(editView, 1, param);
-
-        editView.setmColor(author.getColor());
+        CircleImageView dirView = new CircleImageView(mContext,author.getColor(),R.drawable.director);
+        topView.addView(dirView, 1, param);
+        
+        dirView.setOnClickListener(new OnClickListener()
+        {
+            
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mContext, PoetrySearchActivity.class);
+                intent.putExtra("author", author);
+                mContext.startActivity(intent);
+            }
+        });
+        
+        root.findViewById(R.id.baike).setOnClickListener(new OnClickListener()
+        {
+            
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mContext, WebviewActivity.class);
+                intent.putExtra("string", author.getAuthor());
+                mContext.startActivity(intent);
+            }
+        });
 
         TextView content = (TextView) root.findViewById(R.id.content);
 
