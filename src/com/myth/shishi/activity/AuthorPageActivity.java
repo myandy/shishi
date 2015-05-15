@@ -96,7 +96,7 @@ public class AuthorPageActivity extends BaseActivity
 
             else
             {
-                root=new PoetryView(mActivity,author,list.get(position));
+                root=new PoetryView(mActivity,author,list.get(position),(list.size()-position)+"/"+list.size());
             }
             container.addView(root, param);
             return root;

@@ -49,6 +49,8 @@ public class ShareEditActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        setBottomVisible();
+
         poetry = (Poetry) getIntent().getSerializableExtra("data");
 
         writing = new Writing();
@@ -136,7 +138,7 @@ public class ShareEditActivity extends BaseActivity
         addBottomCenterView(background, lps);
         addBottomCenterView(picture, lps);
 
-        changeBackgroundFrament = ChangeBackgroundFragment.getInstance( writing);
+        changeBackgroundFrament = ChangeBackgroundFragment.getInstance(writing);
         changePictureFragment = ChangePictureFragment.getInstance(writing);
 
         fragments.add(changeBackgroundFrament);

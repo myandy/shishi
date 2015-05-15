@@ -35,7 +35,7 @@ public class FormerDatabaseHelper
     public static Former getFormerByName(String name)
     {
         SQLiteDatabase db = DBManager.getDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where name like '" + " name '", null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where name like '" + name + "'", null);
         List<Former> list = getFormerListFromCursor(cursor);
         if (list != null && list.size() > 0)
         {

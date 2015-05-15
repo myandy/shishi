@@ -40,7 +40,7 @@ public class PoetryActivity extends BaseActivity
     private TextView title;
 
     CircleImageView shareView;
-    
+
     private Author author;
 
     @Override
@@ -48,7 +48,7 @@ public class PoetryActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poetry);
-        
+
         setBottomVisible();
 
         ciList = PoetryDatabaseHelper.getAll();
@@ -60,19 +60,19 @@ public class PoetryActivity extends BaseActivity
     private void getRandomPoetry()
     {
         poetry = ciList.get(new Random().nextInt(ciList.size()));
-        author=AuthorDatabaseHelper.getAuthorByName(poetry.getAuthor());
+        author = AuthorDatabaseHelper.getAuthorByName(poetry.getAuthor());
     }
 
     private void initView()
     {
         LinearLayout topView = (LinearLayout) findViewById(R.id.right);
         LayoutParams param = new LayoutParams(DisplayUtil.dip2px(mActivity, 80), DisplayUtil.dip2px(mActivity, 120));
-        shareView = new CircleImageView(mActivity,author.getColor(),R.drawable.share3_white);
+        shareView = new CircleImageView(mActivity, author.getColor(), R.drawable.share3_white);
         topView.addView(shareView, 1, param);
-        
+
         shareView.setOnClickListener(new OnClickListener()
         {
-            
+
             @Override
             public void onClick(View v)
             {
@@ -138,6 +138,20 @@ public class PoetryActivity extends BaseActivity
         });
 
         ((TextView) findViewById(R.id.author)).setTypeface(MyApplication.typeface);
+
+        title.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                Intent intent = new Intent(mActivity, AuthorPageActivity.class);
+                intent.putExtra("author",author);
+                startActivity(intent);
+
+            }
+        });
 
         findViewById(R.id.baike).setOnClickListener(new OnClickListener()
         {

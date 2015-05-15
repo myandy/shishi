@@ -27,7 +27,7 @@
     <string name="notice_title">词Ci用户交流请加QQ群：439747099</string>
     
     <string name="sort_default">默认排序</string>
-    <string name="sort_count">按字数排序</string>
+    <string name="sort_count">按诗数量排序</string>
     
     <string name="about_text">Android版词Ci从IOS同名应用模仿而成。</string>
     
@@ -36,5 +36,8 @@
     <string name="about_text2">方正字库为《词Ci》非商业版本提供字体授权。授权字体为：方正清刻本悦宋。欢迎大家去微博关注@方正字库美丽的字体。</string>
     
     <string name="about_text3">有建议或者bug请联系：\nandymao1991@gmail.com</string>
+    
+     <string name="input_shanglian">请输入上联</string>
+    
     
 </resources>

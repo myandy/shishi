@@ -28,7 +28,7 @@
             android:layout_height="65dp"
             android:layout_gravity="right"
             android:scaleType="fitXY"
-            android:src="@drawable/director" />
+            android:src="@drawable/baidu" />
     </LinearLayout>
 
     <com.myth.shishi.wiget.VScrollView

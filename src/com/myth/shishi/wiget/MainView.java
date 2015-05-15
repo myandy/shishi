@@ -69,7 +69,8 @@ public class MainView extends RelativeLayout
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(mContext, PoetryActivity.class);
+                Intent intent = new Intent(mContext, PoetrySearchActivity.class);
+                intent.putExtra("collect", true);
                 mContext.startActivity(intent);
 
             }

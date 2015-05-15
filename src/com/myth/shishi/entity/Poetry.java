@@ -10,7 +10,6 @@ public class Poetry implements Serializable
      */
     private static final long serialVersionUID = 1L;
 
-
     private String author;
 
     private String intro;
@@ -18,6 +17,8 @@ public class Poetry implements Serializable
     private String title;
 
     private String poetry;
+
+    private int collect;
 
     public String getAuthor()
     {
@@ -58,8 +59,15 @@ public class Poetry implements Serializable
     {
         this.poetry = poetry;
     }
-    
-    
 
+    public int getCollect()
+    {
+        return collect;
+    }
+
+    public void setCollect(int collect)
+    {
+        this.collect = collect;
+    }
 
 }

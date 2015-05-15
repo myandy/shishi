@@ -61,4 +61,28 @@ public class AuthorDatabaseHelper
         return getAuthorListFromCursor(cursor);
     }
 
+    public static ArrayList<Author> getAll(int dynasty)
+    {
+        if (dynasty == 0)
+        {
+            return getAll();
+        }
+        SQLiteDatabase db = DBManager.getDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_dynasty like '"
+                + DynastyDatabaseHelper.dynastyArray[dynasty] + "' " + "order by d_num ", null);
+        return getAuthorListFromCursor(cursor);
+    }
+
+    public static ArrayList<Author> getAllAuthorByPNum(int dynasty)
+    {
+        if (dynasty == 0)
+        {
+            return getAllAuthorByPNum();
+        }
+        SQLiteDatabase db = DBManager.getDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_dynasty like '"
+                + DynastyDatabaseHelper.dynastyArray[dynasty] + "' " + " order by p_num desc", null);
+        return getAuthorListFromCursor(cursor);
+    }
+
 }

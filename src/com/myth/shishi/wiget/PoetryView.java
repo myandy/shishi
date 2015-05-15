@@ -16,6 +16,7 @@ import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.ShareEditActivity;
 import com.myth.shishi.activity.WebviewActivity;
+import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.util.DisplayUtil;
@@ -33,6 +34,10 @@ public class PoetryView extends LinearLayout
 
     private View root;
 
+    private String page;
+
+    private View collect;
+
     public void setData(Author author, Poetry poetry)
     {
         this.poetry = poetry;
@@ -49,11 +54,12 @@ public class PoetryView extends LinearLayout
         addView(root);
     }
 
-    public PoetryView(Context context, Author author, Poetry poetry)
+    public PoetryView(Context context, Author author, Poetry poetry, String page)
     {
         super(context);
         this.poetry = poetry;
         this.author = author;
+        this.page = page;
         mContext = context;
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         root = inflater.inflate(R.layout.layout_poetry, null);
@@ -148,12 +154,42 @@ public class PoetryView extends LinearLayout
             public void onClick(View v)
             {
                 Intent intent = new Intent(mContext, WebviewActivity.class);
-                intent.putExtra("string", poetry.getAuthor());
+                intent.putExtra("string", poetry.getTitle());
                 mContext.startActivity(intent);
             }
         });
 
+        ((TextView) root.findViewById(R.id.page)).setText(page);
+
+        collect = root.findViewById(R.id.collect);
+
+        collect.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                PoetryDatabaseHelper.updateCollect(poetry.getPoetry(),
+                        !PoetryDatabaseHelper.isCollect(poetry.getPoetry()));
+                refreshCollect();
+
+            }
+        });
+
         refreshView();
+
+    }
+
+    protected void refreshCollect()
+    {
+        if (PoetryDatabaseHelper.isCollect(poetry.getPoetry()))
+        {
+            collect.setBackgroundResource(R.drawable.collect);
+        }
+        else
+        {
+            collect.setBackgroundResource(R.drawable.no_collect);
+        }
 
     }
 

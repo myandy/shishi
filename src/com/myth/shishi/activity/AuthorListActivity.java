@@ -3,6 +3,9 @@ package com.myth.shishi.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,15 +13,21 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView.ScaleType;
 
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.AuthorListAdapter;
 import com.myth.shishi.db.AuthorDatabaseHelper;
+import com.myth.shishi.db.DynastyDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.ColorEntity;
+import com.myth.shishi.util.DisplayUtil;
+import com.myth.shishi.wiget.TouchEffectImageView;
 
 public class AuthorListActivity extends BaseActivity
 {
@@ -40,12 +49,42 @@ public class AuthorListActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cipai_list);
+        setBottomVisible();
         isDefault = MyApplication.getDefaulListType(mActivity);
         initView();
     }
 
     private void initView()
     {
+
+        ImageView setting = new TouchEffectImageView(mActivity, null);
+        setting.setImageResource(R.drawable.setting);
+        setting.setScaleType(ScaleType.FIT_XY);
+        addBottomRightView(setting,
+                new LayoutParams(DisplayUtil.dip2px(mActivity, 48), DisplayUtil.dip2px(mActivity, 48)));
+        setting.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                new AlertDialog.Builder(mActivity).setSingleChoiceItems(DynastyDatabaseHelper.dynastyArray,
+                        MyApplication.getDefaultDynasty(mActivity), new DialogInterface.OnClickListener()
+                        {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                MyApplication.setDefaultDynasty(mActivity, which);
+                                setBackground();
+                                addView();
+                                dialog.dismiss();
+                            }
+
+                        }).show();
+            }
+        });
+
         listview = (RecyclerView) findViewById(R.id.listview);
 
         listview.setHasFixedSize(true);
@@ -102,16 +141,16 @@ public class AuthorListActivity extends BaseActivity
         // Log.e("AuthorList", e.toString());
         // }
 
-//        new Thread(new Runnable()
-//        {
-//
-//            @Override
-//            public void run()
-//            {
-//                doIt();
-//
-//            }
-//        }).start();
+        // new Thread(new Runnable()
+        // {
+        //
+        // @Override
+        // public void run()
+        // {
+        // doIt();
+        //
+        // }
+        // }).start();
     }
 
     public void doIt()
@@ -150,13 +189,13 @@ public class AuthorListActivity extends BaseActivity
         {
             rectLeft.setBackgroundResource(R.drawable.rect_left_selected);
             rectRight.setBackgroundResource(R.drawable.rect_right);
-            aList = AuthorDatabaseHelper.getAll();
+            aList = AuthorDatabaseHelper.getAll(MyApplication.getDefaultDynasty(mActivity));
         }
         else
         {
             rectLeft.setBackgroundResource(R.drawable.rect_left);
             rectRight.setBackgroundResource(R.drawable.rect_right_selected);
-            aList = AuthorDatabaseHelper.getAllAuthorByPNum();
+            aList = AuthorDatabaseHelper.getAllAuthorByPNum(MyApplication.getDefaultDynasty(mActivity));
         }
     }
 

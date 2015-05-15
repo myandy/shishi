@@ -3,12 +3,14 @@ package com.myth.shishi.fragment;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,6 @@ import android.widget.TextView;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
-import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.WebviewActivity;
 import com.myth.shishi.activity.YunSearchActivity;
 import com.myth.shishi.entity.Former;
@@ -47,6 +48,8 @@ public class EditFragment extends Fragment
     private Former former;
 
     private Writing writing;
+
+    private TextView title;
 
     public EditFragment()
     {
@@ -105,6 +108,7 @@ public class EditFragment extends Fragment
         {
             sb.append(editTexts.get(i).getEditableText().toString() + "\n");
         }
+        writing.setTitle(title.getText().toString());
         writing.setText(sb.toString());
     }
 
@@ -121,6 +125,9 @@ public class EditFragment extends Fragment
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
             edittext.setText(writing.getText());
+            edittext.setBackground(null);
+            editTexts.add(edittext);
+            edittext.requestFocus();
             editContent.addView(edittext);
         }
         else
@@ -143,6 +150,7 @@ public class EditFragment extends Fragment
                     view1.setPadding(0, 30, 0, 30);
                     final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
                     edittext.setTypeface(MyApplication.typeface);
+                    edittext.setLines(1);
                     final int index = i;
                     edittext.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener()
                     {
@@ -184,9 +192,40 @@ public class EditFragment extends Fragment
             }
         }
 
-        TextView title = (TextView) view.findViewById(R.id.edit_title);
-        title.setText(former.getName());
+        title = (TextView) view.findViewById(R.id.edit_title);
+
         title.setTypeface(MyApplication.typeface);
+
+        if (TextUtils.isEmpty(writing.getTitle()))
+        {
+            title.setText("点击输入标题");
+        }
+        else
+        {
+            title.setText(writing.getTitle());
+        }
+
+        title.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                final EditText et = new EditText(getActivity());
+                new AlertDialog.Builder(getActivity()).setTitle("请输入标题").setIcon(android.R.drawable.ic_dialog_info).setView(
+                        et).setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        title.setText(et.getText().toString().trim());
+                    }
+                }).setNegativeButton("取消", null).show();
+
+            }
+        });
 
         view.findViewById(R.id.edit_dict).setOnClickListener(new OnClickListener()
         {

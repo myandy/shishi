@@ -82,7 +82,7 @@ public class WritingView extends RelativeLayout
 
         time.setText(DateUtils.longToFormat(writing.getUpdate_dt(), DateUtils.YMD_HM_FORMAT));
 
-        title.setText(writing.getFormer().getName());
+        title.setText(writing.getTitle());
         text.setText(writing.getText());
 
         title.setTypeface(MyApplication.typeface);

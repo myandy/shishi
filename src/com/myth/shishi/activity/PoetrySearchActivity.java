@@ -51,6 +51,10 @@ public class PoetrySearchActivity extends BaseActivity
             author = (Author) getIntent().getSerializableExtra("author");
             pList = PoetryDatabaseHelper.getAllByAuthor(author.getAuthor());
         }
+        else if (getIntent().hasExtra("collect"))
+        {
+            pList = PoetryDatabaseHelper.getAllCollect();
+        }
         else
         {
             pList = PoetryDatabaseHelper.getAll();

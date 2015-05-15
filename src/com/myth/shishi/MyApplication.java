@@ -53,14 +53,15 @@ public class MyApplication extends Application
             return null;
         }
     }
-//    public static int getRandomColor()
-//    {
-//        if (colorList == null)
-//        {
-//            colorList = ColorDatabaseHelper.getAllColor();
-//        }
-//        return colorList.get(new Random().nextInt(colorList.size())).toColor();
-//    }
+
+    // public static int getRandomColor()
+    // {
+    // if (colorList == null)
+    // {
+    // colorList = ColorDatabaseHelper.getAllColor();
+    // }
+    // return colorList.get(new Random().nextInt(colorList.size())).toColor();
+    // }
 
     public static void setTypeface(Context context, int type)
     {
@@ -119,6 +120,18 @@ public class MyApplication extends Application
     {
         Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
         edit.putBoolean("check", bool);
+        edit.commit();
+    }
+
+    public static int getDefaultDynasty(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("dynasty", 0);
+    }
+
+    public static void setDefaultDynasty(Context context, int dynasty)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putInt("dynasty", dynasty);
         edit.commit();
     }
 

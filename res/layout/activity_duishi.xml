@@ -3,29 +3,68 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back1"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/et"
-        android:layout_width="fill_parent"
-        android:layout_height="34dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/search_background"
-        android:cursorVisible="true"
-        android:drawableLeft="@drawable/search"
-        android:drawablePadding="5dip"
-        android:gravity="center|left"
-        android:hint="@string/search_hint"
-        android:imeOptions="actionSearch"
-        android:singleLine="true"
-        android:textCursorDrawable="@null"
-        android:textSize="16sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/back2"
+        android:gravity="center_vertical" >
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="40dp"
-        android:layout_height="34dp" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="60dp"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="对诗"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="fill_parent"
+            android:layout_height="34dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/button"
+            android:background="@drawable/search_background"
+            android:cursorVisible="true"
+            android:drawablePadding="5dip"
+            android:gravity="center|left"
+            android:hint="@string/input_shanglian"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentTop="true"
+        android:background="@color/black_line" />
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/back2"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="60dp"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="刷新"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listview"

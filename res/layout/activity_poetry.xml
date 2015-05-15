@@ -28,7 +28,7 @@
             android:layout_height="65dp"
             android:scaleType="fitXY"
             android:layout_gravity="right"
-            android:src="@drawable/bt_share3" />
+            android:src="@drawable/baidu" />
         
     </LinearLayout>
 
