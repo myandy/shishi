@@ -48,6 +48,8 @@ public class EditActivity extends BaseActivity
 
     private String oldText;
 
+    private String oldTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -73,6 +75,7 @@ public class EditActivity extends BaseActivity
         }
 
         oldText = writing.getText();
+        oldTitle = writing.getTitle();
         getBottomLeftView().setOnClickListener(new OnClickListener()
         {
 
@@ -182,9 +185,8 @@ public class EditActivity extends BaseActivity
 
         // 创建修改实例
         editFragment = EditFragment.getInstance(former, writing);
-        changeBackgroundFrament = ChangeBackgroundFragment.getInstance( writing);
-        changePictureFragment = ChangePictureFragment.getInstance( writing);
-
+        changeBackgroundFrament = ChangeBackgroundFragment.getInstance(writing);
+        changePictureFragment = ChangePictureFragment.getInstance(writing);
 
         fragments.add(editFragment);
         fragments.add(changeBackgroundFrament);
@@ -212,7 +214,8 @@ public class EditActivity extends BaseActivity
             changePictureFragment.save();
         }
         editFragment.save();
-        if (!StringUtils.isEmpty(writing.getText()) && !writing.getText().equals(oldText))
+        if ((!StringUtils.isEmpty(writing.getText()) && !writing.getText().equals(oldText))
+                || (!StringUtils.isEmpty(writing.getTitle()) && !writing.getTitle().equals(oldTitle)))
         {
             Bundle bundle = new Bundle();
             bundle.putString(GCDialog.DATA_CONTENT, mActivity.getString(R.string.save_content));

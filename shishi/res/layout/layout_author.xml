@@ -24,7 +24,7 @@
 
     </LinearLayout>
 
-    <com.myth.shishi.wiget.VScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/right"
@@ -46,6 +46,6 @@
                 android:textIsSelectable="true"
                 android:textSize="18sp" />
         </RelativeLayout>
-    </com.myth.shishi.wiget.VScrollView>
+    </ScrollView>
 
 </RelativeLayout>

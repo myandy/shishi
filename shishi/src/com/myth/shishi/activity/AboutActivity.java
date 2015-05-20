@@ -12,8 +12,14 @@ public class AboutActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        if (getIntent().hasExtra("former"))
+        {
+            setContentView(R.layout.activity_former_help);
+        }
+        else
+        {
+            setContentView(R.layout.activity_about);
+        }
     }
-
 
 }

@@ -124,12 +124,14 @@ public class EditFragment extends Fragment
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
 
-            String[] tList = writing.getText().split("\n");
-            if (tList != null && tList.length > 0)
+            if (writing.getText() != null)
             {
-                edittext.setText(tList[0]);
+                String[] tList = writing.getText().split("\n");
+                if (tList != null && tList.length > 0)
+                {
+                    edittext.setText(tList[0]);
+                }
             }
-
             edittext.setBackground(null);
             editTexts.add(edittext);
             edittext.requestFocus();

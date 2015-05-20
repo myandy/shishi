@@ -48,7 +48,7 @@ public class CheckUtils
     private static boolean checkPingze(char hanzi, char code)
     {
         int intCode = Integer.parseInt(code + "");
-        if (code > 6)
+        if (intCode > 6)
         {
             intCode -= 6;
         }

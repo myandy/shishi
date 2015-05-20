@@ -15,7 +15,7 @@ public class FormerDatabaseHelper
     public static ArrayList<Former> getAll()
     {
         SQLiteDatabase db = DBManager.getDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by id", null);
         return getFormerListFromCursor(cursor);
     }
 
@@ -27,9 +27,28 @@ public class FormerDatabaseHelper
             Former data = new Former();
             data.setName(cursor.getString(cursor.getColumnIndex("name")));
             data.setYun(cursor.getString(cursor.getColumnIndex("yun")));
+            data.setId(cursor.getInt(cursor.getColumnIndex("id")));
             list.add(data);
         }
         return list;
+    }
+
+    public static void update(Former data)
+    {
+        SQLiteDatabase db = DBManager.getDatabase();
+        db.execSQL(" update " + TABLE_NAME + " set yun= '" + data.getYun() + "'  where id = " + data.getId());
+    }
+    
+    public static void delete(Former data)
+    {
+        SQLiteDatabase db = DBManager.getDatabase();
+        db.execSQL(" delete from " + TABLE_NAME + "  where id = " + data.getId());
+    }
+
+    public static void add(Former data)
+    {
+        SQLiteDatabase db = DBManager.getDatabase();
+        db.execSQL(" insert into " + TABLE_NAME + " (name,yun)  values ( '" + data.getName() + "','" + data.getYun() + "')");
     }
 
     public static Former getFormerByName(String name)

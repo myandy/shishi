@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -21,12 +22,14 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.myth.shishi.BaseActivity;
+import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.FormerDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Author;
+import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;
@@ -97,22 +100,27 @@ public class MainActivity extends BaseActivity
             @Override
             public void onClick(View v)
             {
-                final List<Former> list = FormerDatabaseHelper.getAll();
-                String s[] = new String[list.size()];
-                for (int i = 0; i < list.size(); i++)
-                {
-                    s[i] = list.get(i).getName();
-                }
-                new AlertDialog.Builder(mActivity).setItems(s, new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        Intent intent = new Intent(mActivity, EditActivity.class);
-                        intent.putExtra("former", list.get(which));
-                        startActivity(intent);
-                        dialog.dismiss();
-                    }
-                }).show();
+                Intent intent = new Intent(mActivity, FormerListActivity.class);
+                startActivity(intent);
+                
+                //
+                // final List<Former> list = FormerDatabaseHelper.getAll();
+                // String s[] = new String[list.size()];
+                // for (int i = 0; i < list.size(); i++)
+                // {
+                // s[i] = list.get(i).getName();
+                // }
+                // new AlertDialog.Builder(mActivity).setItems(s, new
+                // DialogInterface.OnClickListener()
+                // {
+                // public void onClick(DialogInterface dialog, int which)
+                // {
+                // Intent intent = new Intent(mActivity, EditActivity.class);
+                // intent.putExtra("former", list.get(which));
+                // startActivity(intent);
+                // dialog.dismiss();
+                // }
+                // }).show();
 
             }
         });
@@ -132,16 +140,16 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        // new Thread(new Runnable()
-        // {
-        //
-        // @Override
-        // public void run()
-        // {
-        // doIt();
-        //
-        // }
-        // }).start();
+//         new Thread(new Runnable()
+//         {
+//        
+//         @Override
+//         public void run()
+//         {
+//         doIt();
+//        
+//         }
+//         }).start();
     }
 
     public void doIt()
@@ -150,8 +158,13 @@ public class MainActivity extends BaseActivity
         List<Author> list = AuthorDatabaseHelper.getAll();
         for (int i = 0; i < list.size(); i++)
         {
-            // AuthorDatabaseHelper.update(list.get(i).getAuthor(),
-            // PinYinUtil.getPinYin(list.get(i).getAuthor()));
+            ColorEntity colorEntity = MyApplication.getColorByPos(i);
+            int color = 0xffffff;
+            if (colorEntity != null)
+            {
+                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+            }
+             AuthorDatabaseHelper.update(list.get(i).getAuthor(),color);
         }
 
     }

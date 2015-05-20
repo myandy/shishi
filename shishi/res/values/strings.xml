@@ -13,19 +13,31 @@
     <string name="save_content">确定保存此次修改？</string>
     <string name="save">保存</string>
     <string name="give_up">放弃</string>
+    
+      <string name="delete_former_content">确定删除此格律？</string>
+    
     <string name="copy_text_done">文本已复制到剪切板</string>
     <string name="setting_yun">韵典</string>
     <string name="setting_typeface">简繁切换</string>
     <string name="setting_about">关于诗Shi</string>
+    <string name="setting_congratuate_us">给我打分</string>
+    <string name="setting_former">格律编辑</string>
     <string name="setting_check">检查平仄</string>
     <string name="check_true">自动检查</string>
     <string name="check_false">不自动检查</string>
     <string name="setting_ad">支持开发者（应用推荐）</string>
-    <string name="notice_title">词Ci用户交流请加QQ群：439747099</string>
+    <string name="notice_title">用户交流可加QQ群：439747099</string>
     <string name="sort_default">默认排序</string>
     <string name="sort_count">按诗数量排序</string>
     <string name="about_text1">本应用设计风格借鉴于词Ci。之前开发了词Ci android版，应用户的建议再开发了这款辅助填诗，看诗的应用。</string>
     <string name="about_text3">有建议或者bug请联系：\nandymao1991@gmail.com</string>
     <string name="input_shanglian">请输入上句</string>
+    
+    <string name="input_former_name">请输入格律名</string>
+    <string name="input_former_code">请输入格律码</string>
+    
+    <string name="former_help">格律编辑帮助</string>
+    <string name="former_help_text">每个数字代表一个汉字，非数字不影响判断，直接保留。1代表平,2代表仄,4为可平可仄推荐平,5为可平可仄推荐仄，7为平韵，8为仄韵，每句请用全角的句号。分隔。</string>
+    
 
 </resources>

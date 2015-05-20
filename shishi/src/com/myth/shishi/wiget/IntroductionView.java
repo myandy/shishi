@@ -18,8 +18,8 @@ public class IntroductionView extends RelativeLayout
 
     private Context mContext;
 
-    final int[] mColors = {R.drawable.intro00, R.drawable.intro01, R.drawable.intro02, R.drawable.intro03,
-            R.drawable.intro04, R.drawable.intro05};
+    final int[] mColors = {R.drawable.intro01, R.drawable.intro02, R.drawable.intro03, R.drawable.intro04,
+            R.drawable.intro05};
 
     public IntroductionView(Context context, AttributeSet attrs, int defStyle)
     {

@@ -16,61 +16,52 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxEms="1"
-            android:text="2"
             android:layout_gravity="right"
             android:layout_marginBottom="30dp"
+            android:maxEms="1"
+            android:text="2"
             android:textSize="48sp" />
-
-        
     </LinearLayout>
 
-    <com.myth.shishi.wiget.VScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/right" 
-        android:scrollbars="none"
-        android:fillViewport="true">
+        android:layout_toLeftOf="@id/right"
+        android:fillViewport="true"
+        android:scrollbars="none" >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:paddingLeft="20dp"
-            android:paddingRight="30dp"
-            >
-			
+            android:paddingRight="30dp" >
+
             <TextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:lineSpacingMultiplier="1.2"
                 android:layout_below="@id/author"
-                />
+                android:lineSpacingMultiplier="1.2"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white_hint"
                 android:layout_below="@id/content"
-                android:lineSpacingMultiplier="1.2"
                 android:layout_marginTop="10dp"
-                />
-            <WebView
-                android:layout_below="@id/content"
-                android:id="@+id/intro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                />
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/white_hint"
+                android:textIsSelectable="true"
+                android:textSize="16sp" />
         </RelativeLayout>
-    </com.myth.shishi.wiget.VScrollView>
+    </ScrollView>
 
 </RelativeLayout>

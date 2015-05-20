@@ -35,7 +35,6 @@ public class CircleImageView extends View
         this.mColor = color;
         mContext = context;
         this.image=image;
-        invalidate();
     }
 
     @Override

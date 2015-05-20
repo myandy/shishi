@@ -14,7 +14,7 @@ public class ColorDatabaseHelper
     public static ArrayList<ColorEntity> getAllColor()
     {
         SQLiteDatabase db = DBManager.getDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME  +" order by displayidx", null);
         return getColorListFromCursor(cursor);
     }
 

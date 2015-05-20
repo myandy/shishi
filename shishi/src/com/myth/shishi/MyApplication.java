@@ -1,9 +1,6 @@
 package com.myth.shishi;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import android.app.Application;
 import android.content.Context;

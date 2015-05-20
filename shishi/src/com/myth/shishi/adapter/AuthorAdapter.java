@@ -29,8 +29,6 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder
         this.list = list;
     }
 
-    // Provide a reference to the type of views that you are using
-    // (custom viewholder)
     public static class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener
     {
         private MyListener myListener;

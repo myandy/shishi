@@ -208,6 +208,8 @@ public class PoetryView extends LinearLayout
             menu.setFocusable(true);
             // 设置点击其他地方 popupWindow消失
             menu.setOutsideTouchable(true);
+            
+            menu.setAnimationStyle(R.style.popwindow_anim_style);
 
             // 让view可以响应菜单事件
             menuView.setFocusableInTouchMode(true);

@@ -153,14 +153,15 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
                 }
             });
 
-//            ColorEntity colorEntity = MyApplication.getColorByPos(pos / 2);
+//            ColorEntity colorEntity = MyApplication.getColorByPos(pos);
 //            int color = 0xffffff;
 //            if (colorEntity != null)
 //            {
 //                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
 //            }
 //            holder.author.setColor(color);
-            holder.head.setBackgroundColor( holder.author.getColor());
+
+            holder.head.setBackgroundColor(holder.author.getColor());
             holder.num.setTextColor(holder.author.getColor());
             holder.name.setTextColor(holder.author.getColor());
             holder.enname.setTextColor(holder.author.getColor());

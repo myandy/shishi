@@ -315,19 +315,6 @@ public class ScanView extends RelativeLayout
          * the actual scrolling there.
          */
 
-        final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
-
-        boolean mIsBeingDragged;
-        boolean mIsUnableToDrag;
-        // Always take care of the touch gesture being complete.
-        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP)
-        {
-            // Release the drag.
-            mIsBeingDragged = false;
-            mIsUnableToDrag = false;
-            return false;
-        }
-
         // Nothing more to do here if we have decided whether or not we
         // are dragging.
 
@@ -351,7 +338,6 @@ public class ScanView extends RelativeLayout
         switch (ev.getAction())
         {
             case MotionEvent.ACTION_DOWN:
-                xDistance = yDistance = 0f;
                 xLast = ev.getX();
                 yLast = ev.getY();
 
@@ -505,15 +491,15 @@ public class ScanView extends RelativeLayout
                     quitMove();
                     mTask = new MyTimerTask(updateHandler);
                     timer.schedule(mTask, 0, 5);
-                    try
-                    {
-                        vt.clear();
-                        vt.recycle();
-                    }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
+//                    try
+//                    {
+//                        vt.clear();
+//                        vt.recycle();
+//                    }
+//                    catch (Exception e)
+//                    {
+//                        e.printStackTrace();
+//                    }
                     break;
                 default:
                     break;

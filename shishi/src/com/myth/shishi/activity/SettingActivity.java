@@ -3,6 +3,7 @@ package com.myth.shishi.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,6 +43,8 @@ public class SettingActivity extends BaseActivity
         ((TextView) findViewById(R.id.check_title)).setTypeface(MyApplication.typeface);
         ((TextView) findViewById(R.id.about_title)).setTypeface(MyApplication.typeface);
         ((TextView) findViewById(R.id.notice_title)).setTypeface(MyApplication.typeface);
+        ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(MyApplication.typeface);
+        ((TextView) findViewById(R.id.former_title)).setTypeface(MyApplication.typeface);
 
         findViewById(R.id.item_yun).setOnClickListener(new OnClickListener()
         {
@@ -113,6 +116,33 @@ public class SettingActivity extends BaseActivity
                 startActivity(new Intent(mActivity, AboutActivity.class));
             }
         });
+        
+        
+        findViewById(R.id.item_congratuate_us).setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                Uri uri = Uri.parse("market://details?id="+getPackageName());
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.item_former).setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mActivity,FormerListActivity.class);
+                intent.putExtra("edit", true);
+                startActivity(intent);
+            }
+        });
+        
+      
     }
 
     private void refreshYun()
@@ -136,5 +166,7 @@ public class SettingActivity extends BaseActivity
             ((TextView) findViewById(R.id.check_value)).setText(R.string.check_false);
         }
     }
+    
+    
 
 }
