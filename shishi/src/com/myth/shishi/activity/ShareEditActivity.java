@@ -56,6 +56,7 @@ public class ShareEditActivity extends BaseActivity
         writing = new Writing();
         writing.setText(poetry.getPoetry());
         writing.setTitle(poetry.getTitle());
+        writing.setAuthor(poetry.getAuthor());
 
         ImageView down = new TouchEffectImageView(mActivity, null);
         down.setImageResource(R.drawable.done);

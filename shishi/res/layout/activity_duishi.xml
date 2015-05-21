@@ -18,8 +18,10 @@
             android:layout_height="34dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
+            android:background="@drawable/usercenter_blue_btn"
             android:gravity="center"
             android:text="对诗"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
         <EditText
@@ -61,8 +63,10 @@
             android:layout_height="34dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
+            android:background="@drawable/usercenter_blue_btn"
             android:gravity="center"
             android:text="刷新"
+            android:textColor="@color/white"
             android:textSize="12sp" />
     </RelativeLayout>
 

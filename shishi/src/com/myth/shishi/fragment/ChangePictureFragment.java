@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
@@ -22,6 +23,7 @@ import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +34,7 @@ import android.widget.TextView;
 
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
+import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.Fastblur;
@@ -59,16 +62,19 @@ public class ChangePictureFragment extends Fragment
 
     private int radius = 0;
 
+    private TextView title;
+
     public ChangePictureFragment()
     {
     }
 
-    public static ChangePictureFragment getInstance( Writing writing)
+    public static ChangePictureFragment getInstance(Writing writing)
     {
         ChangePictureFragment fileViewFragment = new ChangePictureFragment();
         fileViewFragment.writing = writing;
         return fileViewFragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -149,11 +155,16 @@ public class ChangePictureFragment extends Fragment
             }
         });
         layoutItemContainer(content);
-        TextView title = (TextView) view.findViewById(R.id.title);
+        title = (TextView) view.findViewById(R.id.title);
         title.setText(writing.getTitle());
         text = (TextView) view.findViewById(R.id.text);
         title.setTypeface(MyApplication.typeface);
         text.setTypeface(MyApplication.typeface);
+
+        setTextSize();
+        setGravity();
+        setPadding();
+        setColor();
 
         // srcBitmap = BitmapFactory.decodeFile(pathName);
         srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zuibaichi);
@@ -272,5 +283,46 @@ public class ChangePictureFragment extends Fragment
         params.width = ResizeUtil.resize(mContext, 720);
         params.height = ResizeUtil.resize(mContext, 720);
         itemContainer.setLayoutParams(params);
+    }
+
+    private void setPadding()
+    {
+        int margin = MyApplication.getDefaultSharePadding(mContext);
+        LinearLayout.LayoutParams lps = (android.widget.LinearLayout.LayoutParams) text.getLayoutParams();
+        lps.leftMargin = margin;
+        text.setLayoutParams(lps);
+    }
+
+    private void setGravity()
+    {
+        boolean isCenter = MyApplication.getDefaultShareGravity(mContext);
+        if (isCenter)
+        {
+            text.setGravity(Gravity.CENTER_HORIZONTAL);
+        }
+        else
+        {
+            text.setGravity(Gravity.LEFT);
+        }
+    }
+
+    private void setTextSize()
+    {
+        int size = MyApplication.getDefaultShareSize(mContext);
+        text.setTextSize(size);
+        title.setTextSize(size + 2);
+    }
+
+    private void setColor()
+    {
+
+        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
+        int color = 0x000000;
+        if (colorEntity != null)
+        {
+            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+        }
+        text.setTextColor(color);
+        title.setTextColor(color);
     }
 }

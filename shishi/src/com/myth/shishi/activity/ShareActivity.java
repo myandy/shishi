@@ -1,10 +1,13 @@
 package com.myth.shishi.activity;
 
 import java.io.IOException;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,6 +34,9 @@ import android.widget.Toast;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
+import com.myth.shishi.db.ColorDatabaseHelper;
+import com.myth.shishi.db.PoetryDatabaseHelper;
+import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.util.FileUtils;
@@ -55,6 +61,8 @@ public class ShareActivity extends BaseActivity
     private TextView title;
 
     private TextView text;
+
+    private TextView author;
 
     private ImageView setting;
 
@@ -94,6 +102,7 @@ public class ShareActivity extends BaseActivity
         content = (LinearLayout) findViewById(R.id.content);
         title = (TextView) findViewById(R.id.title);
         text = (TextView) findViewById(R.id.text);
+        author = (TextView) findViewById(R.id.author);
         content.setOnClickListener(new OnClickListener()
         {
 
@@ -141,9 +150,20 @@ public class ShareActivity extends BaseActivity
         text.setText(writing.getText());
         title.setTypeface(MyApplication.typeface);
         text.setTypeface(MyApplication.typeface);
+        author.setTypeface(MyApplication.typeface);
+        if (TextUtils.isEmpty(writing.getAuthor()))
+        {
+            author.setText(MyApplication.getDefaultUserName(mActivity));
+        }
+        else
+        {
+            author.setText(writing.getAuthor());
+        }
+
         setTextSize();
         setGravity();
         setPadding();
+        setAuthor();
 
         if (StringUtils.isNumeric(writing.getBgimg()))
         {
@@ -220,6 +240,7 @@ public class ShareActivity extends BaseActivity
         int size = MyApplication.getDefaultShareSize(mActivity);
         text.setTextSize(size);
         title.setTextSize(size + 2);
+        author.setTextSize(size - 2);
     }
 
     private void setGravity(boolean isCenter)
@@ -249,6 +270,24 @@ public class ShareActivity extends BaseActivity
         text.setLayoutParams(lps);
     }
 
+    private void setAuthor()
+    {
+        if (MyApplication.getDefaultShareAuthor(mActivity))
+        {
+            author.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            author.setVisibility(View.GONE);
+        }
+    }
+
+    private void setAuthor(boolean showAuthor)
+    {
+        MyApplication.setDefaultShareAuthor(mActivity, showAuthor);
+        setAuthor();
+    }
+
     private void setPadding(boolean isAdd)
     {
         int margin = MyApplication.getDefaultSharePadding(mActivity);
@@ -262,6 +301,26 @@ public class ShareActivity extends BaseActivity
         }
         MyApplication.setDefaultSharePadding(mActivity, margin);
         setPadding();
+    }
+
+    private void setColor()
+    {
+
+        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mActivity));
+        int color = 0x000000;
+        if (colorEntity != null)
+        {
+            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+        }
+        text.setTextColor(color);
+        title.setTextColor(color);
+        author.setTextColor(color);
+    }
+
+    private void setColor(int color)
+    {
+        MyApplication.setDefaultShareColor(mActivity, color);
+        setColor();
     }
 
     private void showMenu()
@@ -382,6 +441,57 @@ public class ShareActivity extends BaseActivity
                     }
                 }
             });
+            menuView.findViewById(R.id.tv7).setOnClickListener(new OnClickListener()
+            {
+
+                @Override
+                public void onClick(View v)
+                {
+
+                    final List<ColorEntity> list = ColorDatabaseHelper.getAll();
+                    String s[] = new String[list.size()];
+                    for (int i = 0; i < list.size(); i++)
+                    {
+                        s[i] = list.get(i).getName();
+                    }
+                    new AlertDialog.Builder(mActivity).setItems(s, new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            setColor(which);
+                            dialog.dismiss();
+                        }
+                    }).show();
+                    if (menu != null)
+                    {
+                        menu.dismiss();
+                    }
+                }
+            });
+
+            menuView.findViewById(R.id.tv8).setOnClickListener(new OnClickListener()
+            {
+
+                @Override
+                public void onClick(View v)
+                {
+                    boolean isCollect = MyApplication.getDefaultShareAuthor(mActivity);
+                    setAuthor(!isCollect);
+                    if (menu != null)
+                    {
+                        menu.dismiss();
+                    }
+                }
+            });
+
+            if (MyApplication.getDefaultShareAuthor(mActivity))
+            {
+                ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
+            }
+            else
+            {
+                ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");
+            }
 
             menuView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             int popupWidth = menuView.getMeasuredWidth();
@@ -398,6 +508,15 @@ public class ShareActivity extends BaseActivity
         }
         else
         {
+
+            if (MyApplication.getDefaultShareAuthor(mActivity))
+            {
+                ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
+            }
+            else
+            {
+                ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");
+            }
             menu.showAtLocation(setting, Gravity.NO_GRAVITY, location[0], location[1]);
         }
 

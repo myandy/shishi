@@ -53,7 +53,8 @@
         <activity android:name=".activity.PoetrySearchActivity" />
         <activity android:name=".activity.AuthorSearchActivity" />
         <activity android:name=".activity.FormerListActivity" />
-         <activity android:name=".activity.FormerActivity" />
+        <activity android:name=".activity.FormerActivity" />
+        <activity android:name=".activity.SignActivity" />
         <activity
             android:name="com.wandoujia.ads.sdk.activities.AppDetailActivity"
             android:theme="@style/Activity" />

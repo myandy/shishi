@@ -8920,6 +8920,10 @@ com.myth.shishi.activity.DuiShiActivity
 com.myth.shishi.activity.DuiShiActivity: DuiShiActivity()
 com.myth.shishi.activity.EditActivity
 com.myth.shishi.activity.EditActivity: EditActivity()
+com.myth.shishi.activity.FormerActivity
+com.myth.shishi.activity.FormerActivity: FormerActivity()
+com.myth.shishi.activity.FormerListActivity
+com.myth.shishi.activity.FormerListActivity: FormerListActivity()
 com.myth.shishi.activity.MainActivity
 com.myth.shishi.activity.MainActivity: MainActivity()
 com.myth.shishi.activity.PoetryActivity
@@ -8957,9 +8961,6 @@ com.myth.shishi.wiget.SelectImageView
 com.myth.shishi.wiget.TouchEffectImageView
 com.myth.shishi.wiget.TouchEffectImageView: TouchEffectImageView(android.content.Context,android.util.AttributeSet)
 com.myth.shishi.wiget.VScrollView
-com.myth.shishi.wiget.VScrollView: VScrollView(android.content.Context)
-com.myth.shishi.wiget.VScrollView: VScrollView(android.content.Context,android.util.AttributeSet)
-com.myth.shishi.wiget.VScrollView: VScrollView(android.content.Context,android.util.AttributeSet,int)
 com.myth.shishi.wiget.VerticalTextView
 com.myth.shishi.wiget.VerticalTextView: VerticalTextView(android.content.Context,android.util.AttributeSet)
 com.myth.shishi.wiget.WritingView

@@ -101,20 +101,20 @@ public class MainView extends RelativeLayout
             ((TextView) showAll.getChildAt(i)).setTypeface(MyApplication.typeface);
         }
 
-        TextView favorite = (TextView) root.findViewById(R.id.favorite);
-        favorite.setTypeface(MyApplication.typeface);
-        favorite.setOnClickListener(new OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(mContext, PoetrySearchActivity.class);
-                intent.putExtra("collect", true);
-                mContext.startActivity(intent);
-
-            }
-        });
+//        TextView favorite = (TextView) root.findViewById(R.id.favorite);
+//        favorite.setTypeface(MyApplication.typeface);
+//        favorite.setOnClickListener(new OnClickListener()
+//        {
+//
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent intent = new Intent(mContext, PoetrySearchActivity.class);
+//                intent.putExtra("collect", true);
+//                mContext.startActivity(intent);
+//
+//            }
+//        });
 
         TextView duishi = (TextView) root.findViewById(R.id.duishi);
         duishi.setTypeface(MyApplication.typeface);

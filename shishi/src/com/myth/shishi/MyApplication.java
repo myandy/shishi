@@ -1,11 +1,14 @@
 package com.myth.shishi;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import com.myth.shishi.db.ColorDatabaseHelper;
@@ -35,7 +38,7 @@ public class MyApplication extends Application
     {
         if (colorList == null)
         {
-            colorList = ColorDatabaseHelper.getAllColor();
+            colorList = ColorDatabaseHelper.getAll();
         }
         while (pos >= colorList.size())
         {
@@ -167,6 +170,19 @@ public class MyApplication extends Application
         edit.putBoolean("share_gravity", iscenter);
         edit.commit();
     }
+    
+    
+    public static boolean getDefaultShareAuthor(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("share_author", true);
+    }
+
+    public static void setDefaultShareAuthor(Context context, boolean iscenter)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putBoolean("share_author", iscenter);
+        edit.commit();
+    }
 
     public static int getDefaultSharePadding(Context context)
     {
@@ -177,6 +193,96 @@ public class MyApplication extends Application
     {
         Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
         edit.putInt("share_padding", size);
+        edit.commit();
+    }
+
+    public static int getDefaultShareColor(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("share_color", 20);
+    }
+
+    public static void setDefaultShareColor(Context context, int size)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putInt("share_color", size);
+        edit.commit();
+    }
+
+    public static String getDefaultSignMonth(Context context)
+    {
+
+        Calendar date = Calendar.getInstance();
+
+        String re = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                "sign_month" + date.get(Calendar.YEAR) + date.get(Calendar.MONTH), null);
+        if (re == null)
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < date.getActualMaximum(Calendar.DATE); i++)
+            {
+                sb.append('0');
+            }
+            re = sb.toString();
+            saveDefaultSignMonth(context, re);
+        }
+        return re;
+    }
+
+    public static void saveDefaultSignMonth(Context context, String signMoth)
+    {
+        Calendar date = Calendar.getInstance();
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putString("sign_month" + date.get(Calendar.YEAR) + date.get(Calendar.MONTH), signMoth);
+        edit.commit();
+    }
+
+    public static int getDefaultSignDay(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("sign_day", 0);
+    }
+
+    public static void setDefaultSignDay(Context context, int size)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putInt("sign_day", size);
+        edit.commit();
+    }
+
+    public static int getDefaultSignPoint(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("sign_point", 0);
+    }
+
+    public static void setDefaultSignPoint(Context context, int size)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putInt("sign_point", size);
+        edit.commit();
+    }
+
+    public static int getDefaultPoint(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("point", 0);
+    }
+
+    public static void setDefaultPoint(Context context, int size)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putInt("point", size);
+        edit.commit();
+    }
+
+    public static String getDefaultUserName(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("username", "");
+    }
+
+    public static void setDefaultUserName(Context context, String size)
+    {
+        Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putString("username", size);
         edit.commit();
     }
 

@@ -38,6 +38,7 @@ import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.wiget.IntroductionView;
 import com.myth.shishi.wiget.MainView;
 import com.myth.shishi.wiget.TouchEffectImageView;
+import com.myth.shishi.wiget.UsercenterView;
 import com.myth.shishi.wiget.WritingView;
 
 /**
@@ -102,7 +103,7 @@ public class MainActivity extends BaseActivity
             {
                 Intent intent = new Intent(mActivity, FormerListActivity.class);
                 startActivity(intent);
-                
+
                 //
                 // final List<Former> list = FormerDatabaseHelper.getAll();
                 // String s[] = new String[list.size()];
@@ -140,16 +141,16 @@ public class MainActivity extends BaseActivity
             }
         });
 
-//         new Thread(new Runnable()
-//         {
-//        
-//         @Override
-//         public void run()
-//         {
-//         doIt();
-//        
-//         }
-//         }).start();
+        // new Thread(new Runnable()
+        // {
+        //
+        // @Override
+        // public void run()
+        // {
+        // doIt();
+        //
+        // }
+        // }).start();
     }
 
     public void doIt()
@@ -164,7 +165,7 @@ public class MainActivity extends BaseActivity
             {
                 color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
             }
-             AuthorDatabaseHelper.update(list.get(i).getAuthor(),color);
+            AuthorDatabaseHelper.update(list.get(i).getAuthor(), color);
         }
 
     }
@@ -192,7 +193,7 @@ public class MainActivity extends BaseActivity
 
         if (firstIn)
         {
-            currentpage = pagerAdapter.getCount() - 1;
+            currentpage = pagerAdapter.getCount() - 2;
             firstIn = false;
         }
         if (currentpage > pagerAdapter.getCount() - 1)
@@ -218,9 +219,9 @@ public class MainActivity extends BaseActivity
         {
             if (datas == null || datas.size() == 0)
             {
-                return 2;
+                return 3;
             }
-            return datas.size() + 1;
+            return datas.size() + 2;
         }
 
         public boolean isNoWriting()
@@ -254,6 +255,10 @@ public class MainActivity extends BaseActivity
         {
             View view;
             if (position == getCount() - 1)
+            {
+                view = new UsercenterView(mActivity);
+            }
+            else if (position == getCount() - 2)
             {
                 view = new MainView(mActivity);
             }
@@ -300,6 +305,11 @@ public class MainActivity extends BaseActivity
             if (viewPagerContainer != null)
             {
                 viewPagerContainer.invalidate();
+                View view = viewPagerContainer.getChildAt(0);
+                if (view instanceof UsercenterView)
+                {
+                    ((UsercenterView) view).refresh();
+                }
             }
         }
 

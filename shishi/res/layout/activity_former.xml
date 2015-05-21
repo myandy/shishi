@@ -45,6 +45,8 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="删除"
+        android:textColor="@color/white"
+        android:background="@drawable/usercenter_red_btn"
         android:textSize="12sp" />
 
     <Button
@@ -54,6 +56,8 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="保存"
+        android:textColor="@color/white"
+        android:background="@drawable/usercenter_blue_btn"
         android:textSize="12sp" />
 
 </LinearLayout>

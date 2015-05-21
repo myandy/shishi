@@ -31,6 +31,8 @@ public class Writing implements Serializable
     private Bitmap bitmap;
 
     private Former former;
+    
+    private String author;
 
     public int getId()
     {
@@ -133,6 +135,16 @@ public class Writing implements Serializable
     public void setTitle(String title)
     {
         this.title = title;
+    }
+
+    public String getAuthor()
+    {
+        return author;
+    }
+
+    public void setAuthor(String author)
+    {
+        this.author = author;
     }
 
 

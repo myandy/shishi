@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -22,6 +23,7 @@ import com.myth.shishi.activity.ShareActivity;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.FormerDatabaseHelper;
 import com.myth.shishi.db.WritingDatabaseHelper;
+import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DateUtils;
 import com.myth.shishi.util.ResizeUtil;
@@ -38,6 +40,8 @@ public class WritingView extends RelativeLayout
     private TextView text;
 
     private TextView title;
+
+    private TextView author;
 
     public WritingView(Context context, AttributeSet attrs, int defStyle)
     {
@@ -84,19 +88,23 @@ public class WritingView extends RelativeLayout
         title = (TextView) root.findViewById(R.id.title);
 
         text = (TextView) root.findViewById(R.id.text);
+        
+        author=(TextView) root.findViewById(R.id.author);
 
         time.setText(DateUtils.longToFormat(writing.getUpdate_dt(), DateUtils.YMD_HM_FORMAT));
 
         title.setText(writing.getTitle());
         text.setText(writing.getText());
-
+        author.setText(MyApplication.getDefaultUserName(mContext));
         title.setTypeface(MyApplication.typeface);
         text.setTypeface(MyApplication.typeface);
-        
+        author.setTypeface(MyApplication.typeface);
+
         setTextSize();
         setGravity();
         setPadding();
-
+        setColor();
+        setAuthor();
 
         final AlertDialog dialog = new AlertDialog.Builder(mContext).setItems(new String[] {"分享", "编辑", "删除"},
                 new DialogInterface.OnClickListener()
@@ -200,6 +208,33 @@ public class WritingView extends RelativeLayout
         int size = MyApplication.getDefaultShareSize(mContext);
         text.setTextSize(size);
         title.setTextSize(size + 2);
+        author.setTextSize(size - 2);
+    }
+
+    private void setColor()
+    {
+
+        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
+        int color = 0x000000;
+        if (colorEntity != null)
+        {
+            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+        }
+        text.setTextColor(color);
+        title.setTextColor(color);
+        author.setTextColor(color);
+    }
+
+    private void setAuthor()
+    {
+        if (MyApplication.getDefaultShareAuthor(mContext))
+        {
+            author.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            author.setVisibility(View.GONE);
+        }
     }
 
 }

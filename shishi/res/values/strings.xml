@@ -39,5 +39,10 @@
     <string name="former_help">格律编辑帮助</string>
     <string name="former_help_text">每个数字代表一个汉字，非数字不影响判断，直接保留。1代表平,2代表仄,4为可平可仄推荐平,5为可平可仄推荐仄，7为平韵，8为仄韵，每句请用全角的句号。分隔。</string>
     
+    <string name="sign_tip">签到得积分</string>
+    <string name="serial_sign_days">已连续签到天数</string>
+    <string name="sign_days_of_month">本月已出勤天数</string>
+    <string name="usercenter_sign_finished">已签到</string>
+    
 
 </resources>

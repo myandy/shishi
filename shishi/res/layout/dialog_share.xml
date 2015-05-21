@@ -91,6 +91,32 @@
             android:padding="10dp"
             android:text="内容右移"
             android:textColor="@color/gc_white_to_grey" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/pptvvas_menu_devide" />
+
+        <TextView
+            android:id="@+id/tv7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="字体颜色"
+            android:textColor="@color/gc_white_to_grey" />
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/pptvvas_menu_devide" />
+
+        <TextView
+            android:id="@+id/tv8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="显示作者"
+            android:textColor="@color/gc_white_to_grey" />
     </LinearLayout>
 
 </LinearLayout>

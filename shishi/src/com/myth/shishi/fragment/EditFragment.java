@@ -8,6 +8,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.WebviewActivity;
 import com.myth.shishi.activity.YunSearchActivity;
+import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.CheckUtils;
@@ -123,7 +125,8 @@ public class EditFragment extends Fragment
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
-
+            edittext.setTypeface(MyApplication.typeface);
+            edittext.setTextColor(getColor());
             if (writing.getText() != null)
             {
                 String[] tList = writing.getText().split("\n");
@@ -157,6 +160,8 @@ public class EditFragment extends Fragment
                     view1.setPadding(0, 30, 0, 30);
                     final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
                     edittext.setTypeface(MyApplication.typeface);
+                    edittext.setTextColor(getColor());
+
                     edittext.setLines(1);
                     final int index = i;
                     edittext.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener()
@@ -202,6 +207,7 @@ public class EditFragment extends Fragment
         title = (TextView) view.findViewById(R.id.edit_title);
 
         title.setTypeface(MyApplication.typeface);
+        title.setTextColor(getColor());
 
         if (TextUtils.isEmpty(writing.getTitle()))
         {
@@ -282,6 +288,17 @@ public class EditFragment extends Fragment
             InputMethodManager inputmanger = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+    
+    private int getColor()
+    {
+        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
+        int color = 0x000000;
+        if (colorEntity != null)
+        {
+            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+        }
+        return color;
     }
 
 }
