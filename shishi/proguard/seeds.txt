@@ -8936,6 +8936,8 @@ com.myth.shishi.activity.ShareActivity
 com.myth.shishi.activity.ShareActivity: ShareActivity()
 com.myth.shishi.activity.ShareEditActivity
 com.myth.shishi.activity.ShareEditActivity: ShareEditActivity()
+com.myth.shishi.activity.SignActivity
+com.myth.shishi.activity.SignActivity: SignActivity()
 com.myth.shishi.activity.WebviewActivity
 com.myth.shishi.activity.WebviewActivity: WebviewActivity()
 com.myth.shishi.activity.YunSearchActivity
@@ -8960,10 +8962,19 @@ com.myth.shishi.wiget.ScanView: ScanView(android.content.Context,android.util.At
 com.myth.shishi.wiget.SelectImageView
 com.myth.shishi.wiget.TouchEffectImageView
 com.myth.shishi.wiget.TouchEffectImageView: TouchEffectImageView(android.content.Context,android.util.AttributeSet)
+com.myth.shishi.wiget.UsercenterView
 com.myth.shishi.wiget.VScrollView
 com.myth.shishi.wiget.VerticalTextView
 com.myth.shishi.wiget.VerticalTextView: VerticalTextView(android.content.Context,android.util.AttributeSet)
 com.myth.shishi.wiget.WritingView
+com.myth.shishi.wiget.calendar.CalendarCard
+com.myth.shishi.wiget.calendar.CalendarCard: CalendarCard(android.content.Context,android.util.AttributeSet,int)
+com.myth.shishi.wiget.calendar.CalendarCard: CalendarCard(android.content.Context,android.util.AttributeSet)
+com.myth.shishi.wiget.calendar.CalendarCard: CalendarCard(android.content.Context)
+com.myth.shishi.wiget.calendar.CheckableLayout
+com.myth.shishi.wiget.calendar.CheckableLayout: CheckableLayout(android.content.Context,android.util.AttributeSet,int)
+com.myth.shishi.wiget.calendar.CheckableLayout: CheckableLayout(android.content.Context,android.util.AttributeSet)
+com.myth.shishi.wiget.calendar.CheckableLayout: CheckableLayout(android.content.Context)
 com.squareup.okhttp.CipherSuite: com.squareup.okhttp.CipherSuite[] values()
 com.squareup.okhttp.CipherSuite: com.squareup.okhttp.CipherSuite valueOf(java.lang.String)
 com.squareup.okhttp.Protocol: com.squareup.okhttp.Protocol[] values()

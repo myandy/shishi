@@ -412,9 +412,6 @@ com.google.gson.stream.MalformedJsonException:
 com.myth.shishi.BaseActivity:
     134:135:protected void addBottomCenterView(android.view.View)
 com.myth.shishi.BuildConfig
-com.myth.shishi.MyApplication:
-    private static java.util.List colorList
-    36:50:public static com.myth.shishi.entity.ColorEntity getColorByPos(int)
 com.myth.shishi.R
 com.myth.shishi.R$anim
 com.myth.shishi.R$attr
@@ -435,9 +432,9 @@ com.myth.shishi.activity.DuiShiActivity:
     private static final int LOAD_FAILED
     private static final int LOAD_SUCCESS_RE
 com.myth.shishi.activity.MainActivity:
-    158:170:public void doIt()
+    159:171:public void doIt()
 com.myth.shishi.activity.MainActivity$MyPagerAdapter:
-    233:233:public java.util.ArrayList getWritings()
+    234:234:public java.util.ArrayList getWritings()
 com.myth.shishi.activity.ShareEditActivity:
     private com.myth.shishi.entity.Former former
 com.myth.shishi.adapter.AuthorAdapter$ViewHolder:
@@ -456,7 +453,8 @@ com.myth.shishi.adapter.PoetryAdapter$ViewHolder:
 com.myth.shishi.db.AuthorDatabaseHelper:
     11:11:public AuthorDatabaseHelper()
     24:26:public static void update(java.lang.String,int)
-com.myth.shishi.db.ColorDatabaseHelper
+com.myth.shishi.db.ColorDatabaseHelper:
+    10:10:public ColorDatabaseHelper()
 com.myth.shishi.db.DBManager:
     private static final int BUFFER_SIZE
     public static final java.lang.String DB_NAME
@@ -479,7 +477,9 @@ com.myth.shishi.entity.Author:
     private static final long serialVersionUID
 com.myth.shishi.entity.Ci
 com.myth.shishi.entity.Cipai
-com.myth.shishi.entity.ColorEntity
+com.myth.shishi.entity.ColorEntity:
+    20:20:public int toColor()
+    25:25:public int getId()
 com.myth.shishi.entity.Dynasty
 com.myth.shishi.entity.Former:
     private static final long serialVersionUID
@@ -488,8 +488,8 @@ com.myth.shishi.entity.Poetry:
 com.myth.shishi.entity.Writing:
     private static final long serialVersionUID
     private int layout
-    89:89:public int getLayout()
-    94:95:public void setLayout(int)
+    91:91:public int getLayout()
+    96:97:public void setLayout(int)
 com.myth.shishi.fragment.ChangePictureFragment:
     private static final int REQUEST_PICK_IMG
 com.myth.shishi.util.CheckUtils:
@@ -633,6 +633,10 @@ com.myth.shishi.wiget.ToolsDialog
 com.myth.shishi.wiget.TouchEffectImageView:
     54:60:public void setClickDisable()
     64:70:public void setClickEnable()
+com.myth.shishi.wiget.UsercenterView:
+    38:39:public UsercenterView(android.content.Context,android.util.AttributeSet,int)
+    43:44:public UsercenterView(android.content.Context,android.util.AttributeSet)
+    55:59:private void layoutItemContainer(android.view.View)
 com.myth.shishi.wiget.VScrollView:
     android.content.Context mContext
     private static final int MAX_SCROLL_HEIGHT
@@ -647,8 +651,22 @@ com.myth.shishi.wiget.VScrollView:
     21:21:static synthetic android.view.View access$4(com.myth.shishi.wiget.VScrollView)
 com.myth.shishi.wiget.VScrollView$1
 com.myth.shishi.wiget.WritingView:
-    44:45:public WritingView(android.content.Context,android.util.AttributeSet,int)
-    49:50:public WritingView(android.content.Context,android.util.AttributeSet)
+    48:49:public WritingView(android.content.Context,android.util.AttributeSet,int)
+    53:54:public WritingView(android.content.Context,android.util.AttributeSet)
+com.myth.shishi.wiget.calendar.CalendarCard:
+    251:251:public int getItemLayout()
+    256:258:public void setItemLayout(int)
+    262:262:public com.myth.shishi.wiget.calendar.OnItemRender getOnItemRender()
+    273:273:public java.util.Calendar getDateDisplay()
+    278:280:public void setDateDisplay(java.util.Calendar)
+    289:290:public void setOnCellItemClick(com.myth.shishi.wiget.calendar.OnCellItemClick)
+com.myth.shishi.wiget.calendar.CalendarCardPager
+com.myth.shishi.wiget.calendar.CardGridItem:
+    private java.lang.Object data
+    34:34:public java.lang.Object getData()
+    39:40:public com.myth.shishi.wiget.calendar.CardGridItem setData(java.lang.Object)
+    56:56:public java.util.Calendar getDate()
+com.myth.shishi.wiget.calendar.CardPagerAdapter
 com.squareup.okhttp.Address:
     88:88:public javax.net.SocketFactory getSocketFactory()
     96:96:public javax.net.ssl.SSLSocketFactory getSslSocketFactory()

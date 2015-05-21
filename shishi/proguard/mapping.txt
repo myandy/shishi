@@ -9663,11 +9663,13 @@ com.myth.shishi.BaseActivity$1 -> com.myth.shishi.a:
     com.myth.shishi.BaseActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.MyApplication -> com.myth.shishi.MyApplication:
+    java.util.List colorList -> e
     android.graphics.Typeface typeface -> a
     java.lang.String[] TypefaceString -> b
     int[] bgimgList -> c
     int[] bgSmallimgList -> d
     void onCreate() -> onCreate
+    com.myth.shishi.entity.ColorEntity getColorByPos(int) -> a
     void setTypeface(android.content.Context,int) -> a
     void setDefaultTypeface(android.content.Context,int) -> b
     int getDefaulTypeface(android.content.Context) -> a
@@ -9683,8 +9685,22 @@ com.myth.shishi.MyApplication -> com.myth.shishi.MyApplication:
     void setDefaultShareSize(android.content.Context,int) -> e
     boolean getDefaultShareGravity(android.content.Context) -> g
     void setDefaultShareGravity(android.content.Context,boolean) -> c
-    int getDefaultSharePadding(android.content.Context) -> h
+    boolean getDefaultShareAuthor(android.content.Context) -> h
+    void setDefaultShareAuthor(android.content.Context,boolean) -> d
+    int getDefaultSharePadding(android.content.Context) -> i
     void setDefaultSharePadding(android.content.Context,int) -> f
+    int getDefaultShareColor(android.content.Context) -> j
+    void setDefaultShareColor(android.content.Context,int) -> g
+    java.lang.String getDefaultSignMonth(android.content.Context) -> k
+    void saveDefaultSignMonth(android.content.Context,java.lang.String) -> a
+    int getDefaultSignDay(android.content.Context) -> l
+    void setDefaultSignDay(android.content.Context,int) -> h
+    int getDefaultSignPoint(android.content.Context) -> m
+    void setDefaultSignPoint(android.content.Context,int) -> i
+    int getDefaultPoint(android.content.Context) -> n
+    void setDefaultPoint(android.content.Context,int) -> j
+    java.lang.String getDefaultUserName(android.content.Context) -> o
+    void setDefaultUserName(android.content.Context,java.lang.String) -> b
 com.myth.shishi.activity.AboutActivity -> com.myth.shishi.activity.AboutActivity:
     void onCreate(android.os.Bundle) -> onCreate
 com.myth.shishi.activity.AuthorListActivity -> com.myth.shishi.activity.AuthorListActivity:
@@ -10084,7 +10100,8 @@ com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity
     android.view.View menuView -> i
     android.widget.TextView title -> j
     android.widget.TextView text -> k
-    android.widget.ImageView setting -> l
+    android.widget.TextView author -> l
+    android.widget.ImageView setting -> m
     int rela1 -> e
     void onCreate(android.os.Bundle) -> onCreate
     void initView() -> e
@@ -10096,8 +10113,12 @@ com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity
     void setGravity(boolean) -> b
     void setGravity() -> g
     void setPadding() -> h
-    void setPadding(boolean) -> c
-    void showMenu() -> i
+    void setAuthor() -> i
+    void setAuthor(boolean) -> c
+    void setPadding(boolean) -> d
+    void setColor() -> j
+    void setColor(int) -> a
+    void showMenu() -> k
     void access$0(com.myth.shishi.activity.ShareActivity) -> a
     android.app.Activity access$1(com.myth.shishi.activity.ShareActivity) -> b
     android.widget.TextView access$2(com.myth.shishi.activity.ShareActivity) -> c
@@ -10106,35 +10127,47 @@ com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity
     android.widget.PopupWindow access$5(com.myth.shishi.activity.ShareActivity) -> f
     void access$6(com.myth.shishi.activity.ShareActivity,boolean) -> a
     void access$7(com.myth.shishi.activity.ShareActivity,boolean) -> b
+    void access$8(com.myth.shishi.activity.ShareActivity,int) -> a
+    void access$9(com.myth.shishi.activity.ShareActivity,boolean) -> c
 com.myth.shishi.activity.ShareActivity$1 -> com.myth.shishi.activity.be:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$2 -> com.myth.shishi.activity.bf:
+com.myth.shishi.activity.ShareActivity$10 -> com.myth.shishi.activity.bf:
+    com.myth.shishi.activity.ShareActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+    com.myth.shishi.activity.ShareActivity access$0(com.myth.shishi.activity.ShareActivity$10) -> a
+com.myth.shishi.activity.ShareActivity$10$1 -> com.myth.shishi.activity.bg:
+    com.myth.shishi.activity.ShareActivity$10 this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.myth.shishi.activity.ShareActivity$11 -> com.myth.shishi.activity.bh:
+    com.myth.shishi.activity.ShareActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.activity.ShareActivity$2 -> com.myth.shishi.activity.bi:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.ShareActivity access$0(com.myth.shishi.activity.ShareActivity$2) -> a
-com.myth.shishi.activity.ShareActivity$2$1 -> com.myth.shishi.activity.bg:
+com.myth.shishi.activity.ShareActivity$2$1 -> com.myth.shishi.activity.bj:
     com.myth.shishi.activity.ShareActivity$2 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.activity.ShareActivity$3 -> com.myth.shishi.activity.bh:
+com.myth.shishi.activity.ShareActivity$3 -> com.myth.shishi.activity.bk:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.myth.shishi.activity.ShareActivity$4 -> com.myth.shishi.activity.bi:
+com.myth.shishi.activity.ShareActivity$4 -> com.myth.shishi.activity.bl:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$5 -> com.myth.shishi.activity.bj:
+com.myth.shishi.activity.ShareActivity$5 -> com.myth.shishi.activity.bm:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$6 -> com.myth.shishi.activity.bk:
+com.myth.shishi.activity.ShareActivity$6 -> com.myth.shishi.activity.bn:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$7 -> com.myth.shishi.activity.bl:
+com.myth.shishi.activity.ShareActivity$7 -> com.myth.shishi.activity.bo:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$8 -> com.myth.shishi.activity.bm:
+com.myth.shishi.activity.ShareActivity$8 -> com.myth.shishi.activity.bp:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$9 -> com.myth.shishi.activity.bn:
+com.myth.shishi.activity.ShareActivity$9 -> com.myth.shishi.activity.bq:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.activity.ShareEditActivity -> com.myth.shishi.activity.ShareEditActivity:
@@ -10151,19 +10184,44 @@ com.myth.shishi.activity.ShareEditActivity -> com.myth.shishi.activity.ShareEdit
     int access$0(com.myth.shishi.activity.ShareEditActivity) -> a
     com.myth.shishi.entity.Writing access$1(com.myth.shishi.activity.ShareEditActivity) -> b
     android.app.Activity access$2(com.myth.shishi.activity.ShareEditActivity) -> c
-com.myth.shishi.activity.ShareEditActivity$1 -> com.myth.shishi.activity.bo:
+com.myth.shishi.activity.ShareEditActivity$1 -> com.myth.shishi.activity.br:
     com.myth.shishi.activity.ShareEditActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareEditActivity$2 -> com.myth.shishi.activity.bp:
-    com.myth.shishi.activity.ShareEditActivity this$0 -> a
-    android.widget.ImageView val$background -> b
-    android.widget.ImageView val$picture -> c
-    void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareEditActivity$3 -> com.myth.shishi.activity.bq:
+com.myth.shishi.activity.ShareEditActivity$2 -> com.myth.shishi.activity.bs:
     com.myth.shishi.activity.ShareEditActivity this$0 -> a
     android.widget.ImageView val$background -> b
     android.widget.ImageView val$picture -> c
     void onClick(android.view.View) -> onClick
+com.myth.shishi.activity.ShareEditActivity$3 -> com.myth.shishi.activity.bt:
+    com.myth.shishi.activity.ShareEditActivity this$0 -> a
+    android.widget.ImageView val$background -> b
+    android.widget.ImageView val$picture -> c
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.activity.SignActivity -> com.myth.shishi.activity.SignActivity:
+    android.widget.TextView tvSign -> e
+    android.widget.TextView tvSerialSignDays -> f
+    android.widget.TextView tvSignDaysOfMonth -> g
+    com.myth.shishi.wiget.calendar.CalendarCard card -> h
+    java.lang.String mMonthSignRecord -> i
+    int mContinueSignCount -> j
+    boolean isSigned -> d
+    int dayOfMonth -> k
+    void onCreate(android.os.Bundle) -> onCreate
+    void initView() -> e
+    void refresh() -> f
+    boolean isSign(android.content.Context) -> b
+    void sign() -> d
+    int getRandomPoint() -> g
+    void showMonthSignRecord() -> h
+    int getTotalSignCount() -> i
+    boolean isSignedDay(int) -> a
+    boolean access$0(com.myth.shishi.activity.SignActivity,int) -> a
+com.myth.shishi.activity.SignActivity$1 -> com.myth.shishi.activity.bu:
+    com.myth.shishi.activity.SignActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.activity.SignActivity$2 -> com.myth.shishi.activity.bv:
+    com.myth.shishi.activity.SignActivity this$0 -> a
+    void onRender(com.myth.shishi.wiget.calendar.CheckableLayout,com.myth.shishi.wiget.calendar.CardGridItem) -> a
 com.myth.shishi.activity.WebviewActivity -> com.myth.shishi.activity.WebviewActivity:
     android.webkit.WebView webView -> e
     java.lang.String url -> d
@@ -10174,7 +10232,7 @@ com.myth.shishi.activity.WebviewActivity -> com.myth.shishi.activity.WebviewActi
     java.lang.String getHelpUrl() -> d
     java.util.ArrayList access$0(com.myth.shishi.activity.WebviewActivity) -> a
     android.webkit.WebView access$1(com.myth.shishi.activity.WebviewActivity) -> b
-com.myth.shishi.activity.WebviewActivity$1 -> com.myth.shishi.activity.br:
+com.myth.shishi.activity.WebviewActivity$1 -> com.myth.shishi.activity.bw:
     com.myth.shishi.activity.WebviewActivity this$0 -> a
     boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
     void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
@@ -10196,18 +10254,18 @@ com.myth.shishi.activity.YunSearchActivity -> com.myth.shishi.activity.YunSearch
     android.widget.TextView access$4(com.myth.shishi.activity.YunSearchActivity) -> d
     android.widget.TextView access$5(com.myth.shishi.activity.YunSearchActivity) -> e
     android.widget.TextView access$6(com.myth.shishi.activity.YunSearchActivity) -> f
-com.myth.shishi.activity.YunSearchActivity$1 -> com.myth.shishi.activity.bs:
+com.myth.shishi.activity.YunSearchActivity$1 -> com.myth.shishi.activity.bx:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     android.widget.EditText val$search -> b
     void run() -> run
-com.myth.shishi.activity.YunSearchActivity$2 -> com.myth.shishi.activity.bt:
+com.myth.shishi.activity.YunSearchActivity$2 -> com.myth.shishi.activity.by:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.YunSearchActivity$3 -> com.myth.shishi.activity.bu:
+com.myth.shishi.activity.YunSearchActivity$3 -> com.myth.shishi.activity.bz:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     android.widget.EditText val$search -> b
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.YunSearchActivity$4 -> com.myth.shishi.activity.bv:
+com.myth.shishi.activity.YunSearchActivity$4 -> com.myth.shishi.activity.ca:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
@@ -10331,15 +10389,19 @@ com.myth.shishi.db.AuthorDatabaseHelper -> com.myth.shishi.a.a:
     java.util.ArrayList getAllAuthorByPNum() -> b
     java.util.ArrayList getAll(int) -> a
     java.util.ArrayList getAllAuthorByPNum(int) -> b
-com.myth.shishi.db.DBManager -> com.myth.shishi.a.b:
+com.myth.shishi.db.ColorDatabaseHelper -> com.myth.shishi.a.b:
+    java.lang.String TABLE_NAME -> a
+    java.util.ArrayList getAll() -> a
+    java.util.ArrayList getColorListFromCursor(android.database.Cursor) -> a
+com.myth.shishi.db.DBManager -> com.myth.shishi.a.c:
     java.lang.String DB_PATH -> a
     android.database.sqlite.SQLiteDatabase db -> b
     void initDatabase(android.content.Context) -> a
     android.database.sqlite.SQLiteDatabase getDatabase() -> a
-com.myth.shishi.db.DynastyDatabaseHelper -> com.myth.shishi.a.c:
+com.myth.shishi.db.DynastyDatabaseHelper -> com.myth.shishi.a.d:
     java.lang.String TABLE_NAME -> b
     java.lang.String[] dynastyArray -> a
-com.myth.shishi.db.FormerDatabaseHelper -> com.myth.shishi.a.d:
+com.myth.shishi.db.FormerDatabaseHelper -> com.myth.shishi.a.e:
     java.lang.String TABLE_NAME -> a
     java.util.ArrayList getAll() -> a
     java.util.ArrayList getFormerListFromCursor(android.database.Cursor) -> a
@@ -10347,7 +10409,7 @@ com.myth.shishi.db.FormerDatabaseHelper -> com.myth.shishi.a.d:
     void delete(com.myth.shishi.entity.Former) -> b
     void add(com.myth.shishi.entity.Former) -> c
     com.myth.shishi.entity.Former getFormerByName(java.lang.String) -> a
-com.myth.shishi.db.PoetryDatabaseHelper -> com.myth.shishi.a.e:
+com.myth.shishi.db.PoetryDatabaseHelper -> com.myth.shishi.a.f:
     java.lang.String TABLE_NAME -> a
     java.util.ArrayList getAll() -> a
     java.util.ArrayList getAllByAuthor(java.lang.String) -> a
@@ -10355,13 +10417,13 @@ com.myth.shishi.db.PoetryDatabaseHelper -> com.myth.shishi.a.e:
     void updateCollect(java.lang.String,boolean) -> a
     boolean isCollect(java.lang.String) -> b
     java.util.ArrayList getPoetryListFromCursor(android.database.Cursor) -> a
-com.myth.shishi.db.WritingDatabaseHelper -> com.myth.shishi.a.f:
+com.myth.shishi.db.WritingDatabaseHelper -> com.myth.shishi.a.g:
     java.lang.String TABLE_NAME -> a
     java.util.ArrayList getAllWriting(android.content.Context) -> a
     void saveWriting(android.content.Context,com.myth.shishi.entity.Writing) -> a
     void deleteWriting(android.content.Context,com.myth.shishi.entity.Writing) -> b
     java.util.ArrayList getWritingFromCursor(android.database.Cursor) -> a
-com.myth.shishi.db.YunDatabaseHelper -> com.myth.shishi.a.g:
+com.myth.shishi.db.YunDatabaseHelper -> com.myth.shishi.a.h:
     java.lang.String[] YUNSHU -> b
     java.lang.String[] YUNString -> a
     java.util.ArrayList yunList -> c
@@ -10390,7 +10452,22 @@ com.myth.shishi.entity.Author -> com.myth.shishi.b.a:
     void setEn_name(java.lang.String) -> d
     int getColor() -> f
     void setColor(int) -> b
-com.myth.shishi.entity.Former -> com.myth.shishi.b.b:
+com.myth.shishi.entity.ColorEntity -> com.myth.shishi.b.b:
+    int id -> a
+    java.lang.String name -> b
+    int red -> c
+    int green -> d
+    int blue -> e
+    void setId(int) -> a
+    java.lang.String getName() -> a
+    void setName(java.lang.String) -> a
+    int getRed() -> b
+    void setRed(int) -> b
+    int getGreen() -> c
+    void setGreen(int) -> c
+    int getBlue() -> d
+    void setBlue(int) -> d
+com.myth.shishi.entity.Former -> com.myth.shishi.b.c:
     int id -> a
     java.lang.String name -> b
     java.lang.String yun -> c
@@ -10400,7 +10477,7 @@ com.myth.shishi.entity.Former -> com.myth.shishi.b.b:
     void setYun(java.lang.String) -> b
     int getId() -> c
     void setId(int) -> a
-com.myth.shishi.entity.Poetry -> com.myth.shishi.b.c:
+com.myth.shishi.entity.Poetry -> com.myth.shishi.b.d:
     java.lang.String author -> a
     java.lang.String intro -> b
     java.lang.String title -> c
@@ -10416,7 +10493,7 @@ com.myth.shishi.entity.Poetry -> com.myth.shishi.b.c:
     void setPoetry(java.lang.String) -> d
     int getCollect() -> e
     void setCollect(int) -> a
-com.myth.shishi.entity.Writing -> com.myth.shishi.b.d:
+com.myth.shishi.entity.Writing -> com.myth.shishi.b.e:
     int id -> a
     java.lang.String text -> b
     java.lang.String formerName -> c
@@ -10426,6 +10503,7 @@ com.myth.shishi.entity.Writing -> com.myth.shishi.b.d:
     java.lang.String bgimg -> g
     android.graphics.Bitmap bitmap -> h
     com.myth.shishi.entity.Former former -> i
+    java.lang.String author -> j
     int getId() -> a
     void setId(int) -> a
     java.lang.String getText() -> b
@@ -10444,7 +10522,9 @@ com.myth.shishi.entity.Writing -> com.myth.shishi.b.d:
     void setFormerName(java.lang.String) -> c
     java.lang.String getTitle() -> i
     void setTitle(java.lang.String) -> d
-com.myth.shishi.entity.Yun -> com.myth.shishi.b.e:
+    java.lang.String getAuthor() -> j
+    void setAuthor(java.lang.String) -> e
+com.myth.shishi.entity.Yun -> com.myth.shishi.b.f:
     int tone -> a
     java.lang.String glys -> b
     java.lang.String section_desc -> c
@@ -10463,6 +10543,7 @@ com.myth.shishi.fragment.ChangeBackgroundFragment -> com.myth.shishi.c.a:
     android.widget.TextView text -> c
     com.myth.shishi.entity.Writing writing -> d
     int bg_index -> e
+    android.widget.TextView title -> f
     com.myth.shishi.fragment.ChangeBackgroundFragment getInstance(com.myth.shishi.entity.Writing) -> a
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onResume() -> onResume
@@ -10471,6 +10552,10 @@ com.myth.shishi.fragment.ChangeBackgroundFragment -> com.myth.shishi.c.a:
     void refresh() -> b
     void initViews(android.view.View) -> a
     void layoutItemContainer(android.view.View) -> b
+    void setPadding() -> c
+    void setGravity() -> d
+    void setTextSize() -> e
+    void setColor() -> f
     void access$0(com.myth.shishi.fragment.ChangeBackgroundFragment,int) -> a
     android.widget.LinearLayout access$1(com.myth.shishi.fragment.ChangeBackgroundFragment) -> a
 com.myth.shishi.fragment.ChangeBackgroundFragment$1 -> com.myth.shishi.c.b:
@@ -10485,6 +10570,7 @@ com.myth.shishi.fragment.ChangePictureFragment -> com.myth.shishi.c.c:
     com.myth.shishi.entity.Writing writing -> f
     int bright -> g
     int radius -> h
+    android.widget.TextView title -> i
     com.myth.shishi.fragment.ChangePictureFragment getInstance(com.myth.shishi.entity.Writing) -> a
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onResume() -> onResume
@@ -10495,6 +10581,10 @@ com.myth.shishi.fragment.ChangePictureFragment -> com.myth.shishi.c.c:
     void initViews(android.view.View) -> a
     void drawPicture(int,int) -> a
     void layoutItemContainer(android.view.View) -> b
+    void setPadding() -> c
+    void setGravity() -> d
+    void setTextSize() -> e
+    void setColor() -> f
     int access$0(com.myth.shishi.fragment.ChangePictureFragment) -> a
     int access$1(com.myth.shishi.fragment.ChangePictureFragment) -> b
     void access$2(com.myth.shishi.fragment.ChangePictureFragment,int,int) -> a
@@ -10529,6 +10619,7 @@ com.myth.shishi.fragment.EditFragment -> com.myth.shishi.c.g:
     void save() -> a
     void initViews(android.view.View) -> a
     void hideSoftInputFromWindow() -> b
+    int getColor() -> c
     android.content.Context access$0(com.myth.shishi.fragment.EditFragment) -> a
     java.lang.String[] access$1(com.myth.shishi.fragment.EditFragment) -> b
     android.widget.TextView access$2(com.myth.shishi.fragment.EditFragment) -> c
@@ -10767,18 +10858,15 @@ com.myth.shishi.wiget.MainView$4 -> com.myth.shishi.wiget.o:
 com.myth.shishi.wiget.MainView$5 -> com.myth.shishi.wiget.p:
     com.myth.shishi.wiget.MainView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.MainView$6 -> com.myth.shishi.wiget.q:
-    com.myth.shishi.wiget.MainView this$0 -> a
-    void onClick(android.view.View) -> onClick
-    com.myth.shishi.wiget.MainView access$0(com.myth.shishi.wiget.MainView$6) -> a
-com.myth.shishi.wiget.MainView$6$1 -> com.myth.shishi.wiget.r:
-    com.myth.shishi.wiget.MainView$6 this$1 -> a
+    com.myth.shishi.wiget.MainView access$0(com.myth.shishi.wiget.MainView$5) -> a
+com.myth.shishi.wiget.MainView$5$1 -> com.myth.shishi.wiget.q:
+    com.myth.shishi.wiget.MainView$5 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.wiget.MainView$7 -> com.myth.shishi.wiget.s:
+com.myth.shishi.wiget.MainView$6 -> com.myth.shishi.wiget.r:
     com.myth.shishi.wiget.MainView this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.wiget.PingzeLinearlayout -> com.myth.shishi.wiget.PingzeLinearlayout:
-com.myth.shishi.wiget.PingzeView -> com.myth.shishi.wiget.t:
+com.myth.shishi.wiget.PingzeView -> com.myth.shishi.wiget.s:
     int mType -> a
     android.content.Context mContext -> b
     void onDraw(android.graphics.Canvas) -> onDraw
@@ -10807,40 +10895,40 @@ com.myth.shishi.wiget.PoetryView -> com.myth.shishi.wiget.PoetryView:
     com.myth.shishi.entity.Author access$4(com.myth.shishi.wiget.PoetryView) -> e
     android.widget.TextView access$5(com.myth.shishi.wiget.PoetryView) -> f
     android.widget.TextView access$6(com.myth.shishi.wiget.PoetryView) -> g
-com.myth.shishi.wiget.PoetryView$1 -> com.myth.shishi.wiget.u:
+com.myth.shishi.wiget.PoetryView$1 -> com.myth.shishi.wiget.t:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$10 -> com.myth.shishi.wiget.v:
+com.myth.shishi.wiget.PoetryView$10 -> com.myth.shishi.wiget.u:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$11 -> com.myth.shishi.wiget.w:
+com.myth.shishi.wiget.PoetryView$11 -> com.myth.shishi.wiget.v:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$2 -> com.myth.shishi.wiget.x:
+com.myth.shishi.wiget.PoetryView$2 -> com.myth.shishi.wiget.w:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$2$1 -> com.myth.shishi.wiget.y:
+com.myth.shishi.wiget.PoetryView$2$1 -> com.myth.shishi.wiget.x:
     com.myth.shishi.wiget.PoetryView$2 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.wiget.PoetryView$3 -> com.myth.shishi.wiget.z:
+com.myth.shishi.wiget.PoetryView$3 -> com.myth.shishi.wiget.y:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$4 -> com.myth.shishi.wiget.aa:
+com.myth.shishi.wiget.PoetryView$4 -> com.myth.shishi.wiget.z:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.myth.shishi.wiget.PoetryView$5 -> com.myth.shishi.wiget.ab:
+com.myth.shishi.wiget.PoetryView$5 -> com.myth.shishi.wiget.aa:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$6 -> com.myth.shishi.wiget.ac:
+com.myth.shishi.wiget.PoetryView$6 -> com.myth.shishi.wiget.ab:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$7 -> com.myth.shishi.wiget.ad:
+com.myth.shishi.wiget.PoetryView$7 -> com.myth.shishi.wiget.ac:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$8 -> com.myth.shishi.wiget.ae:
+com.myth.shishi.wiget.PoetryView$8 -> com.myth.shishi.wiget.ad:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.wiget.PoetryView$9 -> com.myth.shishi.wiget.af:
+com.myth.shishi.wiget.PoetryView$9 -> com.myth.shishi.wiget.ae:
     com.myth.shishi.wiget.PoetryView this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.wiget.ScanView -> com.myth.shishi.wiget.ScanView:
@@ -10900,10 +10988,10 @@ com.myth.shishi.wiget.ScanView -> com.myth.shishi.wiget.ScanView:
     float access$12(com.myth.shishi.wiget.ScanView) -> j
     void access$13(com.myth.shishi.wiget.ScanView) -> k
     void access$14(com.myth.shishi.wiget.ScanView,int) -> d
-com.myth.shishi.wiget.ScanView$1 -> com.myth.shishi.wiget.ag:
+com.myth.shishi.wiget.ScanView$1 -> com.myth.shishi.wiget.af:
     com.myth.shishi.wiget.ScanView this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.myth.shishi.wiget.ScanView$MyTimerTask -> com.myth.shishi.wiget.ah:
+com.myth.shishi.wiget.ScanView$MyTimerTask -> com.myth.shishi.wiget.ag:
     android.os.Handler handler -> a
     com.myth.shishi.wiget.ScanView this$0 -> b
     void run() -> run
@@ -10911,6 +10999,37 @@ com.myth.shishi.wiget.SelectImageView -> com.myth.shishi.wiget.SelectImageView:
 com.myth.shishi.wiget.TouchEffectImageView -> com.myth.shishi.wiget.TouchEffectImageView:
     boolean clickAble -> a
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+com.myth.shishi.wiget.UsercenterView -> com.myth.shishi.wiget.UsercenterView:
+    android.content.Context mContext -> a
+    android.widget.TextView sign -> b
+    android.widget.TextView point -> c
+    android.widget.TextView collect -> d
+    android.widget.TextView writing -> e
+    void initView() -> b
+    void refresh() -> a
+    android.content.Context access$0(com.myth.shishi.wiget.UsercenterView) -> a
+com.myth.shishi.wiget.UsercenterView$1 -> com.myth.shishi.wiget.ah:
+    com.myth.shishi.wiget.UsercenterView this$0 -> a
+    android.widget.TextView val$username -> b
+    void onClick(android.view.View) -> onClick
+    com.myth.shishi.wiget.UsercenterView access$0(com.myth.shishi.wiget.UsercenterView$1) -> a
+com.myth.shishi.wiget.UsercenterView$1$1 -> com.myth.shishi.wiget.ai:
+    com.myth.shishi.wiget.UsercenterView$1 this$1 -> a
+    android.widget.TextView val$username -> b
+    android.widget.EditText val$et -> c
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.myth.shishi.wiget.UsercenterView$2 -> com.myth.shishi.wiget.aj:
+    com.myth.shishi.wiget.UsercenterView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.wiget.UsercenterView$3 -> com.myth.shishi.wiget.ak:
+    com.myth.shishi.wiget.UsercenterView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.wiget.UsercenterView$4 -> com.myth.shishi.wiget.al:
+    com.myth.shishi.wiget.UsercenterView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.wiget.UsercenterView$5 -> com.myth.shishi.wiget.am:
+    com.myth.shishi.wiget.UsercenterView this$0 -> a
+    void onClick(android.view.View) -> onClick
 com.myth.shishi.wiget.VScrollView -> com.myth.shishi.wiget.VScrollView:
     android.view.View mView -> b
     float touchY -> c
@@ -10934,25 +11053,74 @@ com.myth.shishi.wiget.WritingView -> com.myth.shishi.wiget.WritingView:
     com.myth.shishi.entity.Writing writing -> b
     android.widget.TextView text -> c
     android.widget.TextView title -> d
+    android.widget.TextView author -> e
     void initView() -> a
     void layoutItemContainer(android.view.View) -> a
     void setPadding() -> b
     void setGravity() -> c
     void setTextSize() -> d
+    void setColor() -> e
+    void setAuthor() -> f
     android.content.Context access$0(com.myth.shishi.wiget.WritingView) -> a
     com.myth.shishi.entity.Writing access$1(com.myth.shishi.wiget.WritingView) -> b
-com.myth.shishi.wiget.WritingView$1 -> com.myth.shishi.wiget.ai:
+com.myth.shishi.wiget.WritingView$1 -> com.myth.shishi.wiget.an:
     com.myth.shishi.wiget.WritingView this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
     com.myth.shishi.wiget.WritingView access$0(com.myth.shishi.wiget.WritingView$1) -> a
-com.myth.shishi.wiget.WritingView$1$1 -> com.myth.shishi.wiget.aj:
+com.myth.shishi.wiget.WritingView$1$1 -> com.myth.shishi.wiget.ao:
     com.myth.shishi.wiget.WritingView$1 this$1 -> a
     void onConfirm() -> a
     void onCancel() -> b
-com.myth.shishi.wiget.WritingView$2 -> com.myth.shishi.wiget.ak:
+com.myth.shishi.wiget.WritingView$2 -> com.myth.shishi.wiget.ap:
     com.myth.shishi.wiget.WritingView this$0 -> a
     android.app.AlertDialog val$dialog -> b
     void onClick(android.view.View) -> onClick
+com.myth.shishi.wiget.calendar.CalendarCard -> com.myth.shishi.wiget.calendar.CalendarCard:
+    android.widget.TextView cardTitle -> a
+    int itemLayout -> b
+    com.myth.shishi.wiget.calendar.OnItemRender mOnItemRender -> c
+    com.myth.shishi.wiget.calendar.OnItemRender mOnItemRenderDefault -> d
+    com.myth.shishi.wiget.calendar.OnCellItemClick mOnCellItemClick -> e
+    java.util.Calendar dateDisplay -> f
+    java.util.ArrayList cells -> g
+    android.widget.LinearLayout cardGrid -> h
+    void init(android.content.Context) -> a
+    int getDaySpacing(int) -> a
+    int getDaySpacingEnd(int) -> b
+    void updateCells() -> c
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void setOnItemRender(com.myth.shishi.wiget.calendar.OnItemRender) -> a
+    com.myth.shishi.wiget.calendar.OnCellItemClick getOnCellItemClick() -> a
+    void notifyChanges() -> b
+    java.util.ArrayList access$0(com.myth.shishi.wiget.calendar.CalendarCard) -> a
+com.myth.shishi.wiget.calendar.CalendarCard$1 -> com.myth.shishi.wiget.calendar.a:
+    com.myth.shishi.wiget.calendar.CalendarCard this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.wiget.calendar.CalendarCard$2 -> com.myth.shishi.wiget.calendar.b:
+    com.myth.shishi.wiget.calendar.CalendarCard this$0 -> a
+    void onRender(com.myth.shishi.wiget.calendar.CheckableLayout,com.myth.shishi.wiget.calendar.CardGridItem) -> a
+com.myth.shishi.wiget.calendar.CardGridItem -> com.myth.shishi.wiget.calendar.c:
+    java.lang.Integer dayOfMonth -> a
+    boolean enabled -> b
+    java.util.Calendar date -> c
+    java.lang.Integer getDayOfMonth() -> a
+    com.myth.shishi.wiget.calendar.CardGridItem setDayOfMonth(java.lang.Integer) -> a
+    boolean isEnabled() -> b
+    com.myth.shishi.wiget.calendar.CardGridItem setEnabled(boolean) -> a
+    com.myth.shishi.wiget.calendar.CardGridItem setDate(java.util.Calendar) -> a
+com.myth.shishi.wiget.calendar.CheckableLayout -> com.myth.shishi.wiget.calendar.CheckableLayout:
+    int[] CHECKED_STATE_SET -> a
+    boolean checked -> b
+    void init() -> a
+    boolean isChecked() -> isChecked
+    void setChecked(boolean) -> setChecked
+    int[] onCreateDrawableState(int) -> onCreateDrawableState
+    void toggle() -> toggle
+    void onLayout(boolean,int,int,int,int) -> onLayout
+com.myth.shishi.wiget.calendar.OnCellItemClick -> com.myth.shishi.wiget.calendar.d:
+    void onCellClick(android.view.View,com.myth.shishi.wiget.calendar.CardGridItem) -> a
+com.myth.shishi.wiget.calendar.OnItemRender -> com.myth.shishi.wiget.calendar.e:
+    void onRender(com.myth.shishi.wiget.calendar.CheckableLayout,com.myth.shishi.wiget.calendar.CardGridItem) -> a
 com.squareup.okhttp.Address -> com.b.a.a:
     java.net.Proxy proxy -> a
     java.lang.String uriHost -> b

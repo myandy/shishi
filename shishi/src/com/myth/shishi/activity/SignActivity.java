@@ -23,6 +23,7 @@ import com.myth.shishi.wiget.calendar.CalendarCard;
 import com.myth.shishi.wiget.calendar.CardGridItem;
 import com.myth.shishi.wiget.calendar.CheckableLayout;
 import com.myth.shishi.wiget.calendar.OnItemRender;
+import com.umeng.analytics.MobclickAgent;
 
 public class SignActivity extends BaseActivity
 {
@@ -192,8 +193,9 @@ public class SignActivity extends BaseActivity
             {
                 MyApplication.setDefaultSignDay(mActivity, 1);
             }
-
+            
             refresh();
+            MobclickAgent.onEventValue(mActivity, "user_sign", null, 1);
         }
     }
 
