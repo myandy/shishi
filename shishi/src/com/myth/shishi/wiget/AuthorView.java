@@ -80,13 +80,13 @@ public class AuthorView extends RelativeLayout
 
         TextView content = (TextView) root.findViewById(R.id.content);
 
-        content.setTypeface(MyApplication.typeface);
+        content.setTypeface(MyApplication.getTypeface());
 
         content.setText(author.getIntro());
 
         TextView title = (TextView) root.findViewById(R.id.title);
 
-        title.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
 
         title.setText(author.getAuthor());
 

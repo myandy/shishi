@@ -98,7 +98,7 @@ public class MainView extends RelativeLayout
         });
         for (int i = 0; i < showAll.getChildCount(); i++)
         {
-            ((TextView) showAll.getChildAt(i)).setTypeface(MyApplication.typeface);
+            ((TextView) showAll.getChildAt(i)).setTypeface(MyApplication.getTypeface());
         }
 
 //        TextView favorite = (TextView) root.findViewById(R.id.favorite);
@@ -117,7 +117,7 @@ public class MainView extends RelativeLayout
 //        });
 
         TextView duishi = (TextView) root.findViewById(R.id.duishi);
-        duishi.setTypeface(MyApplication.typeface);
+        duishi.setTypeface(MyApplication.getTypeface());
         duishi.setOnClickListener(new OnClickListener()
         {
 
@@ -131,7 +131,7 @@ public class MainView extends RelativeLayout
         });
 
         TextView showOne = (TextView) root.findViewById(R.id.show_one);
-        showOne.setTypeface(MyApplication.typeface);
+        showOne.setTypeface(MyApplication.getTypeface());
         showOne.setOnClickListener(new OnClickListener()
         {
 
@@ -145,7 +145,7 @@ public class MainView extends RelativeLayout
         });
 
         TextView search = (TextView) root.findViewById(R.id.search);
-        search.setTypeface(MyApplication.typeface);
+        search.setTypeface(MyApplication.getTypeface());
         search.setOnClickListener(new OnClickListener()
         {
 
@@ -177,7 +177,7 @@ public class MainView extends RelativeLayout
         });
 
         TextView ad = (TextView) root.findViewById(R.id.ad);
-        ad.setTypeface(MyApplication.typeface);
+        ad.setTypeface(MyApplication.getTypeface());
         ad.setOnClickListener(new OnClickListener()
         {
 

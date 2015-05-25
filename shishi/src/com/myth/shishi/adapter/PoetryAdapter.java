@@ -82,8 +82,8 @@ public class PoetryAdapter extends RecyclerView.Adapter<PoetryAdapter.ViewHolder
 
         holder = new ViewHolder(convertView);
         holder.myListener = myListener;
-        holder.name.setTypeface(MyApplication.typeface);
-        holder.tag.setTypeface(MyApplication.typeface);
+        holder.name.setTypeface(MyApplication.getTypeface());
+        holder.tag.setTypeface(MyApplication.getTypeface());
         
         holder.tag.setEllipsize(TextUtils.TruncateAt.valueOf("END"));
         return holder;

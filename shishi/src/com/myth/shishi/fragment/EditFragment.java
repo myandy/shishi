@@ -125,7 +125,7 @@ public class EditFragment extends Fragment
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
-            edittext.setTypeface(MyApplication.typeface);
+            edittext.setTypeface(MyApplication.getTypeface());
             edittext.setTextColor(getColor());
             if (writing.getText() != null)
             {
@@ -159,7 +159,7 @@ public class EditFragment extends Fragment
                     scrollView.addView(view1);
                     view1.setPadding(0, 30, 0, 30);
                     final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
-                    edittext.setTypeface(MyApplication.typeface);
+                    edittext.setTypeface(MyApplication.getTypeface());
                     edittext.setTextColor(getColor());
 
                     edittext.setLines(1);
@@ -206,7 +206,7 @@ public class EditFragment extends Fragment
 
         title = (TextView) view.findViewById(R.id.edit_title);
 
-        title.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
         title.setTextColor(getColor());
 
         if (TextUtils.isEmpty(writing.getTitle()))

@@ -61,6 +61,7 @@
             android:id="@+id/refresh"
             android:layout_width="60dp"
             android:layout_height="34dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:background="@drawable/usercenter_blue_btn"
@@ -68,6 +69,22 @@
             android:text="刷新"
             android:textColor="@color/white"
             android:textSize="12sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/refresh"
+            android:layout_marginRight="20dp"
+            android:scrollbars="@null" >
+
+            <LinearLayout
+                android:id="@+id/ets"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left" >
+            </LinearLayout>
+        </HorizontalScrollView>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

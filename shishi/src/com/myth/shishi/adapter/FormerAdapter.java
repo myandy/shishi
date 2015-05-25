@@ -80,7 +80,7 @@ public class FormerAdapter extends RecyclerView.Adapter<FormerAdapter.ViewHolder
 
         holder = new ViewHolder(convertView);
         holder.myListener = myListener;
-        holder.name.setTypeface(MyApplication.typeface);
+        holder.name.setTypeface(MyApplication.getTypeface());
         return holder;
     }
 

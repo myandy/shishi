@@ -96,9 +96,9 @@ public class WritingView extends RelativeLayout
         title.setText(writing.getTitle());
         text.setText(writing.getText());
         author.setText(MyApplication.getDefaultUserName(mContext));
-        title.setTypeface(MyApplication.typeface);
-        text.setTypeface(MyApplication.typeface);
-        author.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
+        text.setTypeface(MyApplication.getTypeface());
+        author.setTypeface(MyApplication.getTypeface());
 
         setTextSize();
         setGravity();

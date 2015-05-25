@@ -102,12 +102,12 @@ public class PoetryView extends LinearLayout
         });
 
         title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
         title.setText(poetry.getAuthor());
 
         content = (TextView) root.findViewById(R.id.content);
-        content.setTypeface(MyApplication.typeface);
-        ((TextView) root.findViewById(R.id.note)).setTypeface(MyApplication.typeface);
+        content.setTypeface(MyApplication.getTypeface());
+        ((TextView) root.findViewById(R.id.note)).setTypeface(MyApplication.getTypeface());
 
         root.findViewById(R.id.note).setOnClickListener(new OnClickListener()
         {
@@ -131,7 +131,7 @@ public class PoetryView extends LinearLayout
             }
         });
 
-        ((TextView) root.findViewById(R.id.author)).setTypeface(MyApplication.typeface);
+        ((TextView) root.findViewById(R.id.author)).setTypeface(MyApplication.getTypeface());
 
         ((TextView) root.findViewById(R.id.page)).setText(page);
 

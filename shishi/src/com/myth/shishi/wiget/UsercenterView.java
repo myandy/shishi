@@ -64,7 +64,7 @@ public class UsercenterView extends RelativeLayout
         View root = inflater.inflate(R.layout.layout_usercenter, null);
         
         TextView title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
 
         final TextView username = (TextView) root.findViewById(R.id.username_text);
         root.findViewById(R.id.username).setOnClickListener(new OnClickListener()

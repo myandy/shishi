@@ -148,9 +148,9 @@ public class ShareActivity extends BaseActivity
         layoutItemContainer(content);
         title.setText(writing.getTitle());
         text.setText(writing.getText());
-        title.setTypeface(MyApplication.typeface);
-        text.setTypeface(MyApplication.typeface);
-        author.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
+        text.setTypeface(MyApplication.getTypeface());
+        author.setTypeface(MyApplication.getTypeface());
         if (TextUtils.isEmpty(writing.getAuthor()))
         {
             author.setText(MyApplication.getDefaultUserName(mActivity));
@@ -164,6 +164,7 @@ public class ShareActivity extends BaseActivity
         setGravity();
         setPadding();
         setAuthor();
+        setColor();
 
         if (StringUtils.isNumeric(writing.getBgimg()))
         {

@@ -72,7 +72,7 @@ public class DuiShiAdapter extends RecyclerView.Adapter<DuiShiAdapter.ViewHolder
 
         holder = new ViewHolder(convertView);
         holder.myListener = myListener;
-        holder.name.setTypeface(MyApplication.typeface);
+        holder.name.setTypeface(MyApplication.getTypeface());
         return holder;
     }
 
@@ -82,6 +82,10 @@ public class DuiShiAdapter extends RecyclerView.Adapter<DuiShiAdapter.ViewHolder
 
         holder.name.setText(list.get(position));
 
+    }
+    
+    public List<String> getDatas(){
+        return list;
     }
 
     // Return the size of your dataset (invoked by the layout manager)

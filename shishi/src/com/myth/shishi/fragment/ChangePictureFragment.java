@@ -1,5 +1,6 @@
 package com.myth.shishi.fragment;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
@@ -31,7 +32,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.entity.ColorEntity;
@@ -158,8 +158,8 @@ public class ChangePictureFragment extends Fragment
         title = (TextView) view.findViewById(R.id.title);
         title.setText(writing.getTitle());
         text = (TextView) view.findViewById(R.id.text);
-        title.setTypeface(MyApplication.typeface);
-        text.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
+        text.setTypeface(MyApplication.getTypeface());
 
         setTextSize();
         setGravity();
@@ -167,9 +167,11 @@ public class ChangePictureFragment extends Fragment
         setColor();
 
         // srcBitmap = BitmapFactory.decodeFile(pathName);
-        srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zuibaichi);
-
-        destBitmap = srcBitmap;
+        if (srcBitmap == null)
+        {
+            srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zuibaichi);
+            destBitmap = srcBitmap;
+        }
 
         SeekBar seekBar1 = (SeekBar) view.findViewById(R.id.seekBar1);
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
@@ -234,6 +236,7 @@ public class ChangePictureFragment extends Fragment
 
     }
 
+    @SuppressLint("NewApi")
     @TargetApi(11)
     private void drawPicture(int bright, int radius)
     {

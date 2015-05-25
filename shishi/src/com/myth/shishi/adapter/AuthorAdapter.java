@@ -79,8 +79,8 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder
 
         holder = new ViewHolder(convertView);
         holder.myListener = myListener;
-        holder.name.setTypeface(MyApplication.typeface);
-        holder.tag.setTypeface(MyApplication.typeface);
+        holder.name.setTypeface(MyApplication.getTypeface());
+        holder.tag.setTypeface(MyApplication.getTypeface());
         return holder;
     }
 

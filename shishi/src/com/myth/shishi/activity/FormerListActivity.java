@@ -68,7 +68,7 @@ public class FormerListActivity extends BaseActivity
         ImageView setting = new TouchEffectImageView(mActivity, null);
         setting.setImageResource(R.drawable.dict);
         setting.setScaleType(ScaleType.FIT_XY);
-        setting.setPadding(15, 15, 15, 15);
+        setting.setPadding(18, 18, 18, 18);
         addBottomRightView(setting,
                 new LayoutParams(DisplayUtil.dip2px(mActivity, 48), DisplayUtil.dip2px(mActivity, 48)));
         setting.setOnClickListener(new OnClickListener()
@@ -120,6 +120,7 @@ public class FormerListActivity extends BaseActivity
                     Intent intent = new Intent(mActivity, EditActivity.class);
                     intent.putExtra("former", list.get(position));
                     startActivity(intent);
+                    finish();
                 }
             }
         });

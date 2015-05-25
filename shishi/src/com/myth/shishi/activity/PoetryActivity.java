@@ -100,14 +100,14 @@ public class PoetryActivity extends BaseActivity
         });
 
         title = (TextView) findViewById(R.id.title);
-        title.setTypeface(MyApplication.typeface);
+        title.setTypeface(MyApplication.getTypeface());
         title.setText(poetry.getAuthor());
 
         content = (TextView) findViewById(R.id.content);
-        content.setTypeface(MyApplication.typeface);
-        ((TextView) findViewById(R.id.note)).setTypeface(MyApplication.typeface);
+        content.setTypeface(MyApplication.getTypeface());
+        ((TextView) findViewById(R.id.note)).setTypeface(MyApplication.getTypeface());
 
-        ((TextView) findViewById(R.id.author)).setTypeface(MyApplication.typeface);
+        ((TextView) findViewById(R.id.author)).setTypeface(MyApplication.getTypeface());
 
         title.setOnClickListener(new OnClickListener()
         {

@@ -21,9 +21,9 @@ public class MyApplication extends Application
 
     private static List<ColorEntity> colorList;
 
-    public static Typeface typeface;
+    private static Typeface typeface;
 
-    public static String TypefaceString[] = {"简体", "繁体"};
+    public final static String TypefaceString[] = {"简体", "繁体"};
 
     @Override
     public void onCreate()
@@ -198,7 +198,7 @@ public class MyApplication extends Application
 
     public static int getDefaultShareColor(Context context)
     {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt("share_color", 20);
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("share_color", 0);
     }
 
     public static void setDefaultShareColor(Context context, int size)
@@ -284,6 +284,16 @@ public class MyApplication extends Application
         Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
         edit.putString("username", size);
         edit.commit();
+    }
+
+    public static Typeface getTypeface()
+    {
+        return typeface;
+    }
+
+    public static void setTypeface(Typeface typeface)
+    {
+        MyApplication.typeface = typeface;
     }
 
 }

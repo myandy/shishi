@@ -8,6 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,15 +21,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.DuiShiAdapter;
+import com.myth.shishi.db.WritingDatabaseHelper;
+import com.myth.shishi.listener.MyListener;
 import com.myth.shishi.util.HttpUtil;
+import com.myth.shishi.util.OthersUtils;
 import com.myth.shishi.wiget.DuishiEditView;
+import com.myth.shishi.wiget.GCDialog;
 import com.myth.shishi.wiget.GProgressDialog;
+import com.myth.shishi.wiget.GCDialog.OnCustomDialogListener;
 
 public class DuiShiActivity extends BaseActivity
 {
@@ -48,6 +59,8 @@ public class DuiShiActivity extends BaseActivity
 
     private RelativeLayout topView;
 
+    private LinearLayout ets;
+
     private String s;
 
     private GProgressDialog progress;
@@ -63,7 +76,7 @@ public class DuiShiActivity extends BaseActivity
                     if (editView == null)
                     {
                         editView = new DuishiEditView(mActivity, count);
-                        topView.addView(editView);
+                        ets.addView(editView);
                         topView.setVisibility(View.VISIBLE);
                     }
                     else
@@ -100,9 +113,11 @@ public class DuiShiActivity extends BaseActivity
         progress = new GProgressDialog(mActivity);
         topView = (RelativeLayout) findViewById(R.id.top);
         topView.setVisibility(View.GONE);
+        ets = (LinearLayout) findViewById(R.id.ets);
         final EditText et = (EditText) findViewById(R.id.et);
         Button button = (Button) findViewById(R.id.button);
         listview = (RecyclerView) findViewById(R.id.listview);
+        
 
         listview.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
@@ -110,6 +125,29 @@ public class DuiShiActivity extends BaseActivity
 
         adapter = new DuiShiAdapter();
         listview.setAdapter(adapter);
+        
+        adapter.setMyListener(new MyListener()
+        {
+
+            @Override
+            public void onItemClick(int position)
+            {
+               final String s=adapter.getDatas().get(position);
+               new AlertDialog.Builder(mActivity).setItems(new String[] {"复制"},
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                OthersUtils.copy(s, mActivity);
+                                Toast.makeText(mActivity, R.string.copy_text_done, Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+
+                        }).show();
+                
+            }
+        });
+        
         button.setOnClickListener(new OnClickListener()
         {
 
