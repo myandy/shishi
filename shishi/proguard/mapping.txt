@@ -9663,11 +9663,11 @@ com.myth.shishi.BaseActivity$1 -> com.myth.shishi.a:
     com.myth.shishi.BaseActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.MyApplication -> com.myth.shishi.MyApplication:
-    java.util.List colorList -> e
-    android.graphics.Typeface typeface -> a
-    java.lang.String[] TypefaceString -> b
-    int[] bgimgList -> c
-    int[] bgSmallimgList -> d
+    java.util.List colorList -> d
+    android.graphics.Typeface typeface -> e
+    java.lang.String[] TypefaceString -> a
+    int[] bgimgList -> b
+    int[] bgSmallimgList -> c
     void onCreate() -> onCreate
     com.myth.shishi.entity.ColorEntity getColorByPos(int) -> a
     void setTypeface(android.content.Context,int) -> a
@@ -9701,6 +9701,7 @@ com.myth.shishi.MyApplication -> com.myth.shishi.MyApplication:
     void setDefaultPoint(android.content.Context,int) -> j
     java.lang.String getDefaultUserName(android.content.Context) -> o
     void setDefaultUserName(android.content.Context,java.lang.String) -> b
+    android.graphics.Typeface getTypeface() -> a
 com.myth.shishi.activity.AboutActivity -> com.myth.shishi.activity.AboutActivity:
     void onCreate(android.os.Bundle) -> onCreate
 com.myth.shishi.activity.AuthorListActivity -> com.myth.shishi.activity.AuthorListActivity:
@@ -9787,9 +9788,10 @@ com.myth.shishi.activity.DuiShiActivity -> com.myth.shishi.activity.DuiShiActivi
     com.myth.shishi.wiget.DuishiEditView editView -> f
     int count -> g
     android.widget.RelativeLayout topView -> h
-    java.lang.String s -> i
-    com.myth.shishi.wiget.GProgressDialog progress -> j
-    android.os.Handler mhandler -> k
+    android.widget.LinearLayout ets -> i
+    java.lang.String s -> j
+    com.myth.shishi.wiget.GProgressDialog progress -> k
+    android.os.Handler mhandler -> l
     void onCreate(android.os.Bundle) -> onCreate
     void initView() -> d
     java.util.List getData(java.lang.String) -> a
@@ -9798,31 +9800,40 @@ com.myth.shishi.activity.DuiShiActivity -> com.myth.shishi.activity.DuiShiActivi
     android.app.Activity access$2(com.myth.shishi.activity.DuiShiActivity) -> c
     int access$3(com.myth.shishi.activity.DuiShiActivity) -> d
     void access$4(com.myth.shishi.activity.DuiShiActivity,com.myth.shishi.wiget.DuishiEditView) -> a
-    android.widget.RelativeLayout access$5(com.myth.shishi.activity.DuiShiActivity) -> e
-    com.myth.shishi.wiget.GProgressDialog access$6(com.myth.shishi.activity.DuiShiActivity) -> f
-    void access$7(com.myth.shishi.activity.DuiShiActivity,java.lang.String) -> a
-    java.lang.String access$8(com.myth.shishi.activity.DuiShiActivity) -> g
-    void access$9(com.myth.shishi.activity.DuiShiActivity,int) -> a
-    java.util.List access$10(com.myth.shishi.activity.DuiShiActivity,java.lang.String) -> b
-    android.os.Handler access$11(com.myth.shishi.activity.DuiShiActivity) -> h
+    android.widget.LinearLayout access$5(com.myth.shishi.activity.DuiShiActivity) -> e
+    android.widget.RelativeLayout access$6(com.myth.shishi.activity.DuiShiActivity) -> f
+    com.myth.shishi.wiget.GProgressDialog access$7(com.myth.shishi.activity.DuiShiActivity) -> g
+    void access$8(com.myth.shishi.activity.DuiShiActivity,java.lang.String) -> a
+    java.lang.String access$9(com.myth.shishi.activity.DuiShiActivity) -> h
+    void access$10(com.myth.shishi.activity.DuiShiActivity,int) -> a
+    java.util.List access$11(com.myth.shishi.activity.DuiShiActivity,java.lang.String) -> b
+    android.os.Handler access$12(com.myth.shishi.activity.DuiShiActivity) -> i
 com.myth.shishi.activity.DuiShiActivity$1 -> com.myth.shishi.activity.j:
     com.myth.shishi.activity.DuiShiActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
 com.myth.shishi.activity.DuiShiActivity$2 -> com.myth.shishi.activity.k:
     com.myth.shishi.activity.DuiShiActivity this$0 -> a
-    android.widget.EditText val$et -> b
-    void onClick(android.view.View) -> onClick
+    void onItemClick(int) -> a
     com.myth.shishi.activity.DuiShiActivity access$0(com.myth.shishi.activity.DuiShiActivity$2) -> a
 com.myth.shishi.activity.DuiShiActivity$2$1 -> com.myth.shishi.activity.l:
     com.myth.shishi.activity.DuiShiActivity$2 this$1 -> a
-    android.widget.EditText val$et -> b
-    void run() -> run
+    java.lang.String val$s -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
 com.myth.shishi.activity.DuiShiActivity$3 -> com.myth.shishi.activity.m:
     com.myth.shishi.activity.DuiShiActivity this$0 -> a
+    android.widget.EditText val$et -> b
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.DuiShiActivity access$0(com.myth.shishi.activity.DuiShiActivity$3) -> a
 com.myth.shishi.activity.DuiShiActivity$3$1 -> com.myth.shishi.activity.n:
     com.myth.shishi.activity.DuiShiActivity$3 this$1 -> a
+    android.widget.EditText val$et -> b
+    void run() -> run
+com.myth.shishi.activity.DuiShiActivity$4 -> com.myth.shishi.activity.o:
+    com.myth.shishi.activity.DuiShiActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+    com.myth.shishi.activity.DuiShiActivity access$0(com.myth.shishi.activity.DuiShiActivity$4) -> a
+com.myth.shishi.activity.DuiShiActivity$4$1 -> com.myth.shishi.activity.p:
+    com.myth.shishi.activity.DuiShiActivity$4 this$1 -> a
     void run() -> run
 com.myth.shishi.activity.EditActivity -> com.myth.shishi.activity.EditActivity:
     com.myth.shishi.entity.Former former -> h
@@ -9844,31 +9855,31 @@ com.myth.shishi.activity.EditActivity -> com.myth.shishi.activity.EditActivity:
     void access$1(com.myth.shishi.activity.EditActivity) -> b
     com.myth.shishi.entity.Writing access$2(com.myth.shishi.activity.EditActivity) -> c
     android.app.Activity access$3(com.myth.shishi.activity.EditActivity) -> d
-com.myth.shishi.activity.EditActivity$1 -> com.myth.shishi.activity.o:
+com.myth.shishi.activity.EditActivity$1 -> com.myth.shishi.activity.q:
     com.myth.shishi.activity.EditActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.EditActivity$2 -> com.myth.shishi.activity.p:
+com.myth.shishi.activity.EditActivity$2 -> com.myth.shishi.activity.r:
     com.myth.shishi.activity.EditActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.EditActivity$3 -> com.myth.shishi.activity.q:
-    com.myth.shishi.activity.EditActivity this$0 -> a
-    android.widget.ImageView val$edit -> b
-    android.widget.ImageView val$background -> c
-    android.widget.ImageView val$picture -> d
-    void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.EditActivity$4 -> com.myth.shishi.activity.r:
+com.myth.shishi.activity.EditActivity$3 -> com.myth.shishi.activity.s:
     com.myth.shishi.activity.EditActivity this$0 -> a
     android.widget.ImageView val$edit -> b
     android.widget.ImageView val$background -> c
     android.widget.ImageView val$picture -> d
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.EditActivity$5 -> com.myth.shishi.activity.s:
+com.myth.shishi.activity.EditActivity$4 -> com.myth.shishi.activity.t:
     com.myth.shishi.activity.EditActivity this$0 -> a
     android.widget.ImageView val$edit -> b
     android.widget.ImageView val$background -> c
     android.widget.ImageView val$picture -> d
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.EditActivity$6 -> com.myth.shishi.activity.t:
+com.myth.shishi.activity.EditActivity$5 -> com.myth.shishi.activity.u:
+    com.myth.shishi.activity.EditActivity this$0 -> a
+    android.widget.ImageView val$edit -> b
+    android.widget.ImageView val$background -> c
+    android.widget.ImageView val$picture -> d
+    void onClick(android.view.View) -> onClick
+com.myth.shishi.activity.EditActivity$6 -> com.myth.shishi.activity.v:
     com.myth.shishi.activity.EditActivity this$0 -> a
     void onConfirm() -> a
     void onCancel() -> b
@@ -9884,15 +9895,15 @@ com.myth.shishi.activity.FormerActivity -> com.myth.shishi.activity.FormerActivi
     android.widget.EditText access$2(com.myth.shishi.activity.FormerActivity) -> c
     android.widget.EditText access$3(com.myth.shishi.activity.FormerActivity) -> d
     boolean access$4(com.myth.shishi.activity.FormerActivity) -> e
-com.myth.shishi.activity.FormerActivity$1 -> com.myth.shishi.activity.u:
+com.myth.shishi.activity.FormerActivity$1 -> com.myth.shishi.activity.w:
     com.myth.shishi.activity.FormerActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.FormerActivity access$0(com.myth.shishi.activity.FormerActivity$1) -> a
-com.myth.shishi.activity.FormerActivity$1$1 -> com.myth.shishi.activity.v:
+com.myth.shishi.activity.FormerActivity$1$1 -> com.myth.shishi.activity.x:
     com.myth.shishi.activity.FormerActivity$1 this$1 -> a
     void onConfirm() -> a
     void onCancel() -> b
-com.myth.shishi.activity.FormerActivity$2 -> com.myth.shishi.activity.w:
+com.myth.shishi.activity.FormerActivity$2 -> com.myth.shishi.activity.y:
     com.myth.shishi.activity.FormerActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.activity.FormerListActivity -> com.myth.shishi.activity.FormerListActivity:
@@ -9907,13 +9918,13 @@ com.myth.shishi.activity.FormerListActivity -> com.myth.shishi.activity.FormerLi
     android.app.Activity access$0(com.myth.shishi.activity.FormerListActivity) -> a
     boolean access$1(com.myth.shishi.activity.FormerListActivity) -> b
     java.util.ArrayList access$2(com.myth.shishi.activity.FormerListActivity) -> c
-com.myth.shishi.activity.FormerListActivity$1 -> com.myth.shishi.activity.x:
+com.myth.shishi.activity.FormerListActivity$1 -> com.myth.shishi.activity.z:
     com.myth.shishi.activity.FormerListActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.FormerListActivity$2 -> com.myth.shishi.activity.y:
+com.myth.shishi.activity.FormerListActivity$2 -> com.myth.shishi.activity.aa:
     com.myth.shishi.activity.FormerListActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.FormerListActivity$3 -> com.myth.shishi.activity.z:
+com.myth.shishi.activity.FormerListActivity$3 -> com.myth.shishi.activity.ab:
     com.myth.shishi.activity.FormerListActivity this$0 -> a
     void onItemClick(int) -> a
 com.myth.shishi.activity.MainActivity -> com.myth.shishi.activity.MainActivity:
@@ -9931,21 +9942,21 @@ com.myth.shishi.activity.MainActivity -> com.myth.shishi.activity.MainActivity:
     void access$1(com.myth.shishi.activity.MainActivity,int) -> a
     android.widget.RelativeLayout access$2(com.myth.shishi.activity.MainActivity) -> b
     android.support.v4.view.ViewPager access$3(com.myth.shishi.activity.MainActivity) -> c
-com.myth.shishi.activity.MainActivity$1 -> com.myth.shishi.activity.aa:
+com.myth.shishi.activity.MainActivity$1 -> com.myth.shishi.activity.ac:
     com.myth.shishi.activity.MainActivity this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.myth.shishi.activity.MainActivity$2 -> com.myth.shishi.activity.ab:
+com.myth.shishi.activity.MainActivity$2 -> com.myth.shishi.activity.ad:
     com.myth.shishi.activity.MainActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.MainActivity$3 -> com.myth.shishi.activity.ac:
+com.myth.shishi.activity.MainActivity$3 -> com.myth.shishi.activity.ae:
     com.myth.shishi.activity.MainActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.MainActivity$MyOnPageChangeListener -> com.myth.shishi.activity.ad:
+com.myth.shishi.activity.MainActivity$MyOnPageChangeListener -> com.myth.shishi.activity.af:
     com.myth.shishi.activity.MainActivity this$0 -> a
     void onPageSelected(int) -> onPageSelected
     void onPageScrolled(int,float,int) -> onPageScrolled
     void onPageScrollStateChanged(int) -> onPageScrollStateChanged
-com.myth.shishi.activity.MainActivity$MyPagerAdapter -> com.myth.shishi.activity.ae:
+com.myth.shishi.activity.MainActivity$MyPagerAdapter -> com.myth.shishi.activity.ag:
     java.util.ArrayList datas -> b
     com.myth.shishi.activity.MainActivity this$0 -> a
     int getCount() -> getCount
@@ -9985,40 +9996,40 @@ com.myth.shishi.activity.PoetryActivity -> com.myth.shishi.activity.PoetryActivi
     android.widget.PopupWindow access$6(com.myth.shishi.activity.PoetryActivity) -> g
     android.widget.TextView access$7(com.myth.shishi.activity.PoetryActivity) -> h
     android.widget.TextView access$8(com.myth.shishi.activity.PoetryActivity) -> i
-com.myth.shishi.activity.PoetryActivity$1 -> com.myth.shishi.activity.af:
+com.myth.shishi.activity.PoetryActivity$1 -> com.myth.shishi.activity.ah:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$10 -> com.myth.shishi.activity.ag:
+com.myth.shishi.activity.PoetryActivity$10 -> com.myth.shishi.activity.ai:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$11 -> com.myth.shishi.activity.ah:
+com.myth.shishi.activity.PoetryActivity$11 -> com.myth.shishi.activity.aj:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$12 -> com.myth.shishi.activity.ai:
+com.myth.shishi.activity.PoetryActivity$12 -> com.myth.shishi.activity.ak:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$2 -> com.myth.shishi.activity.aj:
+com.myth.shishi.activity.PoetryActivity$2 -> com.myth.shishi.activity.al:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$3 -> com.myth.shishi.activity.ak:
+com.myth.shishi.activity.PoetryActivity$3 -> com.myth.shishi.activity.am:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$4 -> com.myth.shishi.activity.al:
+com.myth.shishi.activity.PoetryActivity$4 -> com.myth.shishi.activity.an:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$5 -> com.myth.shishi.activity.am:
+com.myth.shishi.activity.PoetryActivity$5 -> com.myth.shishi.activity.ao:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.myth.shishi.activity.PoetryActivity$6 -> com.myth.shishi.activity.an:
+com.myth.shishi.activity.PoetryActivity$6 -> com.myth.shishi.activity.ap:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$7 -> com.myth.shishi.activity.ao:
+com.myth.shishi.activity.PoetryActivity$7 -> com.myth.shishi.activity.aq:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$8 -> com.myth.shishi.activity.ap:
+com.myth.shishi.activity.PoetryActivity$8 -> com.myth.shishi.activity.ar:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetryActivity$9 -> com.myth.shishi.activity.aq:
+com.myth.shishi.activity.PoetryActivity$9 -> com.myth.shishi.activity.as:
     com.myth.shishi.activity.PoetryActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.activity.PoetrySearchActivity -> com.myth.shishi.activity.PoetrySearchActivity:
@@ -10038,16 +10049,16 @@ com.myth.shishi.activity.PoetrySearchActivity -> com.myth.shishi.activity.Poetry
     com.myth.shishi.entity.Author access$2(com.myth.shishi.activity.PoetrySearchActivity) -> c
     android.view.View access$3(com.myth.shishi.activity.PoetrySearchActivity) -> d
     void access$4(com.myth.shishi.activity.PoetrySearchActivity) -> e
-com.myth.shishi.activity.PoetrySearchActivity$1 -> com.myth.shishi.activity.ar:
+com.myth.shishi.activity.PoetrySearchActivity$1 -> com.myth.shishi.activity.at:
     com.myth.shishi.activity.PoetrySearchActivity this$0 -> a
     void onItemClick(int) -> a
-com.myth.shishi.activity.PoetrySearchActivity$2 -> com.myth.shishi.activity.as:
+com.myth.shishi.activity.PoetrySearchActivity$2 -> com.myth.shishi.activity.au:
     com.myth.shishi.activity.PoetrySearchActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetrySearchActivity$3 -> com.myth.shishi.activity.at:
+com.myth.shishi.activity.PoetrySearchActivity$3 -> com.myth.shishi.activity.av:
     com.myth.shishi.activity.PoetrySearchActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.PoetrySearchActivity$4 -> com.myth.shishi.activity.au:
+com.myth.shishi.activity.PoetrySearchActivity$4 -> com.myth.shishi.activity.aw:
     com.myth.shishi.activity.PoetrySearchActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
@@ -10062,34 +10073,34 @@ com.myth.shishi.activity.SettingActivity -> com.myth.shishi.activity.SettingActi
     void access$1(com.myth.shishi.activity.SettingActivity) -> b
     void access$2(com.myth.shishi.activity.SettingActivity) -> c
     void access$3(com.myth.shishi.activity.SettingActivity) -> d
-com.myth.shishi.activity.SettingActivity$1 -> com.myth.shishi.activity.av:
+com.myth.shishi.activity.SettingActivity$1 -> com.myth.shishi.activity.ax:
     com.myth.shishi.activity.SettingActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.SettingActivity access$0(com.myth.shishi.activity.SettingActivity$1) -> a
-com.myth.shishi.activity.SettingActivity$1$1 -> com.myth.shishi.activity.aw:
+com.myth.shishi.activity.SettingActivity$1$1 -> com.myth.shishi.activity.ay:
     com.myth.shishi.activity.SettingActivity$1 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.activity.SettingActivity$2 -> com.myth.shishi.activity.ax:
+com.myth.shishi.activity.SettingActivity$2 -> com.myth.shishi.activity.az:
     com.myth.shishi.activity.SettingActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.SettingActivity access$0(com.myth.shishi.activity.SettingActivity$2) -> a
-com.myth.shishi.activity.SettingActivity$2$1 -> com.myth.shishi.activity.ay:
+com.myth.shishi.activity.SettingActivity$2$1 -> com.myth.shishi.activity.ba:
     com.myth.shishi.activity.SettingActivity$2 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.activity.SettingActivity$3 -> com.myth.shishi.activity.az:
+com.myth.shishi.activity.SettingActivity$3 -> com.myth.shishi.activity.bb:
     com.myth.shishi.activity.SettingActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.SettingActivity access$0(com.myth.shishi.activity.SettingActivity$3) -> a
-com.myth.shishi.activity.SettingActivity$3$1 -> com.myth.shishi.activity.ba:
+com.myth.shishi.activity.SettingActivity$3$1 -> com.myth.shishi.activity.bc:
     com.myth.shishi.activity.SettingActivity$3 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.activity.SettingActivity$4 -> com.myth.shishi.activity.bb:
+com.myth.shishi.activity.SettingActivity$4 -> com.myth.shishi.activity.bd:
     com.myth.shishi.activity.SettingActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.SettingActivity$5 -> com.myth.shishi.activity.bc:
+com.myth.shishi.activity.SettingActivity$5 -> com.myth.shishi.activity.be:
     com.myth.shishi.activity.SettingActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.SettingActivity$6 -> com.myth.shishi.activity.bd:
+com.myth.shishi.activity.SettingActivity$6 -> com.myth.shishi.activity.bf:
     com.myth.shishi.activity.SettingActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity:
@@ -10129,45 +10140,45 @@ com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity
     void access$7(com.myth.shishi.activity.ShareActivity,boolean) -> b
     void access$8(com.myth.shishi.activity.ShareActivity,int) -> a
     void access$9(com.myth.shishi.activity.ShareActivity,boolean) -> c
-com.myth.shishi.activity.ShareActivity$1 -> com.myth.shishi.activity.be:
+com.myth.shishi.activity.ShareActivity$1 -> com.myth.shishi.activity.bg:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$10 -> com.myth.shishi.activity.bf:
+com.myth.shishi.activity.ShareActivity$10 -> com.myth.shishi.activity.bh:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.ShareActivity access$0(com.myth.shishi.activity.ShareActivity$10) -> a
-com.myth.shishi.activity.ShareActivity$10$1 -> com.myth.shishi.activity.bg:
+com.myth.shishi.activity.ShareActivity$10$1 -> com.myth.shishi.activity.bi:
     com.myth.shishi.activity.ShareActivity$10 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.activity.ShareActivity$11 -> com.myth.shishi.activity.bh:
+com.myth.shishi.activity.ShareActivity$11 -> com.myth.shishi.activity.bj:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$2 -> com.myth.shishi.activity.bi:
+com.myth.shishi.activity.ShareActivity$2 -> com.myth.shishi.activity.bk:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
     com.myth.shishi.activity.ShareActivity access$0(com.myth.shishi.activity.ShareActivity$2) -> a
-com.myth.shishi.activity.ShareActivity$2$1 -> com.myth.shishi.activity.bj:
+com.myth.shishi.activity.ShareActivity$2$1 -> com.myth.shishi.activity.bl:
     com.myth.shishi.activity.ShareActivity$2 this$1 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.myth.shishi.activity.ShareActivity$3 -> com.myth.shishi.activity.bk:
+com.myth.shishi.activity.ShareActivity$3 -> com.myth.shishi.activity.bm:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.myth.shishi.activity.ShareActivity$4 -> com.myth.shishi.activity.bl:
+com.myth.shishi.activity.ShareActivity$4 -> com.myth.shishi.activity.bn:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$5 -> com.myth.shishi.activity.bm:
+com.myth.shishi.activity.ShareActivity$5 -> com.myth.shishi.activity.bo:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$6 -> com.myth.shishi.activity.bn:
+com.myth.shishi.activity.ShareActivity$6 -> com.myth.shishi.activity.bp:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$7 -> com.myth.shishi.activity.bo:
+com.myth.shishi.activity.ShareActivity$7 -> com.myth.shishi.activity.bq:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$8 -> com.myth.shishi.activity.bp:
+com.myth.shishi.activity.ShareActivity$8 -> com.myth.shishi.activity.br:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareActivity$9 -> com.myth.shishi.activity.bq:
+com.myth.shishi.activity.ShareActivity$9 -> com.myth.shishi.activity.bs:
     com.myth.shishi.activity.ShareActivity this$0 -> a
     void onClick(android.view.View) -> onClick
 com.myth.shishi.activity.ShareEditActivity -> com.myth.shishi.activity.ShareEditActivity:
@@ -10184,15 +10195,15 @@ com.myth.shishi.activity.ShareEditActivity -> com.myth.shishi.activity.ShareEdit
     int access$0(com.myth.shishi.activity.ShareEditActivity) -> a
     com.myth.shishi.entity.Writing access$1(com.myth.shishi.activity.ShareEditActivity) -> b
     android.app.Activity access$2(com.myth.shishi.activity.ShareEditActivity) -> c
-com.myth.shishi.activity.ShareEditActivity$1 -> com.myth.shishi.activity.br:
+com.myth.shishi.activity.ShareEditActivity$1 -> com.myth.shishi.activity.bt:
     com.myth.shishi.activity.ShareEditActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareEditActivity$2 -> com.myth.shishi.activity.bs:
+com.myth.shishi.activity.ShareEditActivity$2 -> com.myth.shishi.activity.bu:
     com.myth.shishi.activity.ShareEditActivity this$0 -> a
     android.widget.ImageView val$background -> b
     android.widget.ImageView val$picture -> c
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.ShareEditActivity$3 -> com.myth.shishi.activity.bt:
+com.myth.shishi.activity.ShareEditActivity$3 -> com.myth.shishi.activity.bv:
     com.myth.shishi.activity.ShareEditActivity this$0 -> a
     android.widget.ImageView val$background -> b
     android.widget.ImageView val$picture -> c
@@ -10216,10 +10227,10 @@ com.myth.shishi.activity.SignActivity -> com.myth.shishi.activity.SignActivity:
     int getTotalSignCount() -> i
     boolean isSignedDay(int) -> a
     boolean access$0(com.myth.shishi.activity.SignActivity,int) -> a
-com.myth.shishi.activity.SignActivity$1 -> com.myth.shishi.activity.bu:
+com.myth.shishi.activity.SignActivity$1 -> com.myth.shishi.activity.bw:
     com.myth.shishi.activity.SignActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.SignActivity$2 -> com.myth.shishi.activity.bv:
+com.myth.shishi.activity.SignActivity$2 -> com.myth.shishi.activity.bx:
     com.myth.shishi.activity.SignActivity this$0 -> a
     void onRender(com.myth.shishi.wiget.calendar.CheckableLayout,com.myth.shishi.wiget.calendar.CardGridItem) -> a
 com.myth.shishi.activity.WebviewActivity -> com.myth.shishi.activity.WebviewActivity:
@@ -10232,7 +10243,7 @@ com.myth.shishi.activity.WebviewActivity -> com.myth.shishi.activity.WebviewActi
     java.lang.String getHelpUrl() -> d
     java.util.ArrayList access$0(com.myth.shishi.activity.WebviewActivity) -> a
     android.webkit.WebView access$1(com.myth.shishi.activity.WebviewActivity) -> b
-com.myth.shishi.activity.WebviewActivity$1 -> com.myth.shishi.activity.bw:
+com.myth.shishi.activity.WebviewActivity$1 -> com.myth.shishi.activity.by:
     com.myth.shishi.activity.WebviewActivity this$0 -> a
     boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
     void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
@@ -10254,18 +10265,18 @@ com.myth.shishi.activity.YunSearchActivity -> com.myth.shishi.activity.YunSearch
     android.widget.TextView access$4(com.myth.shishi.activity.YunSearchActivity) -> d
     android.widget.TextView access$5(com.myth.shishi.activity.YunSearchActivity) -> e
     android.widget.TextView access$6(com.myth.shishi.activity.YunSearchActivity) -> f
-com.myth.shishi.activity.YunSearchActivity$1 -> com.myth.shishi.activity.bx:
+com.myth.shishi.activity.YunSearchActivity$1 -> com.myth.shishi.activity.bz:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     android.widget.EditText val$search -> b
     void run() -> run
-com.myth.shishi.activity.YunSearchActivity$2 -> com.myth.shishi.activity.by:
+com.myth.shishi.activity.YunSearchActivity$2 -> com.myth.shishi.activity.ca:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.YunSearchActivity$3 -> com.myth.shishi.activity.bz:
+com.myth.shishi.activity.YunSearchActivity$3 -> com.myth.shishi.activity.cb:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     android.widget.EditText val$search -> b
     void onClick(android.view.View) -> onClick
-com.myth.shishi.activity.YunSearchActivity$4 -> com.myth.shishi.activity.ca:
+com.myth.shishi.activity.YunSearchActivity$4 -> com.myth.shishi.activity.cc:
     com.myth.shishi.activity.YunSearchActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
@@ -10322,7 +10333,9 @@ com.myth.shishi.adapter.DuiShiAdapter -> com.myth.shishi.adapter.g:
     void setList(java.util.List) -> a
     com.myth.shishi.adapter.DuiShiAdapter$ViewHolder onCreateViewHolder(android.view.ViewGroup,int) -> c
     void onBindViewHolder(com.myth.shishi.adapter.DuiShiAdapter$ViewHolder,int) -> a
+    java.util.List getDatas() -> d
     int getItemCount() -> a
+    void setMyListener(com.myth.shishi.listener.MyListener) -> a
     android.support.v7.widget.RecyclerView$ViewHolder onCreateViewHolder(android.view.ViewGroup,int) -> a
     void onBindViewHolder(android.support.v7.widget.RecyclerView$ViewHolder,int) -> a
 com.myth.shishi.adapter.DuiShiAdapter$ViewHolder -> com.myth.shishi.adapter.h:
@@ -12506,7 +12519,7 @@ com.squareup.okhttp.internal.huc.HttpURLConnectionImpl -> com.b.a.a.b.b:
     void setProtocols(java.lang.String,boolean) -> a
     void setRequestMethod(java.lang.String) -> setRequestMethod
     void setFixedLengthStreamingMode(int) -> setFixedLengthStreamingMode
-    void setFixedLengthStreamingMode(long) -> a
+    void setFixedLengthStreamingMode(long) -> setFixedLengthStreamingMode
 com.squareup.okhttp.internal.huc.HttpsURLConnectionImpl -> com.b.a.a.b.c:
     com.squareup.okhttp.internal.huc.HttpURLConnectionImpl delegate -> a
     com.squareup.okhttp.Handshake handshake() -> a
@@ -12514,6 +12527,7 @@ com.squareup.okhttp.internal.huc.HttpsURLConnectionImpl -> com.b.a.a.b.c:
     javax.net.ssl.HostnameVerifier getHostnameVerifier() -> getHostnameVerifier
     void setSSLSocketFactory(javax.net.ssl.SSLSocketFactory) -> setSSLSocketFactory
     javax.net.ssl.SSLSocketFactory getSSLSocketFactory() -> getSSLSocketFactory
+    void setFixedLengthStreamingMode(long) -> setFixedLengthStreamingMode
     void setChunkedStreamingMode(int) -> setChunkedStreamingMode
     void setFixedLengthStreamingMode(int) -> setFixedLengthStreamingMode
     java.lang.String toString() -> toString

@@ -412,6 +412,8 @@ com.google.gson.stream.MalformedJsonException:
 com.myth.shishi.BaseActivity:
     134:135:protected void addBottomCenterView(android.view.View)
 com.myth.shishi.BuildConfig
+com.myth.shishi.MyApplication:
+    296:297:public static void setTypeface(android.graphics.Typeface)
 com.myth.shishi.R
 com.myth.shishi.R$anim
 com.myth.shishi.R$attr
@@ -442,8 +444,6 @@ com.myth.shishi.adapter.AuthorAdapter$ViewHolder:
 com.myth.shishi.adapter.AuthorListAdapter$ViewHolder:
     android.widget.TextView name
     android.widget.TextView tag
-com.myth.shishi.adapter.DuiShiAdapter:
-    96:97:public void setMyListener(com.myth.shishi.listener.MyListener)
 com.myth.shishi.adapter.DuiShiAdapter$ViewHolder:
     59:60:public void setMyListener(com.myth.shishi.listener.MyListener)
 com.myth.shishi.adapter.FormerAdapter$ViewHolder:
@@ -903,7 +903,6 @@ com.squareup.okhttp.internal.huc.DelegatingHttpsURLConnection:
     public abstract javax.net.ssl.SSLSocketFactory getSSLSocketFactory()
 com.squareup.okhttp.internal.huc.HttpsURLConnectionImpl:
     67:67:public long getContentLengthLong()
-    71:72:public void setFixedLengthStreamingMode(long)
     75:75:public long getHeaderFieldLong(java.lang.String,long)
 com.squareup.okhttp.internal.huc.JavaApiConverter
 com.squareup.okhttp.internal.huc.JavaApiConverter$1
