@@ -14,7 +14,7 @@ public class FileUtils
 {
 
     /** 根目录 */
-    public static final String ROOT_DIR = Environment.getExternalStorageDirectory() + "/cici";
+    public static final String ROOT_DIR = Environment.getExternalStorageDirectory() + "/shishi";
 
     /** 背景目录 */
     public static final String BACKGROUND_DIR = ROOT_DIR + "/background";

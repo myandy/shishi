@@ -108,7 +108,15 @@ public class EditFragment extends Fragment
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < editTexts.size(); i++)
         {
-            sb.append(editTexts.get(i).getEditableText().toString() + "\n");
+            if (i == editTexts.size() - 1)
+            {
+                sb.append(editTexts.get(i).getEditableText().toString());
+            }
+            else
+            {
+                sb.append(editTexts.get(i).getEditableText().toString() + "\n");
+            }
+
         }
         writing.setText(sb.toString());
     }
@@ -129,11 +137,7 @@ public class EditFragment extends Fragment
             edittext.setTextColor(getColor());
             if (writing.getText() != null)
             {
-                String[] tList = writing.getText().split("\n");
-                if (tList != null && tList.length > 0)
-                {
-                    edittext.setText(tList[0]);
-                }
+                edittext.setText(writing.getText());
             }
             edittext.setBackground(null);
             editTexts.add(edittext);
@@ -289,7 +293,7 @@ public class EditFragment extends Fragment
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-    
+
     private int getColor()
     {
         ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));

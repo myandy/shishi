@@ -50,7 +50,7 @@ public class ShareActivity extends BaseActivity
 
     private Writing writing;
 
-    private LinearLayout content;
+    private View content;
 
     private PopupWindow menu;
 
@@ -99,11 +99,11 @@ public class ShareActivity extends BaseActivity
 
     private void initView()
     {
-        content = (LinearLayout) findViewById(R.id.content);
+        content =  findViewById(R.id.content);
         title = (TextView) findViewById(R.id.title);
         text = (TextView) findViewById(R.id.text);
         author = (TextView) findViewById(R.id.author);
-        content.setOnClickListener(new OnClickListener()
+        findViewById(R.id.content_linear).setOnClickListener(new OnClickListener()
         {
 
             @Override
@@ -145,7 +145,6 @@ public class ShareActivity extends BaseActivity
             }
         });
 
-        layoutItemContainer(content);
         title.setText(writing.getTitle());
         text.setText(writing.getText());
         title.setTypeface(MyApplication.getTypeface());
@@ -166,6 +165,7 @@ public class ShareActivity extends BaseActivity
         setAuthor();
         setColor();
 
+       
         if (StringUtils.isNumeric(writing.getBgimg()))
         {
             content.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
@@ -178,15 +178,19 @@ public class ShareActivity extends BaseActivity
         {
             content.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
         }
-
+        layoutItemContainer(content);
         scaleRotateIn(content, 1000, 0);
     }
 
     private void layoutItemContainer(View itemContainer)
     {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) itemContainer.getLayoutParams();
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) itemContainer.getLayoutParams();
         params.width = ResizeUtil.resize(mActivity, 640);
-        params.height = ResizeUtil.resize(mActivity, 640);
+        // if (params.height < params.width)
+        // {
+        // params.height = ResizeUtil.resize(mActivity, 640);
+        // }
+        itemContainer.setMinimumHeight(params.width);
         itemContainer.setLayoutParams(params);
     }
 
@@ -196,7 +200,7 @@ public class ShareActivity extends BaseActivity
     {
         view.setVisibility(View.VISIBLE);
         ScaleAnimation animation1 = new ScaleAnimation(0, 1, 0, 1, rela1, 0.5f, rela1, 0.5f);
-        RotateAnimation animation2 = new RotateAnimation(0, 357, rela1, 0.5f, rela1, 0.5f);
+        RotateAnimation animation2 = new RotateAnimation(0, 360, rela1, 0.5f, rela1, 0.5f);
         AnimationSet animation = new AnimationSet(false);
         animation.addAnimation(animation1);
         animation.addAnimation(animation2);

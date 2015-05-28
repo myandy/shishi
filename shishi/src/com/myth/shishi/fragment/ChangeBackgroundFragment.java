@@ -26,7 +26,7 @@ public class ChangeBackgroundFragment extends Fragment
 
     private Context mContext;
 
-    private LinearLayout content;
+    private View content;
 
     private TextView text;
 
@@ -99,7 +99,7 @@ public class ChangeBackgroundFragment extends Fragment
             }
         });
 
-        content = (LinearLayout) view.findViewById(R.id.content);
+        content =  view.findViewById(R.id.content);
         layoutItemContainer(content);
         title = (TextView) view.findViewById(R.id.title);
         title.setText(writing.getTitle());

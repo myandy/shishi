@@ -152,7 +152,7 @@ public class WritingView extends RelativeLayout
                     }
                 }).create();
 
-        content.setOnClickListener(new OnClickListener()
+        root.findViewById(R.id.content_linear).setOnClickListener(new OnClickListener()
         {
 
             @Override

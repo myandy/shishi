@@ -161,7 +161,7 @@ public class MyApplication extends Application
 
     public static boolean getDefaultShareGravity(Context context)
     {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("share_gravity", false);
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("share_gravity", true);
     }
 
     public static void setDefaultShareGravity(Context context, boolean iscenter)

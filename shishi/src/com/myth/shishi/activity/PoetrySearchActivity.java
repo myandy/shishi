@@ -108,10 +108,10 @@ public class PoetrySearchActivity extends BaseActivity
             public void onItemClick(int position)
             {
                 Intent intent = new Intent(mActivity, AuthorPageActivity.class);
-                intent.putExtra("title", pList.get(position).getTitle());
+                intent.putExtra("title", sortList.get(position).getTitle());
                 if (author == null)
                 {
-                    intent.putExtra("author", AuthorDatabaseHelper.getAuthorByName(pList.get(position).getAuthor()));
+                    intent.putExtra("author", AuthorDatabaseHelper.getAuthorByName(sortList.get(position).getAuthor()));
                 }
                 else
                 {
