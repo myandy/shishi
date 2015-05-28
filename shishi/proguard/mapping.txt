@@ -10105,7 +10105,7 @@ com.myth.shishi.activity.SettingActivity$6 -> com.myth.shishi.activity.bf:
     void onClick(android.view.View) -> onClick
 com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity:
     com.myth.shishi.entity.Writing writing -> f
-    android.widget.LinearLayout content -> g
+    android.view.View content -> g
     android.widget.PopupWindow menu -> h
     int[] location -> d
     android.view.View menuView -> i
@@ -10552,7 +10552,7 @@ com.myth.shishi.entity.Yun -> com.myth.shishi.b.f:
     void setSection_desc(java.lang.String) -> c
 com.myth.shishi.fragment.ChangeBackgroundFragment -> com.myth.shishi.c.a:
     android.content.Context mContext -> a
-    android.widget.LinearLayout content -> b
+    android.view.View content -> b
     android.widget.TextView text -> c
     com.myth.shishi.entity.Writing writing -> d
     int bg_index -> e
@@ -10570,7 +10570,7 @@ com.myth.shishi.fragment.ChangeBackgroundFragment -> com.myth.shishi.c.a:
     void setTextSize() -> e
     void setColor() -> f
     void access$0(com.myth.shishi.fragment.ChangeBackgroundFragment,int) -> a
-    android.widget.LinearLayout access$1(com.myth.shishi.fragment.ChangeBackgroundFragment) -> a
+    android.view.View access$1(com.myth.shishi.fragment.ChangeBackgroundFragment) -> a
 com.myth.shishi.fragment.ChangeBackgroundFragment$1 -> com.myth.shishi.c.b:
     com.myth.shishi.fragment.ChangeBackgroundFragment this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick

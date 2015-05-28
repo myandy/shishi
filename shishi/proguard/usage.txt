@@ -413,7 +413,7 @@ com.myth.shishi.BaseActivity:
     134:135:protected void addBottomCenterView(android.view.View)
 com.myth.shishi.BuildConfig
 com.myth.shishi.MyApplication:
-    296:297:public static void setTypeface(android.graphics.Typeface)
+    297:298:public static void setTypeface(android.graphics.Typeface)
 com.myth.shishi.R
 com.myth.shishi.R$anim
 com.myth.shishi.R$attr

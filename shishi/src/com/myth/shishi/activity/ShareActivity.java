@@ -298,11 +298,11 @@ public class ShareActivity extends BaseActivity
         int margin = MyApplication.getDefaultSharePadding(mActivity);
         if (isAdd)
         {
-            margin += 8;
+            margin += 10;
         }
         else
         {
-            margin -= 8;
+            margin -= 10;
         }
         MyApplication.setDefaultSharePadding(mActivity, margin);
         setPadding();

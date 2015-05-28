@@ -12,7 +12,8 @@
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="5dp" >
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
 
         <TextView
             android:id="@+id/title"
@@ -35,8 +36,6 @@
             android:id="@+id/text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:gravity="left"

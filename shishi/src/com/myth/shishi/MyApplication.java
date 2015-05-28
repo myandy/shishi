@@ -170,8 +170,7 @@ public class MyApplication extends Application
         edit.putBoolean("share_gravity", iscenter);
         edit.commit();
     }
-    
-    
+
     public static boolean getDefaultShareAuthor(Context context)
     {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("share_author", true);
@@ -186,7 +185,9 @@ public class MyApplication extends Application
 
     public static int getDefaultSharePadding(Context context)
     {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt("share_padding", 20);
+        int padding = PreferenceManager.getDefaultSharedPreferences(context).getInt("share_padding", 0);
+        return padding;
+
     }
 
     public static void setDefaultSharePadding(Context context, int size)
