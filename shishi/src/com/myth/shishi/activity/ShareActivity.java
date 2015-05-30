@@ -66,6 +66,8 @@ public class ShareActivity extends BaseActivity
 
     private ImageView setting;
 
+    private View contentLL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -99,11 +101,12 @@ public class ShareActivity extends BaseActivity
 
     private void initView()
     {
-        content =  findViewById(R.id.content);
+        content = findViewById(R.id.content);
         title = (TextView) findViewById(R.id.title);
         text = (TextView) findViewById(R.id.text);
         author = (TextView) findViewById(R.id.author);
-        findViewById(R.id.content_linear).setOnClickListener(new OnClickListener()
+        contentLL = findViewById(R.id.content_linear);
+        contentLL.setOnClickListener(new OnClickListener()
         {
 
             @Override
@@ -165,18 +168,17 @@ public class ShareActivity extends BaseActivity
         setAuthor();
         setColor();
 
-       
         if (StringUtils.isNumeric(writing.getBgimg()))
         {
-            content.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
+            contentLL.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
         }
         else if (writing.getBitmap() != null)
         {
-            content.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBitmap()));
+            contentLL.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBitmap()));
         }
         else
         {
-            content.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
+            contentLL.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
         }
         layoutItemContainer(content);
         scaleRotateIn(content, 1000, 0);

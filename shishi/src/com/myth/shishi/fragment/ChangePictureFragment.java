@@ -48,7 +48,7 @@ public class ChangePictureFragment extends Fragment
 
     private Context mContext;
 
-    private LinearLayout content;
+    private View content;
 
     private TextView text;
 
@@ -63,6 +63,8 @@ public class ChangePictureFragment extends Fragment
     private int radius = 0;
 
     private TextView title;
+    
+    private View contnetLL;
 
     public ChangePictureFragment()
     {
@@ -108,7 +110,7 @@ public class ChangePictureFragment extends Fragment
     private void refresh()
     {
         text.setText(writing.getText());
-        content.setBackgroundDrawable(new BitmapDrawable(getResources(), destBitmap));
+        contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), destBitmap));
     }
 
     @Override
@@ -140,9 +142,10 @@ public class ChangePictureFragment extends Fragment
 
     private void initViews(View view)
     {
-        content = (LinearLayout) view.findViewById(R.id.content);
+        content =  view.findViewById(R.id.content);
 
-        content.setOnClickListener(new OnClickListener()
+        contnetLL= view.findViewById(R.id.content_linear);
+        contnetLL.setOnClickListener(new OnClickListener()
         {
 
             @Override

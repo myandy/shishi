@@ -10113,6 +10113,7 @@ com.myth.shishi.activity.ShareActivity -> com.myth.shishi.activity.ShareActivity
     android.widget.TextView text -> k
     android.widget.TextView author -> l
     android.widget.ImageView setting -> m
+    android.view.View contentLL -> n
     int rela1 -> e
     void onCreate(android.os.Bundle) -> onCreate
     void initView() -> e
@@ -10576,7 +10577,7 @@ com.myth.shishi.fragment.ChangeBackgroundFragment$1 -> com.myth.shishi.c.b:
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.myth.shishi.fragment.ChangePictureFragment -> com.myth.shishi.c.c:
     android.content.Context mContext -> a
-    android.widget.LinearLayout content -> b
+    android.view.View content -> b
     android.widget.TextView text -> c
     android.graphics.Bitmap srcBitmap -> d
     android.graphics.Bitmap destBitmap -> e
@@ -10584,6 +10585,7 @@ com.myth.shishi.fragment.ChangePictureFragment -> com.myth.shishi.c.c:
     int bright -> g
     int radius -> h
     android.widget.TextView title -> i
+    android.view.View contnetLL -> j
     com.myth.shishi.fragment.ChangePictureFragment getInstance(com.myth.shishi.entity.Writing) -> a
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onResume() -> onResume
