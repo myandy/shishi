@@ -109,7 +109,7 @@ public class ChangePictureFragment extends Fragment
 
     private void refresh()
     {
-        text.setText(writing.getText());
+        text.setText(writing.getText().replaceAll("\\[.*\\]", ""));
         contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), destBitmap));
     }
 
