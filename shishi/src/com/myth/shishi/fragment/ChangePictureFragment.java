@@ -280,7 +280,7 @@ public class ChangePictureFragment extends Fragment
         }
 
         destBitmap = bmp;
-        content.setBackgroundDrawable(new BitmapDrawable(getResources(), bmp));
+        contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), bmp));
     }
 
     private void layoutItemContainer(View itemContainer)

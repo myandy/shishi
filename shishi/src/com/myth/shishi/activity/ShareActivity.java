@@ -217,8 +217,8 @@ public class ShareActivity extends BaseActivity
         String filePath = null;
         try
         {
-            String filename = writing.getUpdate_dt() + "";
-            filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(content), filename);
+            String filename = writing.getTitle().hashCode()+writing.getBgimg().hashCode()+writing.getUpdate_dt() + "";
+            filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(contentLL), filename);
         }
         catch (IOException e)
         {
