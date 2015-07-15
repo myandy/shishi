@@ -2,7 +2,7 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
 
     <style name="Theme.NoTitleBarDialog" parent="@android:style/Theme.Dialog">
@@ -31,6 +31,7 @@
 
 
 
+
 　	</style>
 
     <!-- popwidnow 显示消失动画 -->
@@ -52,7 +53,11 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppBaseTheme">
+    <style name="AppBaseTheme"  >
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
+    <style name="CustomerTheme"  parent="@android:style/Theme.Light">
         <item name="android:windowNoTitle">true</item>
     </style>
 

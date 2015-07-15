@@ -78,7 +78,7 @@ public class ChangeBackgroundFragment extends Fragment
 
     private void refresh()
     {
-        text.setText(writing.getText().replaceAll("\\[.*\\]", ""));
+        text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
         content.setBackgroundResource(MyApplication.bgimgList[bg_index]);
     }
 

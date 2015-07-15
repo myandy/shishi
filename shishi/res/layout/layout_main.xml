@@ -5,14 +5,26 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/show_one"
+        android:id="@+id/duishi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:text="智能对诗"
+        android:textColor="@color/gc_white_to_grey"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/show_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/duishi"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"
+        android:clickable="true"
         android:gravity="center_horizontal"
         android:text="随机一首诗"
-        android:textColor="@color/white"
+        android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 
     <LinearLayout
@@ -22,13 +34,15 @@
         android:layout_above="@id/show_one"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"
+        android:clickable="true"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:duplicateParentState="true"
             android:text="浏览所有"
-            android:textColor="@color/white"
+            android:textColor="@color/gc_white_to_grey"
             android:textSize="26sp" />
 
         <TextView
@@ -45,20 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="人"
-            android:textColor="@color/white"
+            android:textColor="@color/gc_white_to_grey"
             android:textSize="26sp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/duishi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/show_one"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
-        android:text="智能对诗"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
 
     <!--
     <TextView
@@ -71,7 +74,7 @@
         android:gravity="center_horizontal"
         android:text="收藏夹"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textSize="24sp" />
     -->
 
     <TextView
@@ -81,21 +84,36 @@
         android:layout_below="@id/duishi"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
+        android:clickable="true"
         android:gravity="center_horizontal"
         android:text="搜索诗"
-        android:textColor="@color/white"
+        android:textColor="@color/gc_white_to_grey"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+        android:text="社区"
+        android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/ad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/search"
+        android:layout_below="@id/share"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
+        android:clickable="true"
         android:gravity="center_horizontal"
         android:text="更多"
-        android:textColor="@color/white"
+        android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 
 </RelativeLayout>

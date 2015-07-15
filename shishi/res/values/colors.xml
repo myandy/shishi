@@ -22,7 +22,7 @@
     <color name="edittext_line">#D2D2D2</color>
     <color name="pptvvas_menu_devide">#787878</color>
     <color name="pptvvas_white">#FFFFFFFF</color>
-    <color name="pptvvas_gray_light">#EDEDED</color>
+    <color name="pptvvas_gray_light">#FFE0E0E0</color>
     <color name="usercenter_blue_btn_color">#FF3786DB</color>
     <color name="usercenter_blue_btn_pressed_color">#803786DB</color>
     <color name="usercenter_red_btn_color">#FFE24F4F</color>

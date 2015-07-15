@@ -149,7 +149,8 @@ public class ShareActivity extends BaseActivity
         });
 
         title.setText(writing.getTitle());
-        text.setText(writing.getText().replaceAll("\\[.*\\]", ""));
+        //"\\[.*\\]"
+        text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
         title.setTypeface(MyApplication.getTypeface());
         text.setTypeface(MyApplication.getTypeface());
         author.setTypeface(MyApplication.getTypeface());

@@ -21,6 +21,8 @@ import com.myth.shishi.activity.AuthorSearchActivity;
 import com.myth.shishi.activity.DuiShiActivity;
 import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.PoetrySearchActivity;
+import com.umeng.comm.core.CommunitySDK;
+import com.umeng.comm.core.impl.CommunityFactory;
 import com.wandoujia.ads.sdk.Ads;
 
 public class MainView extends RelativeLayout
@@ -131,6 +133,8 @@ public class MainView extends RelativeLayout
         });
 
         TextView showOne = (TextView) root.findViewById(R.id.show_one);
+        
+//        showOne.setTextColor(mContext.getResources().getColorStateList(R.color.gc_white_to_grey));
         showOne.setTypeface(MyApplication.getTypeface());
         showOne.setOnClickListener(new OnClickListener()
         {
@@ -140,7 +144,6 @@ public class MainView extends RelativeLayout
             {
                 Intent intent = new Intent(mContext, PoetryActivity.class);
                 mContext.startActivity(intent);
-
             }
         });
 
@@ -172,6 +175,22 @@ public class MainView extends RelativeLayout
                                 dialog.dismiss();
                             }
                         }).show();
+
+            }
+        });
+        
+        TextView share = (TextView) root.findViewById(R.id.share);
+        share.setTypeface(MyApplication.getTypeface());
+        share.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+               //  获取CommunitySDK实例, 参数1为Context类型
+                CommunitySDK mCommSDK = CommunityFactory.getCommSDK(mContext);
+                // 打开微社区的接口, 参数1为Context类型
+                mCommSDK.openCommunity(mContext);
 
             }
         });

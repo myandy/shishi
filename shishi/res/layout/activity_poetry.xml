@@ -20,6 +20,7 @@
             android:layout_marginBottom="30dp"
             android:maxEms="1"
             android:text="2"
+            android:textColor="@color/white"
             android:textSize="48sp" />
     </LinearLayout>
 
@@ -40,6 +41,7 @@
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <TextView
@@ -49,6 +51,7 @@
                 android:layout_below="@id/author"
                 android:lineSpacingMultiplier="1.2"
                 android:textIsSelectable="true"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <TextView
