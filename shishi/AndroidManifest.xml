@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myth.shishi"
-    android:versionCode="7"
-    android:versionName="1.6" >
+    android:versionCode="11"
+    android:versionName="1.9" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -66,6 +66,8 @@
         <activity android:name=".activity.FormerListActivity" />
         <activity android:name=".activity.FormerActivity" />
         <activity android:name=".activity.SignActivity" />
+
+        <!--
         <activity
             android:name="com.wandoujia.ads.sdk.activities.AppDetailActivity"
             android:theme="@style/Activity" />
@@ -74,132 +76,73 @@
             android:theme="@style/Activity" />
         <activity
             android:name="com.wandoujia.ads.sdk.activities.InterstitialActivity"
-            android:theme="@style/InterstitialActivity" />
+            android:theme="@style/InterstitialActivity" />
+        -->
 
         <service
             android:name="com.wandoujia.ads.sdk.download.AppDownloadService"
             android:process=":app_download" />
 
-        <!-- 发现的Activity -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.FindActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <!--  -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.UserInfoActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!--  -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.TopicDetailActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!--  -->
+        <!-- feed主页面 -->
         <activity
             android:name="com.umeng.comm.ui.activities.FeedsActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/CustomerTheme"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.umeng.community"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <!-- 搜索结果Activity -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.RelativeUserActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/CustomerTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <!--  -->
+        <!-- 发送feedActivity -->
         <activity
             android:name="com.umeng.comm.ui.activities.PostFeedActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <!--  -->
+        <!-- 转发页面 -->
         <activity
             android:name="com.umeng.comm.ui.activities.ForwardActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 搜索Activity -->
+        <!-- 用户信息页面 -->
         <activity
-            android:name="com.umeng.comm.ui.activities.SearchActivity"
+            android:name="com.umeng.comm.ui.activities.UserInfoActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
+        <!-- 话题详情页面 -->
+        <activity
+            android:name="com.umeng.comm.ui.activities.TopicDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <!-- feed详情页面 -->
         <activity
             android:name="com.umeng.comm.ui.activities.FeedDetailActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/CustomerTheme"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
+        <activity
+            android:name="com.umeng.comm.ui.activities.FindActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <!-- 设置页面activity -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.SettingActivity"
-            android:theme="@style/CustomerTheme" />
-
-        <!-- 引导页面activity -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.GuideActivity"
-            android:theme="@style/CustomerTheme" />
-
-        <!-- 点赞用户页面 -->
-        <activity
-            android:name="com.umeng.comm.ui.activities.LikeUsersActivity"
-            android:theme="@style/CustomerTheme" />
-
+        <activity android:name="com.umeng.comm.ui.activities.SettingActivity" />
+        <!-- 点赞用户Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.LikeUsersActivity" />
+        <!-- 搜索Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.SearchActivity" />
+        <!-- 引导页Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.GuideActivity" />
+        <!-- 相关用户Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.RelativeUserActivity" />
         <!-- 友盟登录界面 -->
-        <activity
-            android:name="com.umeng.community.login.LoginActivity"
-            android:theme="@style/CustomerTheme" >
-        </activity>
+        <activity android:name="com.umeng.community.login.LoginActivity" />
+        <!-- 显示某个位置Feed的Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.LocationFeedActivity" />
+        <!-- 相册Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.AlbumActivity" />
+        <!-- 已关注的话题Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.FollowedTopicActivity" />
+        <!-- 通知Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.NotificationActivity" />
+        <!-- 新消息Activity -->
+        <activity android:name="com.umeng.comm.ui.activities.NewMsgActivity" />
 
-        <!-- ##################分享相关#################### -->
-        <!-- 分享内容编辑页 -->
-        <activity
-            android:name="com.umeng.socialize.view.ShareActivity"
-            android:configChanges="orientation|keyboard"
-            android:launchMode="singleTask"
-            android:noHistory="true"
-            android:theme="@style/Theme.UMDialog"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
-        </activity>
-
-        <!-- 腾讯SSO授权的Activity注册 -->
-        <activity
-            android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="tencent100424468" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.tencent.connect.common.AssistActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- 微信回调activity -->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- ##################### 推送相关 ##################### -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
@@ -284,6 +227,20 @@
         <!-- V1.3.0添加的service，负责下载通知的资源 -->
         <service android:name="com.umeng.message.UmengDownloadResourceService" />
 
+        <!-- ###################分享相关Activity################## -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- 图片选择相关 -->
+        <activity android:name="com.umeng.comm.ui.imagepicker.PhotoSelectorActivity" />
+        <activity android:name="com.umeng.comm.ui.imagepicker.PhotoPreviewActivity" />
+
         <!-- 友盟App Key, 必须替换为您在友盟官网上申请到的. -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -295,6 +252,11 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="mi" />
+        
+        <meta-data
+     android:name="com.amap.api.v2.apikey"
+     android:value="e5277282ad639c44acf55adb1063a106" />
+
     </application>
 
 </manifest>

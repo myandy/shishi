@@ -23,7 +23,6 @@ import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.PoetrySearchActivity;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
-import com.wandoujia.ads.sdk.Ads;
 
 public class MainView extends RelativeLayout
 {
@@ -59,7 +58,7 @@ public class MainView extends RelativeLayout
             {
                 try
                 {
-                    Ads.init(mContext, APP_ID, SECRET_KEY);
+//                    Ads.init(mContext, APP_ID, SECRET_KEY);
                     return true;
                 }
                 catch (Exception e)
@@ -77,7 +76,7 @@ public class MainView extends RelativeLayout
                     /**
                      * pre load
                      */
-                    Ads.preLoad(APP_WALL, Ads.AdFormat.appwall);
+//                    Ads.preLoad(APP_WALL, Ads.AdFormat.appwall);
                 }
             }
         }.execute();
@@ -203,7 +202,7 @@ public class MainView extends RelativeLayout
             @Override
             public void onClick(View v)
             {
-                Ads.showAppWall((Activity) mContext, APP_WALL);
+//                Ads.showAppWall((Activity) mContext, APP_WALL);
             }
         });
 

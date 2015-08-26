@@ -1,22 +1,23 @@
 package com.myth.shishi.activity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -59,6 +60,8 @@ public class PoetryActivity extends BaseActivity
     private View menuView;
 
     private TouchEffectImageView more;
+    
+    private TextToSpeech mSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -70,6 +73,24 @@ public class PoetryActivity extends BaseActivity
 
         ciList = PoetryDatabaseHelper.getAll();
         getRandomPoetry();
+        
+        
+        mSpeech = new TextToSpeech(this, new OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                // TODO Auto-generated method stub
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mSpeech.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    } else {
+                       
+                    }
+                }
+            }
+        });
+
 
         initView();
     }
@@ -185,6 +206,9 @@ public class PoetryActivity extends BaseActivity
         {
             ((TextView) findViewById(R.id.note)).setText(note);
         }
+        else{
+        	((TextView) findViewById(R.id.note)).setText("");
+        }
         content.setText(poetry.getPoetry());
         ((TextView) findViewById(R.id.author)).setText(poetry.getTitle() + "\n");
         setTextSize();
@@ -263,11 +287,13 @@ public class PoetryActivity extends BaseActivity
                 @Override
                 public void onClick(View v)
                 {
-                    isAddTextSize(true);
-                    if (menu != null)
-                    {
-                        menu.dismiss();
-                    }
+//                    isAddTextSize(true);
+//                    if (menu != null)
+//                    {
+//                        menu.dismiss();
+//                    }
+                    mSpeech.speak(poetry.getPoetry(), TextToSpeech.QUEUE_FLUSH,
+                            null);
                 }
             });
             menuView.findViewById(R.id.tv2).setOnClickListener(new OnClickListener()

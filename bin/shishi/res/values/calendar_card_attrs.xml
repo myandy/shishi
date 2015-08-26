@@ -1,6 +1,0 @@
-<resources>
-    <declare-styleable name="CalendarCardPager">
-        <attr name="size" format="integer" />
-        <attr name="currentPos" format="integer" />
-    </declare-styleable>
-</resources>
