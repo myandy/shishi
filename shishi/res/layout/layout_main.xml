@@ -63,7 +63,6 @@
             android:textSize="26sp" />
     </LinearLayout>
 
-    <!--
     <TextView
         android:id="@+id/favorite"
         android:layout_width="wrap_content"
@@ -75,18 +74,17 @@
         android:text="收藏夹"
         android:textColor="@color/white"
         android:textSize="24sp" />
-    -->
 
     <TextView
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/duishi"
+        android:layout_below="@id/favorite"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:clickable="true"
         android:gravity="center_horizontal"
-        android:text="搜索诗"
+        android:text="搜索"
         android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 
@@ -103,6 +101,7 @@
         android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 
+    <!--  
     <TextView
         android:id="@+id/ad"
         android:layout_width="wrap_content"
@@ -115,5 +114,6 @@
         android:text="更多"
         android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
+        -->
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myth.shishi"
-    android:versionCode="11"
-    android:versionName="1.9" >
+    android:versionCode="12"
+    android:versionName="1.91" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -41,31 +41,65 @@
         android:name="com.myth.shishi.MyApplication"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme" >
-        <activity android:name="com.myth.shishi.activity.MainActivity" >
+        android:theme="@style/CustomerTheme" >
+        <activity
+            android:name="com.myth.shishi.activity.MainActivity"
+            android:theme="@style/AppBaseTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AuthorListActivity" />
-        <activity android:name=".activity.AuthorPageActivity" >
+        <activity
+            android:name=".activity.AuthorListActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.AuthorPageActivity"
+            android:theme="@style/AppBaseTheme" >
         </activity>
-        <activity android:name=".activity.PoetryActivity" />
-        <activity android:name=".activity.ShareActivity" />
-        <activity android:name=".activity.EditActivity" />
-        <activity android:name=".activity.YunSearchActivity" />
-        <activity android:name=".activity.AuthorSearchActivity" />
-        <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.AboutActivity" />
-        <activity android:name=".activity.ShareEditActivity" />
-        <activity android:name=".activity.WebviewActivity" />
-        <activity android:name=".activity.DuiShiActivity" />
-        <activity android:name=".activity.PoetrySearchActivity" />
-        <activity android:name=".activity.FormerListActivity" />
-        <activity android:name=".activity.FormerActivity" />
-        <activity android:name=".activity.SignActivity" />
+        <activity
+            android:name=".activity.PoetryActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.ShareActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.EditActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.YunSearchActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.AuthorSearchActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.ShareEditActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.WebviewActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.DuiShiActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.PoetrySearchActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.FormerListActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.FormerActivity"
+            android:theme="@style/AppBaseTheme" />
+        <activity
+            android:name=".activity.SignActivity"
+            android:theme="@style/AppBaseTheme" />
 
         <!--
         <activity
@@ -76,7 +110,7 @@
             android:theme="@style/Activity" />
         <activity
             android:name="com.wandoujia.ads.sdk.activities.InterstitialActivity"
-            android:theme="@style/InterstitialActivity" />
+            android:theme="@style/InterstitialActivity" />
         -->
 
         <service
@@ -252,11 +286,9 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="mi" />
-        
         <meta-data
-     android:name="com.amap.api.v2.apikey"
-     android:value="e5277282ad639c44acf55adb1063a106" />
-
+            android:name="com.amap.api.v2.apikey"
+            android:value="9fdb7e4b7d5c124e1470a871323a1287" />
     </application>
 
 </manifest>

@@ -67,7 +67,6 @@ public class FileUtils
         createDir(ROOT_DIR);
         createDir(SHARE_DIR);
         File myCaptureFile = new File(SHARE_DIR + "/" + fileName + ".jpg");
-        if (!myCaptureFile.exists())
         {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
             bm.compress(Bitmap.CompressFormat.JPEG, 80, bos);

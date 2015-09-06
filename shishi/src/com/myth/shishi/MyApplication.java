@@ -1,20 +1,20 @@
 package com.myth.shishi;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import com.myth.shishi.db.ColorDatabaseHelper;
 import com.myth.shishi.db.DBManager;
 import com.myth.shishi.db.YunDatabaseHelper;
 import com.myth.shishi.entity.ColorEntity;
+import com.umeng.comm.core.sdkmanager.LocationSDKManager;
+import com.umeng.comm.ui.location.DefaultLocationImpl;
 
 public class MyApplication extends Application
 {
@@ -32,6 +32,7 @@ public class MyApplication extends Application
         DBManager.initDatabase(getApplicationContext());
         YunDatabaseHelper.getYunList(this);
         setTypeface(getApplicationContext(), getDefaulTypeface(this));
+        LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl()) ;
     }
 
     public static ColorEntity getColorByPos(int pos)

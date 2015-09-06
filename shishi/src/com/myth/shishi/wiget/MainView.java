@@ -51,35 +51,35 @@ public class MainView extends RelativeLayout
         mContext = context;
         initView();
 
-        new AsyncTask<Void, Void, Boolean>()
-        {
-            @Override
-            protected Boolean doInBackground(Void... params)
-            {
-                try
-                {
-//                    Ads.init(mContext, APP_ID, SECRET_KEY);
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Log.e("ads-sample", "error", e);
-                    return false;
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Boolean success)
-            {
-                if (success)
-                {
-                    /**
-                     * pre load
-                     */
-//                    Ads.preLoad(APP_WALL, Ads.AdFormat.appwall);
-                }
-            }
-        }.execute();
+//        new AsyncTask<Void, Void, Boolean>()
+//        {
+//            @Override
+//            protected Boolean doInBackground(Void... params)
+//            {
+//                try
+//                {
+////                    Ads.init(mContext, APP_ID, SECRET_KEY);
+//                    return true;
+//                }
+//                catch (Exception e)
+//                {
+//                    Log.e("ads-sample", "error", e);
+//                    return false;
+//                }
+//            }
+//
+//            @Override
+//            protected void onPostExecute(Boolean success)
+//            {
+//                if (success)
+//                {
+//                    /**
+//                     * pre load
+//                     */
+////                    Ads.preLoad(APP_WALL, Ads.AdFormat.appwall);
+//                }
+//            }
+//        }.execute();
     }
 
     private void initView()
@@ -102,20 +102,20 @@ public class MainView extends RelativeLayout
             ((TextView) showAll.getChildAt(i)).setTypeface(MyApplication.getTypeface());
         }
 
-//        TextView favorite = (TextView) root.findViewById(R.id.favorite);
-//        favorite.setTypeface(MyApplication.typeface);
-//        favorite.setOnClickListener(new OnClickListener()
-//        {
-//
-//            @Override
-//            public void onClick(View v)
-//            {
-//                Intent intent = new Intent(mContext, PoetrySearchActivity.class);
-//                intent.putExtra("collect", true);
-//                mContext.startActivity(intent);
-//
-//            }
-//        });
+        TextView favorite = (TextView) root.findViewById(R.id.favorite);
+        favorite.setTypeface(MyApplication.getTypeface());
+        favorite.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mContext, PoetrySearchActivity.class);
+                intent.putExtra("collect", true);
+                mContext.startActivity(intent);
+
+            }
+        });
 
         TextView duishi = (TextView) root.findViewById(R.id.duishi);
         duishi.setTypeface(MyApplication.getTypeface());
@@ -194,17 +194,17 @@ public class MainView extends RelativeLayout
             }
         });
 
-        TextView ad = (TextView) root.findViewById(R.id.ad);
-        ad.setTypeface(MyApplication.getTypeface());
-        ad.setOnClickListener(new OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-//                Ads.showAppWall((Activity) mContext, APP_WALL);
-            }
-        });
+//        TextView ad = (TextView) root.findViewById(R.id.ad);
+//        ad.setTypeface(MyApplication.getTypeface());
+//        ad.setOnClickListener(new OnClickListener()
+//        {
+//
+//            @Override
+//            public void onClick(View v)
+//            {
+////                Ads.showAppWall((Activity) mContext, APP_WALL);
+//            }
+//        });
 
         addView(root, new LayoutParams(-1, -1));
     }
