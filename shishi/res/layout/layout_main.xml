@@ -72,8 +72,8 @@
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:text="收藏夹"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textColor="@color/gc_white_to_grey"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/search"
@@ -101,7 +101,7 @@
         android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 
-    <!--  
+    <!--
     <TextView
         android:id="@+id/ad"
         android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
         android:gravity="center_horizontal"
         android:text="更多"
         android:textColor="@color/gc_white_to_grey"
-        android:textSize="24sp" />
-        -->
+        android:textSize="24sp" />
+    -->
 
 </RelativeLayout>
