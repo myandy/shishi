@@ -14,35 +14,35 @@ public class PoetryDatabaseHelper
 
     public static ArrayList<Poetry> getAll()
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
         return getPoetryListFromCursor(cursor);
     }
 
     public static ArrayList<Poetry> getAllByAuthor(String author)
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_author like '" + author + "'", null);
         return getPoetryListFromCursor(cursor);
     }
 
     public static ArrayList<Poetry> getAllCollect()
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where collect is " + 1 + "", null);
         return getPoetryListFromCursor(cursor);
     }
 
     public static void updateCollect(String poetry, boolean isCollect)
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         int collect = isCollect ? 1 : 0;
         db.execSQL(" update " + TABLE_NAME + " set collect= " + collect + "  where d_poetry like '" + poetry + "'");
     }
 
     public static boolean isCollect(String poetry)
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_poetry like '" + poetry + "'", null);
         ArrayList<Poetry> list = getPoetryListFromCursor(cursor);
         if (list != null && list.size() > 0)

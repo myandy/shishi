@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myth.shishi"
-    android:versionCode="8"
-    android:versionName="1.7" >
+    android:versionCode="9"
+    android:versionName="1.80" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -56,7 +56,8 @@
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.AuthorPageActivity"
-            android:theme="@style/AppBaseTheme" >
+            android:theme="@style/AppBaseTheme"
+            android:launchMode="singleTop" >
         </activity>
         <activity
             android:name=".activity.PoetryActivity"

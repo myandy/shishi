@@ -136,7 +136,7 @@ public class WritingView extends RelativeLayout
                                 @Override
                                 public void onConfirm()
                                 {
-                                    WritingDatabaseHelper.deleteWriting(mContext, writing);
+                                    WritingDatabaseHelper.deleteWriting( writing);
                                     ((MainActivity) mContext).refresh();
                                 }
 

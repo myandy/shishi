@@ -71,7 +71,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="收藏夹"
+        android:text="作品夹"
         android:textColor="@color/gc_white_to_grey"
         android:textSize="24sp" />
 

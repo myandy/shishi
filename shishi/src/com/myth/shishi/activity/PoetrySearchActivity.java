@@ -13,17 +13,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
+import com.aps.p;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.PoetryAdapter;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
+import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
+import com.myth.shishi.entity.Writing;
 import com.myth.shishi.listener.MyListener;
 
-public class PoetrySearchActivity extends BaseActivity
-{
+public class PoetrySearchActivity extends BaseActivity {
 
     private View clear;
 
@@ -33,6 +35,8 @@ public class PoetrySearchActivity extends BaseActivity
 
     private ArrayList<Poetry> pList;
 
+    private ArrayList<Writing> writings;
+
     private ArrayList<Poetry> sortList;
 
     EditText search;
@@ -40,38 +44,31 @@ public class PoetrySearchActivity extends BaseActivity
     private Author author;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_cipai);
         setBottomGone();
 
-        if (getIntent().hasExtra("author"))
-        {
+        if (getIntent().hasExtra("author")) {
             author = (Author) getIntent().getSerializableExtra("author");
             pList = PoetryDatabaseHelper.getAllByAuthor(author.getAuthor());
-        }
-        else if (getIntent().hasExtra("collect"))
-        {
+        } else if (getIntent().hasExtra("collect")) {
             pList = PoetryDatabaseHelper.getAllCollect();
-        }
-        else
-        {
+        } else if (getIntent().hasExtra("self")) {
+            writings = WritingDatabaseHelper.getAllWriting();
+            pList = Writing.getPoetryList(writings);
+        } else {
             pList = PoetryDatabaseHelper.getAll();
         }
         initView();
         refreshData();
     }
 
-    private void refreshData()
-    {
+    private void refreshData() {
         String word = search.getText().toString().trim();
-        if (TextUtils.isEmpty(word))
-        {
+        if (TextUtils.isEmpty(word)) {
             sortList = pList;
-        }
-        else
-        {
+        } else {
             sortList = searchPoetry(word);
         }
         adapter.setList(sortList);
@@ -79,45 +76,54 @@ public class PoetrySearchActivity extends BaseActivity
 
     }
 
-    private ArrayList<Poetry> searchPoetry(String word)
-    {
+    private ArrayList<Poetry> searchPoetry(String word) {
         ArrayList<Poetry> list = new ArrayList<Poetry>();
-        for (Poetry author : pList)
-        {
-            if (author.getTitle().contains(word) || author.getPoetry().contains(word))
-            {
+        for (Poetry author : pList) {
+            if (author.getTitle().contains(word)
+                    || author.getPoetry().contains(word)) {
                 list.add(author);
             }
         }
         return list;
     }
 
-    private void initView()
-    {
+    private int findPosition(Poetry poetry) {
+        for (int i = 0; i < pList.size(); i++) {
+            if (poetry.getTitle().equals(pList.get(i).getTitle())
+                    && poetry.getPoetry().equals(pList.get(i).getPoetry())) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private void initView() {
         listview = (RecyclerView) findViewById(R.id.listview);
 
         listview.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                mActivity);
         listview.setLayoutManager(linearLayoutManager);
 
         adapter = new PoetryAdapter();
-        adapter.setMyListener(new MyListener()
-        {
+        adapter.setMyListener(new MyListener() {
 
             @Override
-            public void onItemClick(int position)
-            {
+            public void onItemClick(int position) {
                 Intent intent = new Intent(mActivity, AuthorPageActivity.class);
-                intent.putExtra("title", sortList.get(position).getTitle());
-                if (author == null)
-                {
-                    intent.putExtra("author", AuthorDatabaseHelper.getAuthorByName(sortList.get(position).getAuthor()));
-                }
-                else
-                {
-                    intent.putExtra("author", author);
+                intent.putExtra("index", findPosition(sortList.get(position)));
+                if (writings == null) {
+                    if (author == null) {
+                        intent.putExtra("author", AuthorDatabaseHelper
+                                .getAuthorByName(sortList.get(position)
+                                        .getAuthor()));
+                    } else {
+                        intent.putExtra("author", author);
+                    }
                 }
                 startActivity(intent);
+                finish();
+              
             }
         });
         listview.setAdapter(adapter);
@@ -127,50 +133,41 @@ public class PoetrySearchActivity extends BaseActivity
         search.setHint(R.string.search_cipai_hint);
         search.setHintTextColor(getResources().getColor(R.color.black_hint));
         search.setTextColor(getResources().getColor(R.color.black));
-        findViewById(R.id.exit).setOnClickListener(new OnClickListener()
-        {
+        findViewById(R.id.exit).setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 finish();
             }
         });
         clear = findViewById(R.id.clear);
-        clear.setOnClickListener(new OnClickListener()
-        {
+        clear.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 search.setText("");
                 search.requestFocus();
             }
         });
-        search.addTextChangedListener(new TextWatcher()
-        {
+        search.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
+            public void onTextChanged(CharSequence s, int start, int before,
+                    int count) {
 
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                    int after) {
 
             }
 
             @Override
-            public void afterTextChanged(Editable s)
-            {
-                if (TextUtils.isEmpty(s.toString()))
-                {
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s.toString())) {
                     clear.setVisibility(View.GONE);
-                }
-                else
-                {
+                } else {
                     clear.setVisibility(View.VISIBLE);
                 }
                 refreshData();

@@ -25,6 +25,7 @@ import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.db.AuthorDatabaseHelper;
+import com.myth.shishi.db.BackupTask;
 import com.myth.shishi.db.FormerDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.db.WritingDatabaseHelper;
@@ -184,10 +185,18 @@ public class MainActivity extends BaseActivity
         super.onResume();
         refresh();
     }
+    
+    @Override
+    protected void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+        
+        new BackupTask(this).execute(BackupTask.COMMAND_BACKUP);
+    }
 
     public void refresh()
     {
-        writings = WritingDatabaseHelper.getAllWriting(mActivity);
+        writings = WritingDatabaseHelper.getAllWriting();
         pagerAdapter.setWritings(writings);
         pagerAdapter.notifyDataSetChanged();
 

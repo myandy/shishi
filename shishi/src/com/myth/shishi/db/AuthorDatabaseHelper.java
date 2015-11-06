@@ -14,14 +14,14 @@ public class AuthorDatabaseHelper
 
     public static ArrayList<Author> getAll()
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by d_num ", null);
         return getAuthorListFromCursor(cursor);
     }
 
     public static void update(String author, int s)
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         db.execSQL(" update " + TABLE_NAME + " set color= " + s + "  where d_author like '" + author + "'");
     }
 
@@ -44,7 +44,7 @@ public class AuthorDatabaseHelper
 
     public static Author getAuthorByName(String name)
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_author like '" + name + "'", null);
         List<Author> list = getAuthorListFromCursor(cursor);
         if (list != null && list.size() > 0)
@@ -56,7 +56,7 @@ public class AuthorDatabaseHelper
 
     public static ArrayList<Author> getAllAuthorByPNum()
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by p_num desc", null);
         return getAuthorListFromCursor(cursor);
     }
@@ -67,7 +67,7 @@ public class AuthorDatabaseHelper
         {
             return getAll();
         }
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_dynasty like '"
                 + DynastyDatabaseHelper.dynastyArray[dynasty] + "' " + "order by d_num ", null);
         return getAuthorListFromCursor(cursor);
@@ -79,7 +79,7 @@ public class AuthorDatabaseHelper
         {
             return getAllAuthorByPNum();
         }
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_dynasty like '"
                 + DynastyDatabaseHelper.dynastyArray[dynasty] + "' " + " order by p_num desc", null);
         return getAuthorListFromCursor(cursor);

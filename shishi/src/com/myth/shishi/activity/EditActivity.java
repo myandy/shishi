@@ -259,7 +259,7 @@ public class EditActivity extends BaseActivity
                 e.printStackTrace();
             }
         }
-        WritingDatabaseHelper.saveWriting(mActivity, writing);
+        WritingDatabaseHelper.saveWriting( writing);
     }
 
     @Override

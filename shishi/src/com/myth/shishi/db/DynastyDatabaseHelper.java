@@ -14,7 +14,7 @@ public class DynastyDatabaseHelper
 
     public static ArrayList<String> getAll()
     {
-        SQLiteDatabase db = DBManager.getDatabase();
+        SQLiteDatabase db = DBManager.getNewDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by d_num", null);
 
         return getDynastyListFromCursor(cursor);

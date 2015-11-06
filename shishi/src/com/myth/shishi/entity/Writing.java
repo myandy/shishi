@@ -1,6 +1,8 @@
 package com.myth.shishi.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.graphics.Bitmap;
 
@@ -145,6 +147,26 @@ public class Writing implements Serializable
     public void setAuthor(String author)
     {
         this.author = author;
+    }
+    
+    public Poetry toPoetry(){
+        Poetry poetry =new Poetry();
+        poetry.setPoetry(text);
+        poetry.setTitle(title);
+        
+        return poetry;
+        
+    }
+    
+    public static ArrayList<Poetry> getPoetryList(List<Writing> writings){
+        ArrayList<Poetry> list=new ArrayList<Poetry>();
+        
+        for(Writing writing:writings){
+            list.add(writing.toPoetry());
+        }
+        return list;
+        
+        
     }
 
 

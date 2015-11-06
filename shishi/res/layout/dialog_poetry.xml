@@ -37,6 +37,7 @@
             android:textColor="@color/gc_white_to_grey" />
 
         <View
+             android:id="@+id/divide_3"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/pptvvas_menu_devide" />
@@ -78,6 +79,7 @@
             android:textColor="@color/gc_white_to_grey" />
 
         <View
+             android:id="@+id/divide_5"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/pptvvas_menu_devide" />
@@ -92,6 +94,7 @@
             android:textColor="@color/gc_white_to_grey" />
 
         <View
+             android:id="@+id/divide_6"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/pptvvas_menu_devide" />

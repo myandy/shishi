@@ -8,22 +8,19 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.myth.shishi.entity.Former;
 
-public class FormerDatabaseHelper
-{
+public class FormerDatabaseHelper {
     private static String TABLE_NAME = "t_yun";
 
-    public static ArrayList<Former> getAll()
-    {
+    public static ArrayList<Former> getAll() {
         SQLiteDatabase db = DBManager.getDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by id", null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME
+                + " order by id", null);
         return getFormerListFromCursor(cursor);
     }
 
-    private static ArrayList<Former> getFormerListFromCursor(Cursor cursor)
-    {
+    private static ArrayList<Former> getFormerListFromCursor(Cursor cursor) {
         ArrayList<Former> list = new ArrayList<Former>();
-        while (cursor.moveToNext())
-        {
+        while (cursor.moveToNext()) {
             Former data = new Former();
             data.setName(cursor.getString(cursor.getColumnIndex("name")));
             data.setYun(cursor.getString(cursor.getColumnIndex("yun")));
@@ -33,35 +30,34 @@ public class FormerDatabaseHelper
         return list;
     }
 
-    public static void update(Former data)
-    {
+    public static void update(Former data) {
         SQLiteDatabase db = DBManager.getDatabase();
-        db.execSQL(" update " + TABLE_NAME + " set yun= '" + data.getYun() + "'  where id = " + data.getId());
-    }
-    
-    public static void delete(Former data)
-    {
-        SQLiteDatabase db = DBManager.getDatabase();
-        db.execSQL(" delete from " + TABLE_NAME + "  where id = " + data.getId());
+        db.execSQL(" update " + TABLE_NAME + " set yun= '" + data.getYun()
+                + "'  where id = " + data.getId());
     }
 
-    public static void add(Former data)
-    {
+    public static void delete(Former data) {
         SQLiteDatabase db = DBManager.getDatabase();
-        db.execSQL(" insert into " + TABLE_NAME + " (name,yun)  values ( '" + data.getName() + "','" + data.getYun() + "')");
+        db.execSQL(" delete from " + TABLE_NAME + "  where id = "
+                + data.getId());
+        BackupTask.needBackup = true;
     }
 
-    public static Former getFormerByName(String name)
-    {
+    public static void add(Former data) {
         SQLiteDatabase db = DBManager.getDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where name like '" + name + "'", null);
+        db.execSQL(" insert into " + TABLE_NAME + " (name,yun)  values ( '"
+                + data.getName() + "','" + data.getYun() + "')");
+        BackupTask.needBackup = true;
+    }
+
+    public static Former getFormerByName(String name) {
+        SQLiteDatabase db = DBManager.getDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME
+                + " where name like '" + name + "'", null);
         List<Former> list = getFormerListFromCursor(cursor);
-        if (list != null && list.size() > 0)
-        {
+        if (list != null && list.size() > 0) {
             return list.get(0);
-        }
-        else
-        {
+        } else {
             return new Former();
         }
     }

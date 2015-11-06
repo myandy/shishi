@@ -32,8 +32,9 @@
         android:scrollbars="none" >
 
         <RelativeLayout
+            android:id="@+id/relative_content"
             android:layout_width="match_parent"
-             android:layout_height="fill_parent"
+            android:layout_height="fill_parent"
             android:paddingLeft="20dp"
             android:paddingRight="30dp" >
 

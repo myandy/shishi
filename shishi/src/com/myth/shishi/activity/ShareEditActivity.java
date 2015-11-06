@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
-import com.myth.shishi.entity.Ci;
 import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;

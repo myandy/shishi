@@ -20,6 +20,7 @@ import com.myth.shishi.activity.PoetrySearchActivity;
 import com.myth.shishi.activity.WebviewActivity;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.ColorEntity;
+import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
 
 public class AuthorView extends RelativeLayout
@@ -55,7 +56,8 @@ public class AuthorView extends RelativeLayout
         mContext = context;
         initView();
     }
-
+    
+    
     private void initView()
     {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
