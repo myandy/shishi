@@ -53,6 +53,12 @@ public class AuthorListActivity extends BaseActivity
         isDefault = MyApplication.getDefaulListType(mActivity);
         initView();
     }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	outState.clear();
+    	super.onSaveInstanceState(outState);
+    }
 
     private void initView()
     {

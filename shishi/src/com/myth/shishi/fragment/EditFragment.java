@@ -139,7 +139,7 @@ public class EditFragment extends Fragment
             {
                 edittext.setText(writing.getText());
             }
-            edittext.setBackground(null);
+            edittext.setBackgroundDrawable(null);
             editTexts.add(edittext);
             edittext.requestFocus();
             editContent.addView(edittext);
