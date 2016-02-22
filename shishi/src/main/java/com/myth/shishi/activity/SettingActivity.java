@@ -35,16 +35,16 @@ public class SettingActivity extends BaseActivity
         refreshTypeface();
         refreshCheck();
 
-        ((TextView) findViewById(R.id.yun_title)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.yun_value)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.typeface_value)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.typeface_title)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.check_value)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.check_title)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.about_title)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.notice_title)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(MyApplication.getTypeface());
-        ((TextView) findViewById(R.id.former_title)).setTypeface(MyApplication.getTypeface());
+        ((TextView) findViewById(R.id.yun_title)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.yun_value)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.typeface_value)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.typeface_title)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.check_value)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.check_title)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.about_title)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.notice_title)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(myApplication.getTypeface());
+        ((TextView) findViewById(R.id.former_title)).setTypeface(myApplication.getTypeface());
 
         findViewById(R.id.item_yun).setOnClickListener(new OnClickListener()
         {
@@ -80,7 +80,7 @@ public class SettingActivity extends BaseActivity
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 MyApplication.setDefaultTypeface(mActivity, which);
-                                MyApplication.setTypeface(mActivity, MyApplication.getDefaulTypeface(mActivity));
+                                myApplication.setTypeface(mActivity, MyApplication.getDefaulTypeface(mActivity));
                                 refreshTypeface();
                                 dialog.dismiss();
                             }

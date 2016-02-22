@@ -32,17 +32,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.entity.ColorEntity;
-import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.Fastblur;
 import com.myth.shishi.util.ImageUtils;
 import com.myth.shishi.util.ResizeUtil;
 
-public class ChangePictureFragment extends Fragment
-{
+public class ChangePictureFragment extends Fragment {
 
     private static final int REQUEST_PICK_IMG = 0x8887;
 
@@ -63,65 +62,58 @@ public class ChangePictureFragment extends Fragment
     private int radius = 0;
 
     private TextView title;
-    
+
     private View contnetLL;
 
-    public ChangePictureFragment()
-    {
+    public ChangePictureFragment() {
     }
 
-    public static ChangePictureFragment getInstance(Writing writing)
-    {
+    public static ChangePictureFragment getInstance(Writing writing) {
         ChangePictureFragment fileViewFragment = new ChangePictureFragment();
         fileViewFragment.writing = writing;
         return fileViewFragment;
     }
 
+    private MyApplication myApplication;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
         View view = inflater.inflate(R.layout.fragment_picture, null);
         initViews(view);
+        myApplication = (MyApplication) ((Activity) mContext).getApplication();
         return view;
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         refresh();
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
         save();
     }
 
-    public void save()
-    {
+    public void save() {
         writing.setBitmap(destBitmap);
         writing.setBgimg("");
     }
 
-    private void refresh()
-    {
+    private void refresh() {
         text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
         contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), destBitmap));
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_PICK_IMG)
-        {
-            if (resultCode == Activity.RESULT_OK && data != null)
-            {
+        if (requestCode == REQUEST_PICK_IMG) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
@@ -140,17 +132,14 @@ public class ChangePictureFragment extends Fragment
         }
     }
 
-    private void initViews(View view)
-    {
-        content =  view.findViewById(R.id.content);
+    private void initViews(View view) {
+        content = view.findViewById(R.id.content);
 
-        contnetLL= view.findViewById(R.id.content_linear);
-        contnetLL.setOnClickListener(new OnClickListener()
-        {
+        contnetLL = view.findViewById(R.id.content_linear);
+        contnetLL.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, REQUEST_PICK_IMG);
@@ -161,8 +150,8 @@ public class ChangePictureFragment extends Fragment
         title = (TextView) view.findViewById(R.id.title);
         title.setText(writing.getTitle());
         text = (TextView) view.findViewById(R.id.text);
-        title.setTypeface(MyApplication.getTypeface());
-        text.setTypeface(MyApplication.getTypeface());
+        title.setTypeface(myApplication.getTypeface());
+        text.setTypeface(myApplication.getTypeface());
 
         setTextSize();
         setGravity();
@@ -170,21 +159,18 @@ public class ChangePictureFragment extends Fragment
         setColor();
 
         // srcBitmap = BitmapFactory.decodeFile(pathName);
-        if (srcBitmap == null)
-        {
+        if (srcBitmap == null) {
             srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zuibaichi);
             destBitmap = srcBitmap;
         }
 
         SeekBar seekBar1 = (SeekBar) view.findViewById(R.id.seekBar1);
-        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-        {
+        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * 拖动条停止拖动的时候调用
              */
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar)
-            {
+            public void onStopTrackingTouch(SeekBar seekBar) {
                 drawPicture(bright, radius);
             }
 
@@ -192,30 +178,26 @@ public class ChangePictureFragment extends Fragment
              * 拖动条开始拖动的时候调用
              */
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar)
-            {
+            public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
             /**
              * 拖动条进度改变的时候调用
              */
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
-            {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bright = progress;
 
             }
         });
 
         SeekBar seekBar2 = (SeekBar) view.findViewById(R.id.seekBar2);
-        seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-        {
+        seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * 拖动条停止拖动的时候调用
              */
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar)
-            {
+            public void onStopTrackingTouch(SeekBar seekBar) {
                 drawPicture(bright, radius);
             }
 
@@ -223,16 +205,14 @@ public class ChangePictureFragment extends Fragment
              * 拖动条开始拖动的时候调用
              */
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar)
-            {
+            public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
             /**
              * 拖动条进度改变的时候调用
              */
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
-            {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 radius = progress;
             }
         });
@@ -241,15 +221,13 @@ public class ChangePictureFragment extends Fragment
 
     @SuppressLint("NewApi")
     @TargetApi(11)
-    private void drawPicture(int bright, int radius)
-    {
+    private void drawPicture(int bright, int radius) {
         Bitmap bmp = Bitmap.createBitmap(srcBitmap.getWidth(), srcBitmap.getHeight(), Config.ARGB_8888);
 
-        try
-        {
+        try {
             int brightness = bright - 127;
             ColorMatrix cMatrix = new ColorMatrix();
-            cMatrix.set(new float[] {1, 0, 0, 0, brightness, 0, 1, 0, 0, brightness,// 改变亮度
+            cMatrix.set(new float[]{1, 0, 0, 0, brightness, 0, 1, 0, 0, brightness,// 改变亮度
                     0, 0, 1, 0, brightness, 0, 0, 0, 1, 0});
 
             Paint paint = new Paint();
@@ -257,8 +235,7 @@ public class ChangePictureFragment extends Fragment
             Canvas canvas = new Canvas(bmp);
             canvas.drawBitmap(srcBitmap, 0, 0, paint);
 
-            if (Build.VERSION.SDK_INT > 16)
-            {
+            if (Build.VERSION.SDK_INT > 16) {
                 RenderScript rs = RenderScript.create(getActivity());
                 Allocation overlayAlloc = Allocation.createFromBitmap(rs, bmp);
                 ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, overlayAlloc.getElement());
@@ -267,15 +244,11 @@ public class ChangePictureFragment extends Fragment
                 blur.forEach(overlayAlloc);
                 overlayAlloc.copyTo(bmp);
                 rs.destroy();
-            }
-            else
-            {
+            } else {
                 // 低版本的折衷处理方法
                 bmp = Fastblur.fastblur(mContext, bmp, radius);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e("ChangePicture", "drawPictureError");
         }
 
@@ -283,49 +256,40 @@ public class ChangePictureFragment extends Fragment
         contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), bmp));
     }
 
-    private void layoutItemContainer(View itemContainer)
-    {
+    private void layoutItemContainer(View itemContainer) {
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) itemContainer.getLayoutParams();
         params.width = ResizeUtil.resize(mContext, 720);
         params.height = ResizeUtil.resize(mContext, 720);
         itemContainer.setLayoutParams(params);
     }
 
-    private void setPadding()
-    {
-        int margin = MyApplication.getDefaultSharePadding(mContext);
+    private void setPadding() {
+        int margin = myApplication.getDefaultSharePadding(mContext);
         LinearLayout.LayoutParams lps = (android.widget.LinearLayout.LayoutParams) text.getLayoutParams();
         lps.leftMargin = margin;
         text.setLayoutParams(lps);
     }
 
-    private void setGravity()
-    {
-        boolean isCenter = MyApplication.getDefaultShareGravity(mContext);
-        if (isCenter)
-        {
+    private void setGravity() {
+        boolean isCenter = myApplication.getDefaultShareGravity(mContext);
+        if (isCenter) {
             text.setGravity(Gravity.CENTER_HORIZONTAL);
-        }
-        else
-        {
+        } else {
             text.setGravity(Gravity.LEFT);
         }
     }
 
-    private void setTextSize()
-    {
-        int size = MyApplication.getDefaultShareSize(mContext);
+    private void setTextSize() {
+        int size = myApplication.getDefaultShareSize(mContext);
         text.setTextSize(size);
         title.setTextSize(size + 2);
     }
 
-    private void setColor()
-    {
+    private void setColor() {
 
-        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
+        ColorEntity colorEntity = myApplication.getColorByPos(myApplication.getDefaultShareColor(mContext));
         int color = 0x000000;
-        if (colorEntity != null)
-        {
+        if (colorEntity != null) {
             color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
         }
         text.setTextColor(color);

@@ -111,7 +111,10 @@
             android:theme="@style/Activity" />
         <activity
             android:name="com.wandoujia.ads.sdk.activities.InterstitialActivity"
-            android:theme="@style/InterstitialActivity" />
+            android:theme="@style/InterstitialActivity" />
+
+
+
         -->
 
         <service
@@ -123,7 +126,6 @@
             android:name="com.umeng.comm.ui.activities.FeedsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
-            android:taskAffinity="com.umeng.community"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <!-- 发送feedActivity -->
         <activity

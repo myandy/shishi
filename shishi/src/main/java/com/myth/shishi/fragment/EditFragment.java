@@ -1,7 +1,5 @@
 package com.myth.shishi.fragment;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -33,6 +31,8 @@ import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.CheckUtils;
 import com.myth.shishi.util.StringUtils;
 import com.myth.shishi.wiget.PingzeLinearlayout;
+
+import java.util.ArrayList;
 
 public class EditFragment extends Fragment
 {
@@ -128,12 +128,13 @@ public class EditFragment extends Fragment
         editContent = (LinearLayout) view.findViewById(R.id.edit_content);
         String s = former.getYun();
 
+        MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
         if (s == null)
         {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
-            edittext.setTypeface(MyApplication.getTypeface());
+            edittext.setTypeface(myApplication.getTypeface());
             edittext.setTextColor(getColor());
             if (writing.getText() != null)
             {
@@ -163,7 +164,7 @@ public class EditFragment extends Fragment
                     scrollView.addView(view1);
                     view1.setPadding(0, 30, 0, 30);
                     final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
-                    edittext.setTypeface(MyApplication.getTypeface());
+                    edittext.setTypeface(myApplication.getTypeface());
                     edittext.setTextColor(getColor());
 
                     edittext.setLines(1);
@@ -210,7 +211,7 @@ public class EditFragment extends Fragment
 
         title = (TextView) view.findViewById(R.id.edit_title);
 
-        title.setTypeface(MyApplication.getTypeface());
+        title.setTypeface(myApplication.getTypeface());
         title.setTextColor(getColor());
 
         if (TextUtils.isEmpty(writing.getTitle()))

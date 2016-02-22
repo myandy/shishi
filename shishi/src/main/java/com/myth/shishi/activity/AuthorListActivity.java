@@ -1,22 +1,17 @@
 package com.myth.shishi.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
 
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
@@ -28,6 +23,9 @@ import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.wiget.TouchEffectImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthorListActivity extends BaseActivity
 {
@@ -52,6 +50,8 @@ public class AuthorListActivity extends BaseActivity
         setBottomVisible();
         isDefault = MyApplication.getDefaulListType(mActivity);
         initView();
+
+        MyApplication myApplication= (MyApplication) getApplication();
     }
     
     @Override
@@ -101,9 +101,9 @@ public class AuthorListActivity extends BaseActivity
         adapter = new AuthorListAdapter(mActivity);
         listview.setAdapter(adapter);
         rectLeft = (TextView) findViewById(R.id.rect_left);
-        rectLeft.setTypeface(MyApplication.getTypeface());
+        rectLeft.setTypeface(myApplication.getTypeface());
         rectRight = (TextView) findViewById(R.id.rect_right);
-        rectRight.setTypeface(MyApplication.getTypeface());
+        rectRight.setTypeface(myApplication.getTypeface());
 
         setBackground();
 

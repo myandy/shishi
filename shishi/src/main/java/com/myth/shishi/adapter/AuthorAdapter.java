@@ -1,7 +1,7 @@
 package com.myth.shishi.adapter;
 
-import java.util.List;
-
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +13,10 @@ import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.listener.MyListener;
-import com.myth.shishi.wiget.StoneView;
 
-public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder>
-{
+import java.util.List;
+
+public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder> {
 
     private List<Author> list;
 
@@ -24,17 +24,16 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder
 
     private MyListener myListener;
 
-    public void setList(List<Author> list)
-    {
+    private Context mContext;
+
+    public void setList(List<Author> list) {
         this.list = list;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener
-    {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
         private MyListener myListener;
 
-        public ViewHolder(View arg0)
-        {
+        public ViewHolder(View arg0) {
             super(arg0);
             name = (TextView) arg0.findViewById(R.id.name);
             tag = (TextView) arg0.findViewById(R.id.tag);
@@ -49,62 +48,56 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder
          * 点击监听
          */
         @Override
-        public void onClick(View v)
-        {
-            if (myListener != null)
-            {
+        public void onClick(View v) {
+            if (myListener != null) {
                 myListener.onItemClick(getPosition());
             }
         }
 
-        public void setMyListener(MyListener myListener)
-        {
+        public void setMyListener(MyListener myListener) {
             this.myListener = myListener;
         }
 
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AuthorAdapter()
-    {
+    public AuthorAdapter(Context context) {
+        mContext = context;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public AuthorAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public AuthorAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_cipai, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
         holder = new ViewHolder(convertView);
         holder.myListener = myListener;
-        holder.name.setTypeface(MyApplication.getTypeface());
-        holder.tag.setTypeface(MyApplication.getTypeface());
         return holder;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
         holder.name.setText(list.get(position).getAuthor());
         holder.tag.setText(list.get(position).getDynasty() + " ● " + list.get(position).getP_num());
 
+        MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
+        holder.name.setTypeface(myApplication.getTypeface());
+        holder.tag.setTypeface(myApplication.getTypeface());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return list.size();
     }
 
-    public void setMyListener(MyListener myListener)
-    {
+    public void setMyListener(MyListener myListener) {
         this.myListener = myListener;
     }
 

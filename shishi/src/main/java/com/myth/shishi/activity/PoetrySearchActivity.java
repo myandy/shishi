@@ -1,7 +1,5 @@
 package com.myth.shishi.activity;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-import com.aps.p;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.PoetryAdapter;
@@ -24,6 +21,8 @@ import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.listener.MyListener;
+
+import java.util.ArrayList;
 
 public class PoetrySearchActivity extends BaseActivity {
 
@@ -105,7 +104,7 @@ public class PoetrySearchActivity extends BaseActivity {
                 mActivity);
         listview.setLayoutManager(linearLayoutManager);
 
-        adapter = new PoetryAdapter();
+        adapter = new PoetryAdapter(mActivity);
         adapter.setMyListener(new MyListener() {
 
             @Override
@@ -123,7 +122,7 @@ public class PoetrySearchActivity extends BaseActivity {
                 }
                 startActivity(intent);
                 finish();
-              
+
             }
         });
         listview.setAdapter(adapter);
@@ -153,13 +152,13 @@ public class PoetrySearchActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
-                    int count) {
+                                      int count) {
 
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                    int after) {
+                                          int after) {
 
             }
 

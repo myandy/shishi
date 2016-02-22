@@ -1,13 +1,12 @@
 package com.myth.shishi.db;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.myth.shishi.entity.Writing;
+
+import java.util.ArrayList;
 
 public class WritingDatabaseHelper {
     private static String TABLE_NAME = "writing";
@@ -36,10 +35,10 @@ public class WritingDatabaseHelper {
                 + "?,?,?,?,?,?,?)";
         db.execSQL(
                 sqlStr,
-                new String[] { writing.getTitle(), writing.getId() + "",
+                new String[]{writing.getTitle(), writing.getId() + "",
                         writing.getBgimg(), writing.getFormerName() + "",
                         writing.getCreate_dt() + "", writing.getText(),
-                        System.currentTimeMillis() + "" });
+                        System.currentTimeMillis() + ""});
         BackupTask.needBackup = true;
     }
 
@@ -82,30 +81,38 @@ public class WritingDatabaseHelper {
 
     private static ArrayList<Writing> getRecentWritingFromCursor(Cursor cursor) {
         ArrayList<Writing> list = new ArrayList<Writing>();
-        while (cursor.moveToNext()) {
-            Writing data = new Writing();
-            data.setId(cursor.getInt(cursor.getColumnIndex("id")));
-            String titleString = cursor.getString(cursor
-                    .getColumnIndex("title"));
-            if (titleString == null) {
-                titleString = "";
-            }
-            data.setTitle(titleString);
-            data.setBgimg(cursor.getString(cursor.getColumnIndex("bgimg")));
-            data.setFormerName(cursor.getString(cursor
-                    .getColumnIndex("former_name")));
-            data.setCreate_dt(cursor.getLong(cursor.getColumnIndex("create_dt")));
+        try {
+            while (cursor.moveToNext()) {
+                Writing data = new Writing();
+                data.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                String titleString = cursor.getString(cursor
+                        .getColumnIndex("title"));
+                if (titleString == null) {
+                    titleString = "";
+                }
+                data.setTitle(titleString);
+                data.setBgimg(cursor.getString(cursor.getColumnIndex("bgimg")));
+                data.setFormerName(cursor.getString(cursor
+                        .getColumnIndex("former_name")));
+                data.setCreate_dt(cursor.getLong(cursor.getColumnIndex("create_dt")));
 
-            String contentString = cursor.getString(cursor
-                    .getColumnIndex("text"));
-            if (contentString == null) {
-                contentString = "";
+                String contentString = cursor.getString(cursor
+                        .getColumnIndex("text"));
+                if (contentString == null) {
+                    contentString = "";
+                }
+                data.setText(contentString);
+                data.setUpdate_dt(cursor.getLong(cursor.getColumnIndex("update_dt")));
+                list.add(data);
+                if (list.size() > 2) {
+                    break;
+                }
             }
-            data.setText(contentString);
-            data.setUpdate_dt(cursor.getLong(cursor.getColumnIndex("update_dt")));
-            list.add(data);
-            if (list.size() > 2) {
-                break;
+        } catch (Exception e) {
+            Log.e("myth", e.toString());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
         }
         return list;

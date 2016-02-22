@@ -1,7 +1,5 @@
 package com.myth.shishi.activity;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,8 +19,9 @@ import com.myth.shishi.listener.MyListener;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.wiget.TouchEffectImageView;
 
-public class FormerListActivity extends BaseActivity
-{
+import java.util.ArrayList;
+
+public class FormerListActivity extends BaseActivity {
 
     private RecyclerView listview;
 
@@ -33,16 +32,14 @@ public class FormerListActivity extends BaseActivity
     private boolean isEdit;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_former_list);
 
         list = FormerDatabaseHelper.getAll();
 
         isEdit = getIntent().getBooleanExtra("edit", false);
-        if (isEdit)
-        {
+        if (isEdit) {
             setBottomVisible();
             addBottomView();
         }
@@ -50,15 +47,12 @@ public class FormerListActivity extends BaseActivity
         initView();
     }
 
-    private void addBottomView()
-    {
+    private void addBottomView() {
         getBottomLeftView().setImageResource(R.drawable.add);
-        getBottomLeftView().setOnClickListener(new OnClickListener()
-        {
+        getBottomLeftView().setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(mActivity, FormerActivity.class);
                 startActivity(intent);
 
@@ -71,12 +65,10 @@ public class FormerListActivity extends BaseActivity
         setting.setPadding(18, 18, 18, 18);
         addBottomRightView(setting,
                 new LayoutParams(DisplayUtil.dip2px(mActivity, 48), DisplayUtil.dip2px(mActivity, 48)));
-        setting.setOnClickListener(new OnClickListener()
-        {
+        setting.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(mActivity, AboutActivity.class);
                 intent.putExtra("former", true);
                 startActivity(intent);
@@ -85,38 +77,31 @@ public class FormerListActivity extends BaseActivity
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         list = FormerDatabaseHelper.getAll();
         adapter.setList(list);
         adapter.notifyDataSetChanged();
     }
 
-    private void initView()
-    {
+    private void initView() {
         listview = (RecyclerView) findViewById(R.id.listview);
 
         listview.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         listview.setLayoutManager(linearLayoutManager);
 
-        adapter = new FormerAdapter();
+        adapter = new FormerAdapter(mActivity);
         adapter.setList(list);
-        adapter.setMyListener(new MyListener()
-        {
+        adapter.setMyListener(new MyListener() {
 
             @Override
-            public void onItemClick(int position)
-            {
-                if (isEdit)
-                {
+            public void onItemClick(int position) {
+                if (isEdit) {
                     Intent intent = new Intent(mActivity, FormerActivity.class);
                     intent.putExtra("former", list.get(position));
                     startActivity(intent);
-                }
-                else
-                {
+                } else {
                     Intent intent = new Intent(mActivity, EditActivity.class);
                     intent.putExtra("former", list.get(position));
                     startActivity(intent);

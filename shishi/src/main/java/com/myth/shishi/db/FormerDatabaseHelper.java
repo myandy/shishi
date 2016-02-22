@@ -1,12 +1,13 @@
 package com.myth.shishi.db;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.myth.shishi.entity.Former;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FormerDatabaseHelper {
     private static String TABLE_NAME = "t_yun";
@@ -20,12 +21,20 @@ public class FormerDatabaseHelper {
 
     private static ArrayList<Former> getFormerListFromCursor(Cursor cursor) {
         ArrayList<Former> list = new ArrayList<Former>();
-        while (cursor.moveToNext()) {
-            Former data = new Former();
-            data.setName(cursor.getString(cursor.getColumnIndex("name")));
-            data.setYun(cursor.getString(cursor.getColumnIndex("yun")));
-            data.setId(cursor.getInt(cursor.getColumnIndex("id")));
-            list.add(data);
+        try {
+            while (cursor.moveToNext()) {
+                Former data = new Former();
+                data.setName(cursor.getString(cursor.getColumnIndex("name")));
+                data.setYun(cursor.getString(cursor.getColumnIndex("yun")));
+                data.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                list.add(data);
+            }
+        } catch (Exception e) {
+            Log.e("myth", e.toString());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
         return list;
     }

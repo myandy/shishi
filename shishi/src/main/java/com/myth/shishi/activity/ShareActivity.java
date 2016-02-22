@@ -1,12 +1,8 @@
 package com.myth.shishi.activity;
 
-import java.io.IOException;
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -35,7 +31,6 @@ import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.db.ColorDatabaseHelper;
-import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
@@ -44,6 +39,9 @@ import com.myth.shishi.util.OthersUtils;
 import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.util.StringUtils;
 import com.myth.shishi.wiget.TouchEffectImageView;
+
+import java.io.IOException;
+import java.util.List;
 
 public class ShareActivity extends BaseActivity
 {
@@ -151,9 +149,9 @@ public class ShareActivity extends BaseActivity
         title.setText(writing.getTitle());
         //"\\[.*\\]"
         text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
-        title.setTypeface(MyApplication.getTypeface());
-        text.setTypeface(MyApplication.getTypeface());
-        author.setTypeface(MyApplication.getTypeface());
+        title.setTypeface(myApplication.getTypeface());
+        text.setTypeface(myApplication.getTypeface());
+        author.setTypeface(myApplication.getTypeface());
         if (TextUtils.isEmpty(writing.getAuthor()))
         {
             author.setText(MyApplication.getDefaultUserName(mActivity));

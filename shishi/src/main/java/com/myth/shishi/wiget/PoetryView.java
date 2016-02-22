@@ -1,5 +1,6 @@
 package com.myth.shishi.wiget;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -80,7 +81,7 @@ public class PoetryView extends LinearLayout {
         super(context);
         this.writing = writing;
         this.poetry = writing.toPoetry();
-        poetry.setAuthor(MyApplication.getDefaultUserName(context));
+        poetry.setAuthor(myApplication.getDefaultUserName(context));
         this.page = page;
         mContext = context;
         LayoutInflater inflater = (LayoutInflater) mContext
@@ -102,7 +103,12 @@ public class PoetryView extends LinearLayout {
 
     int color;
 
+    private MyApplication myApplication;
+
     private void initView(View root) {
+
+        myApplication = (MyApplication) ((Activity) mContext).getApplication();
+
         LinearLayout topView = (LinearLayout) root.findViewById(R.id.right);
         LayoutParams param = new LayoutParams(DisplayUtil.dip2px(mContext, 80),
                 DisplayUtil.dip2px(mContext, 120));
@@ -110,7 +116,7 @@ public class PoetryView extends LinearLayout {
         if (author != null) {
             color = author.getColor();
         } else {
-            color = MyApplication.getRandomColor();
+            color = myApplication.getRandomColor();
         }
         shareView = new CircleImageView(mContext, color,
                 R.drawable.share3_white);
@@ -134,12 +140,12 @@ public class PoetryView extends LinearLayout {
         });
 
         title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(MyApplication.getTypeface());
+        title.setTypeface(myApplication.getTypeface());
         title.setText(poetry.getAuthor());
 
         content = (TextView) root.findViewById(R.id.content);
-        content.setTypeface(MyApplication.getTypeface());
-        ((TextView) root.findViewById(R.id.note)).setTypeface(MyApplication
+        content.setTypeface(myApplication.getTypeface());
+        ((TextView) root.findViewById(R.id.note)).setTypeface(myApplication
                 .getTypeface());
 
         root.findViewById(R.id.content).setOnClickListener(
@@ -159,7 +165,7 @@ public class PoetryView extends LinearLayout {
                             mContext.startActivity(intent);
                         } else {
                             new AlertDialog.Builder(mContext).setItems(
-                                    new String[] { "复制文本" },
+                                    new String[]{"复制文本"},
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(
                                                 DialogInterface dialog,
@@ -176,7 +182,7 @@ public class PoetryView extends LinearLayout {
                     }
                 });
 
-        ((TextView) root.findViewById(R.id.author)).setTypeface(MyApplication
+        ((TextView) root.findViewById(R.id.author)).setTypeface(myApplication
                 .getTypeface());
 
         ((TextView) root.findViewById(R.id.page)).setText(page);
@@ -212,19 +218,19 @@ public class PoetryView extends LinearLayout {
     }
 
     public void isAddTextSize(boolean add) {
-        int size = MyApplication.getDefaultTextSize(mContext);
+        int size = myApplication.getDefaultTextSize(mContext);
         if (add) {
             size += 2;
         } else {
             size -= 2;
         }
-        MyApplication.setDefaultTextSize(mContext, size);
+        myApplication.setDefaultTextSize(mContext, size);
         setTextSize();
     }
 
     public void setTextSize() {
 
-        int size = MyApplication.getDefaultTextSize(mContext);
+        int size = myApplication.getDefaultTextSize(mContext);
         ((TextView) root.findViewById(R.id.author)).setTextSize(size);
         content.setTextSize(size);
         ((TextView) root.findViewById(R.id.note)).setTextSize(size - 2);
@@ -331,8 +337,7 @@ public class PoetryView extends LinearLayout {
                                     PoetrySearchActivity.class);
                             if (writing != null) {
                                 intent.putExtra("self", author);
-                            }
-                            else{
+                            } else {
                                 intent.putExtra("author", author);
                             }
                             mContext.startActivity(intent);

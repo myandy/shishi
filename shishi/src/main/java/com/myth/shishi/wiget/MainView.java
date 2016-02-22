@@ -1,15 +1,11 @@
 package com.myth.shishi.wiget;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +25,8 @@ import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Writing;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
+
+import java.util.ArrayList;
 
 public class MainView extends RelativeLayout {
 
@@ -51,6 +49,8 @@ public class MainView extends RelativeLayout {
     }
 
     private void initView() {
+        MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
+
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View root = inflater.inflate(R.layout.layout_main, null);
@@ -65,12 +65,12 @@ public class MainView extends RelativeLayout {
             }
         });
         for (int i = 0; i < showAll.getChildCount(); i++) {
-            ((TextView) showAll.getChildAt(i)).setTypeface(MyApplication
+            ((TextView) showAll.getChildAt(i)).setTypeface(myApplication
                     .getTypeface());
         }
 
         TextView favorite = (TextView) root.findViewById(R.id.favorite);
-        favorite.setTypeface(MyApplication.getTypeface());
+        favorite.setTypeface(myApplication.getTypeface());
         favorite.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -95,7 +95,7 @@ public class MainView extends RelativeLayout {
         });
 
         TextView duishi = (TextView) root.findViewById(R.id.duishi);
-        duishi.setTypeface(MyApplication.getTypeface());
+        duishi.setTypeface(myApplication.getTypeface());
         duishi.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -109,7 +109,7 @@ public class MainView extends RelativeLayout {
         TextView showOne = (TextView) root.findViewById(R.id.show_one);
 
         // showOne.setTextColor(mContext.getResources().getColorStateList(R.color.gc_white_to_grey));
-        showOne.setTypeface(MyApplication.getTypeface());
+        showOne.setTypeface(myApplication.getTypeface());
         showOne.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -120,18 +120,18 @@ public class MainView extends RelativeLayout {
         });
 
         TextView search = (TextView) root.findViewById(R.id.search);
-        search.setTypeface(MyApplication.getTypeface());
+        search.setTypeface(myApplication.getTypeface());
         search.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(mContext).setItems(
-                        new String[] { "搜索诗人", "搜索诗" },
+                        new String[]{"搜索诗人", "搜索诗"},
                         new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog,
-                                    int which) {
+                                                int which) {
                                 if (which == 0) {
                                     Intent intent = new Intent(mContext,
                                             AuthorSearchActivity.class);
@@ -149,7 +149,7 @@ public class MainView extends RelativeLayout {
         });
 
         TextView share = (TextView) root.findViewById(R.id.share);
-        share.setTypeface(MyApplication.getTypeface());
+        share.setTypeface(myApplication.getTypeface());
         share.setOnClickListener(new OnClickListener() {
 
             @Override

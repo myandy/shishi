@@ -1,17 +1,7 @@
 package com.myth.shishi.activity;
 
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -29,14 +18,19 @@ import android.widget.Toast;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.DuiShiAdapter;
-import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.listener.MyListener;
 import com.myth.shishi.util.HttpUtil;
 import com.myth.shishi.util.OthersUtils;
 import com.myth.shishi.wiget.DuishiEditView;
-import com.myth.shishi.wiget.GCDialog;
 import com.myth.shishi.wiget.GProgressDialog;
-import com.myth.shishi.wiget.GCDialog.OnCustomDialogListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DuiShiActivity extends BaseActivity
 {
@@ -123,7 +117,7 @@ public class DuiShiActivity extends BaseActivity
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         listview.setLayoutManager(linearLayoutManager);
 
-        adapter = new DuiShiAdapter();
+        adapter = new DuiShiAdapter(mActivity);
         listview.setAdapter(adapter);
         
         adapter.setMyListener(new MyListener()

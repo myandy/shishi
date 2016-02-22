@@ -1,5 +1,6 @@
 package com.myth.shishi.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
@@ -16,7 +17,6 @@ import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.ImageAdapter;
 import com.myth.shishi.entity.ColorEntity;
-import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.wiget.HorizontalListView;
@@ -84,6 +84,8 @@ public class ChangeBackgroundFragment extends Fragment
 
     private void initViews(View view)
     {
+        MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
+
         HorizontalListView imgs = (HorizontalListView) view.findViewById(R.id.imgs);
 
         ImageAdapter adapter = new ImageAdapter(mContext);
@@ -104,8 +106,8 @@ public class ChangeBackgroundFragment extends Fragment
         title = (TextView) view.findViewById(R.id.title);
         title.setText(writing.getTitle());
         text = (TextView) view.findViewById(R.id.text);
-        title.setTypeface(MyApplication.getTypeface());
-        text.setTypeface(MyApplication.getTypeface());
+        title.setTypeface(myApplication.getTypeface());
+        text.setTypeface(myApplication.getTypeface());
 
         setTextSize();
         setGravity();

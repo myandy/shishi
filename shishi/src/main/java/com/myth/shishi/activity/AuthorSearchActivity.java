@@ -1,7 +1,5 @@
 package com.myth.shishi.activity;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +17,8 @@ import com.myth.shishi.adapter.AuthorAdapter;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.listener.MyListener;
+
+import java.util.ArrayList;
 
 public class AuthorSearchActivity extends BaseActivity
 {
@@ -83,7 +83,7 @@ public class AuthorSearchActivity extends BaseActivity
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         listview.setLayoutManager(linearLayoutManager);
 
-        adapter = new AuthorAdapter();
+        adapter = new AuthorAdapter(mActivity);
         adapter.setMyListener(new MyListener()
         {
 

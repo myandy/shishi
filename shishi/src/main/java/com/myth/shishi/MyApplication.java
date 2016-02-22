@@ -1,9 +1,5 @@
 package com.myth.shishi;
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Random;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
@@ -17,13 +13,17 @@ import com.myth.shishi.entity.ColorEntity;
 import com.umeng.comm.core.sdkmanager.LocationSDKManager;
 import com.umeng.community.location.DefaultLocationImpl;
 
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
+
 public class MyApplication extends Application {
 
     private static List<ColorEntity> colorList;
 
-    private static Typeface typeface;
+    private Typeface typeface;
 
-    public final static String TypefaceString[] = { "简体", "繁体" };
+    public final static String TypefaceString[] = {"简体", "繁体"};
 
     @Override
     public void onCreate() {
@@ -55,7 +55,7 @@ public class MyApplication extends Application {
         return colorList.get(new Random().nextInt(colorList.size())).toColor();
     }
 
-    public static void setTypeface(Context context, int type) {
+    public void setTypeface(Context context, int type) {
         if (type == 0) {
             typeface = Typeface.createFromAsset(context.getAssets(),
                     "fzqkyuesong.TTF");
@@ -65,19 +65,19 @@ public class MyApplication extends Application {
         }
     }
 
-    public static int[] bgimgList = { R.drawable.dust, R.drawable.bg001,
+    public static int[] bgimgList = {R.drawable.dust, R.drawable.bg001,
             R.drawable.bg002, R.drawable.bg004, R.drawable.bg006,
             R.drawable.bg007, R.drawable.bg011, R.drawable.bg013,
             R.drawable.bg072, R.drawable.bg084, R.drawable.bg096,
-            R.drawable.bg118 };
+            R.drawable.bg118};
 
-    public static int[] bgSmallimgList = { R.drawable.dust,
+    public static int[] bgSmallimgList = {R.drawable.dust,
             R.drawable.bg001_small, R.drawable.bg002_small,
             R.drawable.bg004_small, R.drawable.bg006_small,
             R.drawable.bg007_small, R.drawable.bg011_small,
             R.drawable.bg013_small, R.drawable.bg072_small,
             R.drawable.bg084_small, R.drawable.bg096_small,
-            R.drawable.bg118_small };
+            R.drawable.bg118_small};
 
     public static void setDefaultTypeface(Context context, int i) {
         if (i < 2 && i >= 0) {
@@ -282,12 +282,13 @@ public class MyApplication extends Application {
         edit.commit();
     }
 
-    public static Typeface getTypeface() {
+
+    public Typeface getTypeface() {
+        if (typeface == null) {
+            setTypeface(this, getDefaulTypeface(this));
+        }
         return typeface;
     }
 
-    public static void setTypeface(Typeface typeface) {
-        MyApplication.typeface = typeface;
-    }
 
 }

@@ -1,7 +1,6 @@
 package com.myth.shishi.wiget;
 
-import java.util.ArrayList;
-
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +24,8 @@ import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.ResizeUtil;
 
+import java.util.ArrayList;
+
 public class UsercenterView extends RelativeLayout {
 
     private Context mContext;
@@ -45,9 +46,12 @@ public class UsercenterView extends RelativeLayout {
         super(context, attrs);
     }
 
+    private MyApplication myApplication;
+
     public UsercenterView(Context context) {
         super(context);
         mContext = context;
+        myApplication = (MyApplication) ((Activity) mContext).getApplication();
         initView();
     }
 
@@ -60,12 +64,14 @@ public class UsercenterView extends RelativeLayout {
     }
 
     private void initView() {
+
+
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View root = inflater.inflate(R.layout.layout_usercenter, null);
 
         TextView title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(MyApplication.getTypeface());
+        title.setTypeface(myApplication.getTypeface());
 
         final TextView username = (TextView) root
                 .findViewById(R.id.username_text);
@@ -89,7 +95,7 @@ public class UsercenterView extends RelativeLayout {
                                                     int which) {
                                                 username.setText(et.getText()
                                                         .toString().trim());
-                                                MyApplication
+                                                myApplication
                                                         .setDefaultUserName(
                                                                 mContext,
                                                                 et.getText()
@@ -100,7 +106,7 @@ public class UsercenterView extends RelativeLayout {
 
                     }
                 });
-        String name = MyApplication.getDefaultUserName(mContext);
+        String name = myApplication.getDefaultUserName(mContext);
         if (!TextUtils.isEmpty(name)) {
             username.setText(name);
         }
@@ -167,7 +173,7 @@ public class UsercenterView extends RelativeLayout {
             sign.setText("点击签到");
         }
 
-        point.setText("积分：" + MyApplication.getDefaultPoint(mContext));
+        point.setText("积分：" + myApplication.getDefaultPoint(mContext));
 
         int writingNum = WritingDatabaseHelper.getAllWriting().size();
         int collectNum = PoetryDatabaseHelper.getAllCollect().size();

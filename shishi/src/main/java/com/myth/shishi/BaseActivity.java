@@ -21,6 +21,8 @@ public class BaseActivity extends Activity
 
     protected Activity mActivity;
 
+    protected MyApplication myApplication;
+
     /**
      * 内容区
      */
@@ -52,6 +54,7 @@ public class BaseActivity extends Activity
 
         }
         mActivity = this;
+        myApplication= (MyApplication) getApplication();
         mBottomLayout = (FrameLayout) findViewById(R.id.bottom_layout);
         findViewById(R.id.bottom_left).setOnClickListener(new OnClickListener()
         {
