@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myth.shishi"
-    android:versionCode="9"
-    android:versionName="1.80" >
+   >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -102,24 +101,6 @@
             android:name=".activity.SignActivity"
             android:theme="@style/AppBaseTheme" />
 
-        <!--
-        <activity
-            android:name="com.wandoujia.ads.sdk.activities.AppDetailActivity"
-            android:theme="@style/Activity" />
-        <activity
-            android:name="com.wandoujia.ads.sdk.activities.AppWallActivity"
-            android:theme="@style/Activity" />
-        <activity
-            android:name="com.wandoujia.ads.sdk.activities.InterstitialActivity"
-            android:theme="@style/InterstitialActivity" />
-
-
-
-        -->
-
-        <service
-            android:name="com.wandoujia.ads.sdk.download.AppDownloadService"
-            android:process=":app_download" />
 
         <!-- feed主页面 -->
         <activity

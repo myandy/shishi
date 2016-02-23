@@ -80,9 +80,9 @@ public class ChangePictureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
+        myApplication = (MyApplication) ((Activity) mContext).getApplication();
         View view = inflater.inflate(R.layout.fragment_picture, null);
         initViews(view);
-        myApplication = (MyApplication) ((Activity) mContext).getApplication();
         return view;
     }
 
