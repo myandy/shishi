@@ -10,13 +10,29 @@ android {
         targetSdkVersion 21
     }
 
+    signingConfigs {
+        release
+    }
+
     buildTypes {
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled true
-            proguardFiles 'proguard.cfg'
+            shrinkResources false
+            zipAlignEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
+
+apply from: 'signing.gradle'
 
 dependencies {
     compile project(':umeng_community_library_project')
