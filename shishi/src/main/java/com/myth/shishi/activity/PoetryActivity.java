@@ -28,6 +28,7 @@ import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.util.OthersUtils;
+import com.myth.shishi.util.StringUtils;
 import com.myth.shishi.wiget.CircleImageView;
 import com.myth.shishi.wiget.TouchEffectImageView;
 
@@ -77,7 +78,7 @@ public class PoetryActivity extends BaseActivity {
         LinearLayout topView = (LinearLayout) findViewById(R.id.right);
         LayoutParams param = new LayoutParams(
                 DisplayUtil.dip2px(mActivity, 80), DisplayUtil.dip2px(
-                        mActivity, 120));
+                mActivity, 120));
         shareView = new CircleImageView(mActivity, author.getColor(),
                 R.drawable.share3_white);
         topView.addView(shareView, 1, param);
@@ -174,6 +175,8 @@ public class PoetryActivity extends BaseActivity {
         } else {
             ((TextView) findViewById(R.id.note)).setText("");
         }
+
+        poetry.setPoetry(StringUtils.autoLineFeed(poetry.getPoetry()));
         content.setText(poetry.getPoetry());
         ((TextView) findViewById(R.id.author))
                 .setText(poetry.getTitle() + "\n");

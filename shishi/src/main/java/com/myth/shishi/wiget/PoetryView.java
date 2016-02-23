@@ -30,6 +30,7 @@ import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.util.OthersUtils;
+import com.myth.shishi.util.StringUtils;
 
 public class PoetryView extends LinearLayout {
 
@@ -208,6 +209,7 @@ public class PoetryView extends LinearLayout {
         if (note != null && note.length() > 10) {
             ((TextView) root.findViewById(R.id.note)).setText(note);
         }
+        poetry.setPoetry(StringUtils.autoLineFeed(poetry.getPoetry()));
         content.setText(poetry.getPoetry());
         ((TextView) root.findViewById(R.id.author))
                 .setText(poetry.getTitle() == null ? "" : poetry.getTitle()
