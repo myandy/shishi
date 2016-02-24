@@ -3,7 +3,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,12 +21,12 @@
         android:layout_margin="10dp"
         android:orientation="vertical"
         android:padding="10dp"
-        android:scrollbars="none" >
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/setting_bg"
                 android:orientation="vertical"
-                android:padding="10dp" >
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -44,16 +44,36 @@
                     android:text="@string/about_text1"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
-                
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/about_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/setting_bg"
                 android:orientation="vertical"
-                android:padding="10dp" >
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:gravity="center"
+                    android:text="@string/about_text2"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_qq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,6 +81,25 @@
                     android:autoLink="all"
                     android:gravity="center"
                     android:text="@string/about_text3"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_wexin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:gravity="center"
+                    android:text="@string/about_text4"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

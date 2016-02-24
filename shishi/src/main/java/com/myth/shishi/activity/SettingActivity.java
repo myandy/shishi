@@ -42,7 +42,6 @@ public class SettingActivity extends BaseActivity
         ((TextView) findViewById(R.id.check_value)).setTypeface(myApplication.getTypeface());
         ((TextView) findViewById(R.id.check_title)).setTypeface(myApplication.getTypeface());
         ((TextView) findViewById(R.id.about_title)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.notice_title)).setTypeface(myApplication.getTypeface());
         ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(myApplication.getTypeface());
         ((TextView) findViewById(R.id.former_title)).setTypeface(myApplication.getTypeface());
 
