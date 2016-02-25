@@ -183,7 +183,7 @@ public class PoetryActivity extends BaseActivity {
 
     @Override
     protected void onPause() {
-        super.onDestroy();
+        super.onPause();
         if (mSpeech != null) {
             mSpeech.stop();
         }
@@ -208,6 +208,8 @@ public class PoetryActivity extends BaseActivity {
             ((TextView) findViewById(R.id.note)).setText("");
         }
 
+        poetry.setTitle(poetry.getTitle().replaceAll("（.*）", "").trim());
+        poetry.setPoetry(poetry.getPoetry().replaceAll("【.*】", "").trim());
         poetry.setPoetry(StringUtils.autoLineFeed(poetry.getPoetry()));
         content.setText(poetry.getPoetry());
         ((TextView) findViewById(R.id.author))

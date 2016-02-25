@@ -227,6 +227,10 @@ public class PoetryView extends LinearLayout {
     }
 
     private void refreshView() {
+
+        poetry.setTitle(poetry.getTitle().replaceAll("（.*）", "").trim());
+        poetry.setPoetry(poetry.getPoetry().replaceAll("【.*】", "").trim());
+
         shareView.setmColor(color);
         String note = poetry.getIntro();
         if (note != null && note.length() > 10) {

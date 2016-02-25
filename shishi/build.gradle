@@ -9,8 +9,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 21
 
-        versionCode 10
-        versionName '1.9'
+        versionCode 11
+        versionName '1.91'
 
     }
 
@@ -23,6 +23,8 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
+
+
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -31,7 +33,7 @@ android {
             shrinkResources false
             zipAlignEnabled true
 
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
         }
     }
 }
