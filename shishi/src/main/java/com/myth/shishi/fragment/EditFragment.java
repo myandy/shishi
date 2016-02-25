@@ -30,9 +30,13 @@ import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.CheckUtils;
 import com.myth.shishi.util.StringUtils;
+import com.myth.shishi.wiget.GCDialog;
+import com.myth.shishi.wiget.PasteEditText;
 import com.myth.shishi.wiget.PingzeLinearlayout;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditFragment extends Fragment
 {
@@ -163,7 +167,14 @@ public class EditFragment extends Fragment
                     View view1 = new PingzeLinearlayout(mContext, sList[i]);
                     scrollView.addView(view1);
                     view1.setPadding(0, 30, 0, 30);
-                    final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
+
+                    final PasteEditText edittext = (PasteEditText) inflater
+                            .inflate(R.layout.edittext, null);
+                    if (i != sList.length - 1) {
+                        edittext.line = i;
+                        edittext.setOnPasteListener(onPasteListener);
+                    }
+
                     edittext.setTypeface(myApplication.getTypeface());
                     edittext.setTextColor(getColor());
 
@@ -305,5 +316,63 @@ public class EditFragment extends Fragment
         }
         return color;
     }
+
+    private PasteEditText.OnPasteListener onPasteListener = new PasteEditText.OnPasteListener() {
+
+        @Override
+        public void onPasteClick(final int line) {
+            String string = editTexts.get(line).getEditableText().toString()
+                    .trim();
+            final String texts[] = split(string);
+            if (texts == null || texts.length < 2) {
+                return;
+            }
+            Bundle bundle = new Bundle();
+            bundle.putString(GCDialog.DATA_CONTENT,
+                    getString(R.string.tip_paste_auto));
+            bundle.putString(GCDialog.DATA_TITLE, getString(R.string.auto_save));
+            bundle.putString(GCDialog.CONFIRM_TEXT, getString(R.string.save));
+            bundle.putString(GCDialog.CANCEL_TEXT, getString(R.string.cancel));
+            new GCDialog(getActivity(), new GCDialog.OnCustomDialogListener() {
+
+                @Override
+                public void onConfirm() {
+                    int j = 0;
+                    for (int i = line; j < texts.length && i < editTexts.size(); i++, j++) {
+                        editTexts.get(i).setText(texts[j]);
+                    }
+                }
+
+                @Override
+                public void onCancel() {
+                }
+            }, bundle).show();
+        }
+    };
+
+    private String[] split(String str) {
+
+        /* 正则表达式：句子结束符 */
+        String regEx = "：|。|！|；";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+
+        /* 按照句子结束符分割句子 */
+        String[] words = p.split(str);
+
+        /* 将句子结束符连接到相应的句子后 */
+        if (words.length > 0) {
+            int count = 0;
+            while (count < words.length) {
+                if (m.find()) {
+                    words[count] += m.group();
+                }
+                count++;
+            }
+        }
+        return words;
+
+    }
+
 
 }

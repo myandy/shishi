@@ -79,6 +79,20 @@
             android:textColor="@color/gc_white_to_grey" />
 
         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/pptvvas_menu_devide" />
+
+        <TextView
+            android:id="@+id/tv8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="语音朗读"
+            android:textColor="@color/gc_white_to_grey" />
+
+        <View
              android:id="@+id/divide_5"
             android:layout_width="fill_parent"
             android:layout_height="1dp"

@@ -135,7 +135,7 @@ public class ShareActivity extends BaseActivity
                                     String filePath = saveImage();
                                     if (!TextUtils.isEmpty(filePath))
                                     {
-                                        OthersUtils.shareMsg(mActivity, "词Ci", "share", "content", filePath);
+                                        OthersUtils.shareMsg(mActivity, "诗Shi", "share", "content", filePath);
                                     }
 
                                 }

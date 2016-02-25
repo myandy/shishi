@@ -1,7 +1,5 @@
 package com.myth.shishi.activity;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -18,6 +16,8 @@ import com.myth.shishi.entity.Writing;
 import com.myth.shishi.wiget.AuthorView;
 import com.myth.shishi.wiget.PoetryView;
 import com.myth.shishi.wiget.ScanView;
+
+import java.util.ArrayList;
 
 public class AuthorPageActivity extends BaseActivity {
 
@@ -130,12 +130,12 @@ public class AuthorPageActivity extends BaseActivity {
             }
             // container.addView(root, param);
             return root;
-        };
+        }
 
         public void destroyItem(android.view.ViewGroup container, int position,
                 Object object) {
             container.removeView((View) object);
-        };
+        }
 
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {

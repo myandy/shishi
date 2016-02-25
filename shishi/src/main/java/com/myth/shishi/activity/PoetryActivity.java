@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ import com.myth.shishi.wiget.CircleImageView;
 import com.myth.shishi.wiget.TouchEffectImageView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class PoetryActivity extends BaseActivity {
@@ -57,10 +59,32 @@ public class PoetryActivity extends BaseActivity {
 
     private TouchEffectImageView more;
 
+    private TextToSpeech mSpeech;
+
+    private boolean mTTSEnable = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poetry);
+
+
+        mSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mSpeech.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    } else {
+                        mTTSEnable = true;
+                        mSpeech.setSpeechRate(0.8f);
+                    }
+                }
+            }
+        });
+
 
         setBottomVisible();
 
@@ -155,6 +179,14 @@ public class PoetryActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onDestroy();
+        if (mSpeech != null) {
+            mSpeech.stop();
+        }
     }
 
     private void refreshRandomView() {
@@ -346,6 +378,22 @@ public class PoetryActivity extends BaseActivity {
                             }
                         }
                     });
+
+            menuView.findViewById(R.id.tv8).setOnClickListener(
+                    new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            if (mTTSEnable) {
+                                mSpeech.speak(poetry.getTitle().replaceAll("\\[.*\\]", "").replaceAll("（.*）", "").replaceAll("【.*】", "") + "\n" + poetry.getPoetry().replaceAll("[\\[\\]0-9]", "").replaceAll("【.*】", ""), TextToSpeech.QUEUE_FLUSH,
+                                        null);
+                            } else {
+                                Toast.makeText(mActivity, R.string.tts_unable,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
 
             menuView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             int popupWidth = menuView.getMeasuredWidth();

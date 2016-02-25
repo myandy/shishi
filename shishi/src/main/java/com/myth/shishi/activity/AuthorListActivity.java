@@ -51,7 +51,6 @@ public class AuthorListActivity extends BaseActivity
         isDefault = MyApplication.getDefaulListType(mActivity);
         initView();
 
-        MyApplication myApplication= (MyApplication) getApplication();
     }
     
     @Override

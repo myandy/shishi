@@ -47,4 +47,9 @@
     <string name="sign_days_of_month">本月已出勤天数</string>
     <string name="usercenter_sign_finished">已签到</string>
 
+    <string name="tts_unable">抱歉，您的手机暂不支持系统语音朗读</string>
+
+    <string name="tip_paste_auto">是否自动保存中文分句符后的内容到下一行</string>
+    <string name="auto_save">智能保存</string>
+
 </resources>

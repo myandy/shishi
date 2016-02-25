@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.speech.tts.TextToSpeech;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,6 +32,8 @@ import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.util.OthersUtils;
 import com.myth.shishi.util.StringUtils;
+
+import java.util.Locale;
 
 public class PoetryView extends LinearLayout {
 
@@ -106,7 +109,27 @@ public class PoetryView extends LinearLayout {
 
     private MyApplication myApplication;
 
+    private TextToSpeech mSpeech;
+
+    private boolean mTTSEnable = false;
+
     private void initView(View root) {
+
+        mSpeech = new TextToSpeech(mContext, new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mSpeech.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    } else {
+                        mTTSEnable = true;
+                        mSpeech.setSpeechRate(0.8f);
+                    }
+                }
+            }
+        });
 
         myApplication = (MyApplication) ((Activity) mContext).getApplication();
 
@@ -400,6 +423,22 @@ public class PoetryView extends LinearLayout {
                             }
                         }
                     });
+
+            menuView.findViewById(R.id.tv8).setOnClickListener(
+                    new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            if (mTTSEnable) {
+                                mSpeech.speak(poetry.getTitle() + "\n" + poetry.getPoetry().replaceAll("[\\[\\]0-9]", ""), TextToSpeech.QUEUE_FLUSH,
+                                        null);
+                            } else {
+                                Toast.makeText(mContext, R.string.tts_unable,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
             menuView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             int popupWidth = menuView.getMeasuredWidth();
             int popupHeight = menuView.getMeasuredHeight();
