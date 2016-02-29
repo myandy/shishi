@@ -106,6 +106,7 @@ public class ChangePictureFragment extends Fragment {
     private void refresh() {
         text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
         contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), destBitmap));
+        title.setText(writing.getTitle());
     }
 
     @Override
@@ -148,7 +149,7 @@ public class ChangePictureFragment extends Fragment {
         });
         layoutItemContainer(content);
         title = (TextView) view.findViewById(R.id.title);
-        title.setText(writing.getTitle());
+
         text = (TextView) view.findViewById(R.id.text);
         title.setTypeface(myApplication.getTypeface());
         text.setTypeface(myApplication.getTypeface());
