@@ -80,6 +80,7 @@ public class ChangeBackgroundFragment extends Fragment
     {
         text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
         content.setBackgroundResource(MyApplication.bgimgList[bg_index]);
+        title.setText(writing.getTitle());
     }
 
     private void initViews(View view)
@@ -104,7 +105,6 @@ public class ChangeBackgroundFragment extends Fragment
         content =  view.findViewById(R.id.content);
         layoutItemContainer(content);
         title = (TextView) view.findViewById(R.id.title);
-        title.setText(writing.getTitle());
         text = (TextView) view.findViewById(R.id.text);
         title.setTypeface(myApplication.getTypeface());
         text.setTypeface(myApplication.getTypeface());

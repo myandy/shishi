@@ -1,8 +1,5 @@
 package com.myth.shishi.wiget;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
@@ -10,20 +7,17 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.KeyEventCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 更多详解见博客http://blog.csdn.net/zhongkejingwang/article/details/38728119
@@ -102,15 +96,12 @@ public class ScanView extends RelativeLayout
         this.adapter = adapter;
         prePage = (View) adapter.instantiateItem(this, index - 1);
         addView(prePage, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        // adapter.addContent(prePage, index - 1);
 
         currPage = (View) adapter.instantiateItem(this, index);
         addView(currPage, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        // adapter.addContent(currPage, index);
 
         nextPage = (View) adapter.instantiateItem(this, index + 1);
         addView(nextPage, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        // adapter.addContent(nextPage, index + 1);
 
     }
 
@@ -205,7 +196,7 @@ public class ScanView extends RelativeLayout
         currPageLeft = 0;
     }
 
-    Handler updateHandler = new Handler()
+     Handler updateHandler = new Handler()
     {
 
         @Override
@@ -260,6 +251,7 @@ public class ScanView extends RelativeLayout
 
     };
 
+
     public ScanView(Context context, AttributeSet attrs, int defStyle)
     {
         super(context, attrs, defStyle);
@@ -306,30 +298,18 @@ public class ScanView extends RelativeLayout
         isCurrMoving = true;
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev)
-    {
-        /*
-         * This method JUST determines whether we want to intercept the
-         * motion. If we return true, onMotionEvent will be called and we do
-         * the actual scrolling there.
-         */
-
-        // Nothing more to do here if we have decided whether or not we
-        // are dragging.
-
-        return executeKeyEvent(ev);
-        /*
-         * The only time we want to intercept motion events is if we are in
-         * the drag mode.
-         */
-    }
+//    @Override
+//    public boolean onInterceptTouchEvent(MotionEvent ev)
+//    {
+//        return executeKeyEvent(ev);
+//    }
 
     float xLast = 0;
 
     float yLast = 0;
 
-    private boolean executeKeyEvent(MotionEvent ev)
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev)
     {
         boolean handled = false;
         float xDistance = 0;
@@ -372,7 +352,6 @@ public class ScanView extends RelativeLayout
                     handled = true;
                 }
         }
-        System.out.println("ScanView" + ev.getAction() + handled + xDistance + "  " + yDistance);
         return handled;
 
     }
@@ -380,12 +359,8 @@ public class ScanView extends RelativeLayout
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        System.out.println("VScrollView+" + event.getActionMasked());
         if (event.getAction() == MotionEvent.ACTION_DOWN && event.getEdgeFlags() != 0)
         {
-            // Don't handle edge touches immediately -- they may actually
-            // belong to one of our
-            // descendants.
             return false;
         }
         if (adapter != null)
@@ -418,8 +393,6 @@ public class ScanView extends RelativeLayout
                 case MotionEvent.ACTION_MOVE:
                     // 取消动画
                     quitMove();
-                    Log.d("index", "mEvents = " + mEvents + ", isPreMoving = " + isPreMoving + ", isCurrMoving = "
-                            + isCurrMoving);
                     vt.addMovement(event);
                     vt.computeCurrentVelocity(500);
                     speed = vt.getXVelocity();
@@ -491,21 +464,10 @@ public class ScanView extends RelativeLayout
                     quitMove();
                     mTask = new MyTimerTask(updateHandler);
                     timer.schedule(mTask, 0, 5);
-//                    try
-//                    {
-//                        vt.clear();
-//                        vt.recycle();
-//                    }
-//                    catch (Exception e)
-//                    {
-//                        e.printStackTrace();
-//                    }
                     break;
                 default:
                     break;
             }
-
-        // super.dispatchTouchEvent(event);
         return true;
     }
 
