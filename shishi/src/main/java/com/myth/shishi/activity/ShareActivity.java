@@ -43,8 +43,7 @@ import com.myth.shishi.wiget.TouchEffectImageView;
 import java.io.IOException;
 import java.util.List;
 
-public class ShareActivity extends BaseActivity
-{
+public class ShareActivity extends BaseActivity {
 
     private Writing writing;
 
@@ -67,15 +66,13 @@ public class ShareActivity extends BaseActivity
     private View contentLL;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         setBottomVisible();
 
         writing = (Writing) getIntent().getSerializableExtra("writing");
-        if (writing == null)
-        {
+        if (writing == null) {
             finish();
         }
 
@@ -86,55 +83,41 @@ public class ShareActivity extends BaseActivity
         setting.setScaleType(ScaleType.FIT_XY);
         addBottomRightView(setting,
                 new LayoutParams(DisplayUtil.dip2px(mActivity, 48), DisplayUtil.dip2px(mActivity, 48)));
-        setting.setOnClickListener(new OnClickListener()
-        {
+        setting.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 showMenu();
             }
         });
     }
 
-    private void initView()
-    {
+    private void initView() {
         content = findViewById(R.id.content);
         title = (TextView) findViewById(R.id.title);
         text = (TextView) findViewById(R.id.text);
         author = (TextView) findViewById(R.id.author);
         contentLL = findViewById(R.id.content_linear);
-        contentLL.setOnClickListener(new OnClickListener()
-        {
+        contentLL.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
-                new AlertDialog.Builder(mActivity).setItems(new String[] {"复制文本", "保存图片", "分享"},
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int which)
-                            {
+            public void onClick(View v) {
+                new AlertDialog.Builder(mActivity).setItems(new String[]{"复制文本", "保存图片", "分享"},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
 
-                                if (which == 0)
-                                {
+                                if (which == 0) {
                                     OthersUtils.copy(title.getText() + "\n" + text.getText(), mActivity);
                                     Toast.makeText(mActivity, R.string.copy_text_done, Toast.LENGTH_SHORT).show();
-                                }
-                                else if (which == 1)
-                                {
+                                } else if (which == 1) {
                                     String filePath = saveImage();
-                                    if (!TextUtils.isEmpty(filePath))
-                                    {
+                                    if (!TextUtils.isEmpty(filePath)) {
                                         Toast.makeText(mActivity, "图片已保存在：" + filePath, Toast.LENGTH_SHORT).show();
                                     }
 
-                                }
-                                else if (which == 2)
-                                {
+                                } else if (which == 2) {
                                     String filePath = saveImage();
-                                    if (!TextUtils.isEmpty(filePath))
-                                    {
+                                    if (!TextUtils.isEmpty(filePath)) {
                                         OthersUtils.shareMsg(mActivity, "诗Shi", "share", "content", filePath);
                                     }
 
@@ -152,12 +135,9 @@ public class ShareActivity extends BaseActivity
         title.setTypeface(myApplication.getTypeface());
         text.setTypeface(myApplication.getTypeface());
         author.setTypeface(myApplication.getTypeface());
-        if (TextUtils.isEmpty(writing.getAuthor()))
-        {
+        if (TextUtils.isEmpty(writing.getAuthor())) {
             author.setText(MyApplication.getDefaultUserName(mActivity));
-        }
-        else
-        {
+        } else {
             author.setText(writing.getAuthor());
         }
 
@@ -167,24 +147,18 @@ public class ShareActivity extends BaseActivity
         setAuthor();
         setColor();
 
-        if (StringUtils.isNumeric(writing.getBgimg()))
-        {
+        if (StringUtils.isNumeric(writing.getBgimg())) {
             contentLL.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
-        }
-        else if (writing.getBitmap() != null)
-        {
+        } else if (writing.getBitmap() != null) {
             contentLL.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBitmap()));
-        }
-        else
-        {
+        } else {
             contentLL.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
         }
         layoutItemContainer(content);
         scaleRotateIn(content, 1000, 0);
     }
 
-    private void layoutItemContainer(View itemContainer)
-    {
+    private void layoutItemContainer(View itemContainer) {
         ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) itemContainer.getLayoutParams();
         params.width = ResizeUtil.resize(mActivity, 640);
         // if (params.height < params.width)
@@ -197,8 +171,7 @@ public class ShareActivity extends BaseActivity
 
     public final int rela1 = Animation.RELATIVE_TO_SELF;
 
-    public void scaleRotateIn(View view, long durationMillis, long delayMillis)
-    {
+    public void scaleRotateIn(View view, long durationMillis, long delayMillis) {
         view.setVisibility(View.VISIBLE);
         ScaleAnimation animation1 = new ScaleAnimation(0, 1, 0, 1, rela1, 0.5f, rela1, 0.5f);
         RotateAnimation animation2 = new RotateAnimation(0, 360, rela1, 0.5f, rela1, 0.5f);
@@ -211,111 +184,85 @@ public class ShareActivity extends BaseActivity
         view.setAnimation(animation);
     }
 
-    private String saveImage()
-    {
+    private String saveImage() {
         String filePath = null;
-        try
-        {
-            String filename = writing.getBgimg().hashCode()+writing.getUpdate_dt() + "";
+        try {
+            String filename = writing.hashCode() + writing.getUpdate_dt() + "";
             filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(contentLL), filename);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return filePath;
     }
 
-    public void isAddTextSize(boolean add)
-    {
+    public void isAddTextSize(boolean add) {
         int size = MyApplication.getDefaultShareSize(mActivity);
-        if (add)
-        {
+        if (add) {
             size += 2;
-        }
-        else
-        {
+        } else {
             size -= 2;
         }
         MyApplication.setDefaultShareSize(mActivity, size);
         setTextSize();
     }
 
-    public void setTextSize()
-    {
+    public void setTextSize() {
         int size = MyApplication.getDefaultShareSize(mActivity);
         text.setTextSize(size);
         title.setTextSize(size + 2);
         author.setTextSize(size - 2);
     }
 
-    private void setGravity(boolean isCenter)
-    {
+    private void setGravity(boolean isCenter) {
         MyApplication.setDefaultShareGravity(mActivity, isCenter);
         setGravity();
     }
 
-    private void setGravity()
-    {
+    private void setGravity() {
         boolean isCenter = MyApplication.getDefaultShareGravity(mActivity);
-        if (isCenter)
-        {
+        if (isCenter) {
             text.setGravity(Gravity.CENTER_HORIZONTAL);
-        }
-        else
-        {
+        } else {
             text.setGravity(Gravity.LEFT);
         }
     }
 
-    private void setPadding()
-    {
+    private void setPadding() {
         int margin = MyApplication.getDefaultSharePadding(mActivity);
         LinearLayout.LayoutParams lps = (android.widget.LinearLayout.LayoutParams) text.getLayoutParams();
         lps.leftMargin = margin;
         text.setLayoutParams(lps);
     }
 
-    private void setAuthor()
-    {
-        if (MyApplication.getDefaultShareAuthor(mActivity))
-        {
+    private void setAuthor() {
+        if (MyApplication.getDefaultShareAuthor(mActivity)) {
             author.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             author.setVisibility(View.GONE);
         }
     }
 
-    private void setAuthor(boolean showAuthor)
-    {
+    private void setAuthor(boolean showAuthor) {
         MyApplication.setDefaultShareAuthor(mActivity, showAuthor);
         setAuthor();
     }
 
-    private void setPadding(boolean isAdd)
-    {
+    private void setPadding(boolean isAdd) {
         int margin = MyApplication.getDefaultSharePadding(mActivity);
-        if (isAdd)
-        {
+        if (isAdd) {
             margin += 10;
-        }
-        else
-        {
+        } else {
             margin -= 10;
         }
         MyApplication.setDefaultSharePadding(mActivity, margin);
         setPadding();
     }
 
-    private void setColor()
-    {
+    private void setColor() {
 
         ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mActivity));
         int color = 0x000000;
-        if (colorEntity != null)
-        {
+        if (colorEntity != null) {
             color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
         }
         text.setTextColor(color);
@@ -323,16 +270,13 @@ public class ShareActivity extends BaseActivity
         author.setTextColor(color);
     }
 
-    private void setColor(int color)
-    {
+    private void setColor(int color) {
         MyApplication.setDefaultShareColor(mActivity, color);
         setColor();
     }
 
-    private void showMenu()
-    {
-        if (menu == null)
-        {
+    private void showMenu() {
+        if (menu == null) {
             LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             menuView = inflater.inflate(R.layout.dialog_share, null);
 
@@ -350,16 +294,12 @@ public class ShareActivity extends BaseActivity
             // 让view可以响应菜单事件
             menuView.setFocusableInTouchMode(true);
 
-            menuView.setOnKeyListener(new OnKeyListener()
-            {
+            menuView.setOnKeyListener(new OnKeyListener() {
 
                 @Override
-                public boolean onKey(View v, int keyCode, KeyEvent event)
-                {
-                    if (keyCode == KeyEvent.KEYCODE_MENU)
-                    {
-                        if (menu != null)
-                        {
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_MENU) {
+                        if (menu != null) {
                             menu.dismiss();
                         }
                         return true;
@@ -369,133 +309,103 @@ public class ShareActivity extends BaseActivity
             });
             location = new int[2];
 
-            menuView.findViewById(R.id.tv1).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv1).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     isAddTextSize(true);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
-            menuView.findViewById(R.id.tv2).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv2).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     isAddTextSize(false);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
-            menuView.findViewById(R.id.tv3).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv3).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     setGravity(true);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
-            menuView.findViewById(R.id.tv4).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv4).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     setGravity(false);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
-            menuView.findViewById(R.id.tv5).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv5).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     setPadding(false);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
-            menuView.findViewById(R.id.tv6).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv6).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     setPadding(true);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
-            menuView.findViewById(R.id.tv7).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv7).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
 
                     final List<ColorEntity> list = ColorDatabaseHelper.getAll();
                     String s[] = new String[list.size()];
-                    for (int i = 0; i < list.size(); i++)
-                    {
+                    for (int i = 0; i < list.size(); i++) {
                         s[i] = list.get(i).getName();
                     }
-                    new AlertDialog.Builder(mActivity).setItems(s, new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int which)
-                        {
+                    new AlertDialog.Builder(mActivity).setItems(s, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
                             setColor(which);
                             dialog.dismiss();
                         }
                     }).show();
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
 
-            menuView.findViewById(R.id.tv8).setOnClickListener(new OnClickListener()
-            {
+            menuView.findViewById(R.id.tv8).setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     boolean isCollect = MyApplication.getDefaultShareAuthor(mActivity);
                     setAuthor(!isCollect);
-                    if (menu != null)
-                    {
+                    if (menu != null) {
                         menu.dismiss();
                     }
                 }
             });
 
-            if (MyApplication.getDefaultShareAuthor(mActivity))
-            {
+            if (MyApplication.getDefaultShareAuthor(mActivity)) {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
-            }
-            else
-            {
+            } else {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");
             }
 
@@ -511,16 +421,11 @@ public class ShareActivity extends BaseActivity
             menu.showAtLocation(setting, Gravity.NO_GRAVITY, location[0], location[1]);
             // 显示在某个位置
 
-        }
-        else
-        {
+        } else {
 
-            if (MyApplication.getDefaultShareAuthor(mActivity))
-            {
+            if (MyApplication.getDefaultShareAuthor(mActivity)) {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
-            }
-            else
-            {
+            } else {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");
             }
             menu.showAtLocation(setting, Gravity.NO_GRAVITY, location[0], location[1]);

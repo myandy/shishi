@@ -19,7 +19,6 @@ import com.myth.shishi.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.DuiShiAdapter;
 import com.myth.shishi.listener.MyListener;
-import com.myth.shishi.util.HttpUtil;
 import com.myth.shishi.util.OthersUtils;
 import com.myth.shishi.wiget.DuishiEditView;
 import com.myth.shishi.wiget.GProgressDialog;
@@ -28,18 +27,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DuiShiActivity extends BaseActivity
-{
+public class DuiShiActivity extends BaseActivity {
 
     private DuiShiAdapter adapter;
 
     RecyclerView listview;
 
-    private final static String URL = "http://superapp.cloudapp.net/couplets/api/xialian?";
+    private final static String URL_STRING = "http://couplet.msra.cn/app/CoupletsWS_V2.asmx/GetXiaLian";
 
     private final static int LOAD_SUCCESS = 1;
 
@@ -59,22 +65,16 @@ public class DuiShiActivity extends BaseActivity
 
     private GProgressDialog progress;
 
-    private Handler mhandler = new Handler()
-    {
-        public void handleMessage(android.os.Message msg)
-        {
-            switch (msg.what)
-            {
+    private Handler mhandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
                 case LOAD_SUCCESS:
                     adapter.notifyDataSetChanged();
-                    if (editView == null)
-                    {
+                    if (editView == null) {
                         editView = new DuishiEditView(mActivity, count);
                         ets.addView(editView);
                         topView.setVisibility(View.VISIBLE);
-                    }
-                    else
-                    {
+                    } else {
                         editView.refresh(count);
                     }
                     progress.dismiss();
@@ -91,19 +91,19 @@ public class DuiShiActivity extends BaseActivity
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duishi);
         initView();
     }
 
-    private void initView()
-    {
+    private void initView() {
         progress = new GProgressDialog(mActivity);
         topView = (RelativeLayout) findViewById(R.id.top);
         topView.setVisibility(View.GONE);
@@ -111,7 +111,7 @@ public class DuiShiActivity extends BaseActivity
         final EditText et = (EditText) findViewById(R.id.et);
         Button button = (Button) findViewById(R.id.button);
         listview = (RecyclerView) findViewById(R.id.listview);
-        
+
 
         listview.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
@@ -119,59 +119,37 @@ public class DuiShiActivity extends BaseActivity
 
         adapter = new DuiShiAdapter(mActivity);
         listview.setAdapter(adapter);
-        
-        adapter.setMyListener(new MyListener()
-        {
+
+        adapter.setMyListener(new MyListener() {
 
             @Override
-            public void onItemClick(int position)
-            {
-               final String s=adapter.getDatas().get(position);
-               new AlertDialog.Builder(mActivity).setItems(new String[] {"复制"},
-                        new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int which)
-                            {
+            public void onItemClick(int position) {
+                final String s = adapter.getDatas().get(position);
+                new AlertDialog.Builder(mActivity).setItems(new String[]{"复制"},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
                                 OthersUtils.copy(s, mActivity);
                                 Toast.makeText(mActivity, R.string.copy_text_done, Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
 
                         }).show();
-                
+
             }
         });
-        
-        button.setOnClickListener(new OnClickListener()
-        {
+
+        button.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 progress.show();
-                new Thread(new Runnable()
-                {
+                new Thread(new Runnable() {
 
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         s = et.getText().toString().trim();
-                        if (!TextUtils.isEmpty(s))
-                        {
-                            count = s.length();
-                            String url = URL + "shanglian=" + URLEncoder.encode(s);
-                            String response = HttpUtil.httpGet(url, "");
-                            if (response != null)
-                            {
-                                List<String> list = getData(response);
-                                adapter.setList(list);
-                                mhandler.sendEmptyMessage(LOAD_SUCCESS);
-                            }
-                            else
-                            {
-                                mhandler.sendEmptyMessage(LOAD_FAILED);
-                            }
-
+                        if (!TextUtils.isEmpty(s)) {
+                            execute(s);
                         }
 
                     }
@@ -179,32 +157,23 @@ public class DuiShiActivity extends BaseActivity
 
             }
         });
-        findViewById(R.id.refresh).setOnClickListener(new OnClickListener()
-        {
+        findViewById(R.id.refresh).setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 progress.show();
-                new Thread(new Runnable()
-                {
+                new Thread(new Runnable() {
 
                     @Override
-                    public void run()
-                    {
-                        String url = URL + "shanglian=" + URLEncoder.encode(s);
-                        url += "&placeholder=" + editView.getText();
-                        String response = HttpUtil.httpGet(url, "");
-                        if (response != null)
-                        {
-                            List<String> list = getData(response);
-                            adapter.setList(list);
-                            mhandler.sendEmptyMessage(LOAD_SUCCESS_RE);
-                        }
-                        else
-                        {
-                            mhandler.sendEmptyMessage(LOAD_FAILED);
-                        }
+                    public void run() {
+//                        String response = HttpUtil.httpGet(url, "");
+//                        if (response != null) {
+//                            List<String> list = getData(response);
+//                            adapter.setList(list);
+//                            mhandler.sendEmptyMessage(LOAD_SUCCESS_RE);
+//                        } else {
+//                            mhandler.sendEmptyMessage(LOAD_FAILED);
+//                        }
 
                     }
                 }).start();
@@ -214,28 +183,111 @@ public class DuiShiActivity extends BaseActivity
 
     }
 
-    private List<String> getData(String s)
-    {
+
+    private List<String> getData(String s) {
         List<String> list = new ArrayList<String>();
-        try
-        {
+        try {
             JSONObject jsonObject = new JSONObject(s);
-            if (jsonObject.has("set"))
-            {
-                JSONArray jsonArray = jsonObject.getJSONArray("set");
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
-
-                    list.add(jsonArray.getString(i));
-
+            JSONObject d = jsonObject.getJSONObject("d");
+            JSONArray jsonArray = d.getJSONArray("XialianSystemGeneratedSets");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONArray array = jsonArray.getJSONObject(i).getJSONArray("XialianCandidates");
+                for (int j = 0; j < array.length(); j++) {
+                    list.add(array.getString(i));
                 }
             }
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public void execute(String shanglian) {
+
+        if (TextUtils.isEmpty(shanglian)) {
+            return;
+        }
+        count = shanglian.length();
+        InputStream inputStream = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            URL url = new URL(URL_STRING);
+            urlConnection = (HttpURLConnection) url.openConnection();
+
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setRequestMethod("POST");
+
+            urlConnection.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("shanglian", "你好");
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < shanglian.length(); i++) {
+                sb.append("0");
+            }
+            jsonObject.put("xialianLocker", sb.toString());
+            jsonObject.put("isUpdate", "false");
+
+            String jsonString = jsonObject.toString();
+            wr.write(jsonString.getBytes());
+            wr.flush();
+            wr.close();
+            // try to get response
+            int statusCode = urlConnection.getResponseCode();
+            if (statusCode == 200) {
+                inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                urlConnection.getInputStream().toString();
+                String response = InputStreamTOString(inputStream);
+                if (response != null) {
+                    List<String> list = getData(response);
+                    if (list != null) {
+                        adapter.setList(list);
+                        mhandler.sendEmptyMessage(LOAD_SUCCESS);
+                    } else {
+                        mhandler.sendEmptyMessage(LOAD_FAILED);
+                    }
+                } else {
+                    mhandler.sendEmptyMessage(LOAD_FAILED);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
+    final static int BUFFER_SIZE = 4096;
+
+    /**
+     * 将InputStream转换成String
+     *
+     * @param in InputStream
+     * @return String
+     * @throws Exception
+     */
+    public static String InputStreamTOString(InputStream in) throws Exception {
+
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] data = new byte[BUFFER_SIZE];
+        int count = -1;
+        while ((count = in.read(data, 0, BUFFER_SIZE)) != -1)
+            outStream.write(data, 0, count);
+
+        data = null;
+        return new String(outStream.toByteArray(), "utf-8");
     }
 
 }

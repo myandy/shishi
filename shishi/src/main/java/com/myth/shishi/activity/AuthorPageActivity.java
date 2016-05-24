@@ -29,7 +29,7 @@ public class AuthorPageActivity extends BaseActivity {
 
     private ScanView gallery;
 
-    private int page = -1;
+    private int page = 0;
 
     boolean isSelf;
 
@@ -51,13 +51,19 @@ public class AuthorPageActivity extends BaseActivity {
             writings = WritingDatabaseHelper.getAllWriting();
         }
 
-        if (getIntent().hasExtra("index")) {
-            page = getIntent().getIntExtra("index", 0);
+        if (getIntent().hasExtra("id")) {
+            int id = getIntent().getIntExtra("id", 0);
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getId() == id) {
+                    page = i;
+                }
+            }
         }
 
         initView();
 
     }
+
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -100,7 +106,7 @@ public class AuthorPageActivity extends BaseActivity {
      */
     private PagerAdapter galleryAdapter = new PagerAdapter() {
         public Object instantiateItem(android.view.ViewGroup container,
-                int position) {
+                                      int position) {
             View root = getLayoutInflater().inflate(R.layout.layout_textview,
                     null);
 
@@ -111,12 +117,10 @@ public class AuthorPageActivity extends BaseActivity {
                     return new View(mActivity);
                 } else if (position == 1) {
                     root = new AuthorView(mActivity, author);
-                }
-
-                else {
+                } else {
                     root = new PoetryView(mActivity, author,
                             list.get(position - 2), position - 1 + "/"
-                                    + list.size());
+                            + list.size());
                 }
             } else {
 
@@ -125,7 +129,7 @@ public class AuthorPageActivity extends BaseActivity {
                 } else {
                     root = new PoetryView(mActivity,
                             writings.get(position - 1), position + "/"
-                                    + writings.size());
+                            + writings.size());
                 }
             }
             // container.addView(root, param);
@@ -133,7 +137,7 @@ public class AuthorPageActivity extends BaseActivity {
         }
 
         public void destroyItem(android.view.ViewGroup container, int position,
-                Object object) {
+                                Object object) {
             container.removeView((View) object);
         }
 

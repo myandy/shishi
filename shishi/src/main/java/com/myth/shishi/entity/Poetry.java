@@ -20,6 +20,8 @@ public class Poetry implements Serializable
 
     private int collect;
 
+    private int id;
+
     public String getAuthor()
     {
         return author;
@@ -70,4 +72,11 @@ public class Poetry implements Serializable
         this.collect = collect;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

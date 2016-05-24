@@ -113,6 +113,15 @@ public class PoetryView extends LinearLayout {
 
     private boolean mTTSEnable = false;
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mSpeech != null) {
+            mSpeech.stop();
+            mSpeech.shutdown();
+        }
+    }
+
     private void initView(View root) {
 
         mSpeech = new TextToSpeech(mContext, new TextToSpeech.OnInitListener() {
@@ -339,7 +348,7 @@ public class PoetryView extends LinearLayout {
                     public void onClick(View v) {
                         boolean isCollect = PoetryDatabaseHelper
                                 .isCollect(poetry.getPoetry());
-                        PoetryDatabaseHelper.updateCollect(poetry.getPoetry(),
+                        PoetryDatabaseHelper.updateCollect(poetry.getId(),
                                 !isCollect);
                         if (isCollect) {
                             Toast.makeText(mContext, "已取消收藏", Toast.LENGTH_LONG)

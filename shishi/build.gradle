@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.myth.shishi"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 22
 
-        versionCode 11
-        versionName '1.91'
+        versionCode 12
+        versionName '1.92'
 
     }
 

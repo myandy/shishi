@@ -72,7 +72,26 @@ public class PoetrySearchActivity extends BaseActivity {
         }
         adapter.setList(sortList);
         adapter.notifyDataSetChanged();
+        adapter.setMyListener(new MyListener() {
 
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(mActivity, AuthorPageActivity.class);
+                intent.putExtra("id", sortList.get(position).getId());
+                if (writings == null) {
+                    if (author == null) {
+                        intent.putExtra("author", AuthorDatabaseHelper
+                                .getAuthorByName(sortList.get(position)
+                                        .getAuthor()));
+                    } else {
+                        intent.putExtra("author", author);
+                    }
+                }
+                startActivity(intent);
+//                finish();
+
+            }
+        });
     }
 
     private ArrayList<Poetry> searchPoetry(String word) {
@@ -110,18 +129,18 @@ public class PoetrySearchActivity extends BaseActivity {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(mActivity, AuthorPageActivity.class);
-                intent.putExtra("index", findPosition(sortList.get(position)));
+                intent.putExtra("index", pList.get(position).getId());
                 if (writings == null) {
                     if (author == null) {
                         intent.putExtra("author", AuthorDatabaseHelper
-                                .getAuthorByName(sortList.get(position)
+                                .getAuthorByName(pList.get(position)
                                         .getAuthor()));
                     } else {
                         intent.putExtra("author", author);
                     }
                 }
                 startActivity(intent);
-                finish();
+//                finish();
 
             }
         });

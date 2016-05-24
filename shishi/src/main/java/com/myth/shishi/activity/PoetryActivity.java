@@ -93,6 +93,15 @@ public class PoetryActivity extends BaseActivity {
         initView();
     }
 
+    @Override
+    protected void onDestroy() {
+        if (mSpeech != null) {
+            mSpeech.stop();
+            mSpeech.shutdown();
+        }
+        super.onDestroy();
+    }
+
     private void getRandomPoetry() {
         poetry = ciList.get(new Random().nextInt(ciList.size()));
         author = AuthorDatabaseHelper.getAuthorByName(poetry.getAuthor());
@@ -307,9 +316,8 @@ public class PoetryActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View v) {
-                    boolean isCollect = PoetryDatabaseHelper.isCollect(poetry
-                            .getPoetry());
-                    PoetryDatabaseHelper.updateCollect(poetry.getPoetry(),
+                    boolean isCollect = PoetryDatabaseHelper.isCollect(poetry.getId());
+                    PoetryDatabaseHelper.updateCollect(poetry.getId(),
                             !isCollect);
                     if (isCollect) {
                         Toast.makeText(mActivity, "已取消收藏", Toast.LENGTH_LONG)

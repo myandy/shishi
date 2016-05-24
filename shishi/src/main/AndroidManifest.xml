@@ -43,6 +43,7 @@
         android:theme="@style/CustomerTheme" >
         <activity
             android:name="com.myth.shishi.activity.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,53 +53,69 @@
         </activity>
         <activity
             android:name=".activity.AuthorListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.AuthorPageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"
             android:launchMode="singleTop" >
         </activity>
         <activity
             android:name=".activity.PoetryActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.ShareActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.EditActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.YunSearchActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.AuthorSearchActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.ShareEditActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.WebviewActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.DuiShiActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.PoetrySearchActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.FormerListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.FormerActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.SignActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
 
 
