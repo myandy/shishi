@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
+import com.myth.shishi.XXXLoginImpl;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.BackupTask;
 import com.myth.shishi.db.FormerDatabaseHelper;
@@ -41,6 +42,11 @@ import com.myth.shishi.wiget.MainView;
 import com.myth.shishi.wiget.TouchEffectImageView;
 import com.myth.shishi.wiget.UsercenterView;
 import com.myth.shishi.wiget.WritingView;
+import com.umeng.analytics.social.UMSocialService;
+import com.umeng.comm.core.sdkmanager.LoginSDKManager;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.handler.UMQQSsoHandler;
+import com.umeng.socialize.handler.UMWXHandler;
 
 /**
  * ViewPager实现画廊效果
@@ -152,7 +158,11 @@ public class MainActivity extends BaseActivity
         //
         // }
         // }).start();
+
+
+
     }
+
 
     public void doIt()
     {
