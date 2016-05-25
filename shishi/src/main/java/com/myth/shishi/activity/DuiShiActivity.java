@@ -149,7 +149,7 @@ public class DuiShiActivity extends BaseActivity {
                     public void run() {
                         s = et.getText().toString().trim();
                         if (!TextUtils.isEmpty(s)) {
-                            execute(s);
+                            execute(s, null);
                         }
 
                     }
@@ -166,15 +166,10 @@ public class DuiShiActivity extends BaseActivity {
 
                     @Override
                     public void run() {
-//                        String response = HttpUtil.httpGet(url, "");
-//                        if (response != null) {
-//                            List<String> list = getData(response);
-//                            adapter.setList(list);
-//                            mhandler.sendEmptyMessage(LOAD_SUCCESS_RE);
-//                        } else {
-//                            mhandler.sendEmptyMessage(LOAD_FAILED);
-//                        }
-
+                        s = et.getText().toString().trim();
+                        if (!TextUtils.isEmpty(s)) {
+                            execute(s, editView.getText());
+                        }
                     }
                 }).start();
 
@@ -202,7 +197,7 @@ public class DuiShiActivity extends BaseActivity {
         return list;
     }
 
-    public void execute(String shanglian) {
+    public void execute(String shanglian, String place) {
 
         if (TextUtils.isEmpty(shanglian)) {
             return;
@@ -222,12 +217,17 @@ public class DuiShiActivity extends BaseActivity {
             urlConnection.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("shanglian", "你好");
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < shanglian.length(); i++) {
-                sb.append("0");
+            jsonObject.put("shanglian", shanglian);
+
+            if (TextUtils.isEmpty(place)) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < shanglian.length(); i++) {
+                    sb.append("0");
+                }
+                jsonObject.put("xialianLocker", sb.toString());
+            } else {
+                jsonObject.put("xialianLocker", place);
             }
-            jsonObject.put("xialianLocker", sb.toString());
             jsonObject.put("isUpdate", "false");
 
             String jsonString = jsonObject.toString();
@@ -244,14 +244,19 @@ public class DuiShiActivity extends BaseActivity {
                     List<String> list = getData(response);
                     if (list != null) {
                         adapter.setList(list);
-                        mhandler.sendEmptyMessage(LOAD_SUCCESS);
+                        if (TextUtils.isEmpty(place)) {
+                            mhandler.sendEmptyMessage(LOAD_SUCCESS);
+                        } else {
+                            mhandler.sendEmptyMessage(LOAD_SUCCESS_RE);
+                        }
                     } else {
                         mhandler.sendEmptyMessage(LOAD_FAILED);
                     }
                 } else {
                     mhandler.sendEmptyMessage(LOAD_FAILED);
                 }
-
+            } else {
+                mhandler.sendEmptyMessage(LOAD_FAILED);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -267,6 +272,7 @@ public class DuiShiActivity extends BaseActivity {
                 urlConnection.disconnect();
             }
         }
+
     }
 
     final static int BUFFER_SIZE = 4096;
