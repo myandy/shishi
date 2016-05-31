@@ -188,7 +188,7 @@ public class DuiShiActivity extends BaseActivity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONArray array = jsonArray.getJSONObject(i).getJSONArray("XialianCandidates");
                 for (int j = 0; j < array.length(); j++) {
-                    list.add(array.getString(i));
+                    list.add(array.getString(j));
                 }
             }
         } catch (JSONException e) {

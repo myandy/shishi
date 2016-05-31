@@ -272,6 +272,11 @@
             android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
 
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:theme="@style/Theme.UMDefault"
+            android:excludeFromRecents="true"/>
+
         <!-- 图片选择相关 -->
         <activity android:name="com.umeng.common.ui.imagepicker.PhotoSelectorActivity" />
         <activity android:name="com.umeng.common.ui.imagepicker.PhotoPreviewActivity" />
@@ -293,6 +298,28 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+
+        <activity
+            android:name=".activity.WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+        <service
+            android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false">
+        </service>
+
+
 
         <!-- 友盟App Key, 必须替换为您在友盟官网上申请到的. -->
         <meta-data
