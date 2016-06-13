@@ -29,9 +29,9 @@ public class AuthorPageActivity extends BaseActivity {
 
     private ScanView gallery;
 
-    private int page = 0;
+    private int page = -1;
 
-    boolean isSelf;
+    boolean isSelf = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
