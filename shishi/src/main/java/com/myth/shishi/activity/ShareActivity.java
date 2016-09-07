@@ -3,8 +3,10 @@ package com.myth.shishi.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -40,6 +42,7 @@ import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.util.StringUtils;
 import com.myth.shishi.wiget.TouchEffectImageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -189,10 +192,23 @@ public class ShareActivity extends BaseActivity {
         try {
             String filename = writing.hashCode() + writing.getUpdate_dt() + "";
             filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(contentLL), filename);
+            updateMediaFile(mActivity, filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return filePath;
+    }
+
+    /**
+     * 通知媒体库更新文件
+     *
+     * @param context
+     * @param filePath 文件全路径
+     */
+    private static void updateMediaFile(Context context, String filePath) {
+        Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        scanIntent.setData(Uri.fromFile(new File(filePath)));
+        context.sendBroadcast(scanIntent);
     }
 
     public void isAddTextSize(boolean add) {
