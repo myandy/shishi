@@ -195,12 +195,16 @@ public class AuthorListActivity extends BaseActivity
         {
             rectLeft.setBackgroundResource(R.drawable.rect_left_selected);
             rectRight.setBackgroundResource(R.drawable.rect_right);
+            rectLeft.setTextColor(getResources().getColor(R.color.black));
+            rectRight.setTextColor(getResources().getColor(R.color.white));
             aList = AuthorDatabaseHelper.getAll(MyApplication.getDefaultDynasty(mActivity));
         }
         else
         {
             rectLeft.setBackgroundResource(R.drawable.rect_left);
             rectRight.setBackgroundResource(R.drawable.rect_right_selected);
+            rectLeft.setTextColor(getResources().getColor(R.color.white));
+            rectRight.setTextColor(getResources().getColor(R.color.black));
             aList = AuthorDatabaseHelper.getAllAuthorByPNum(MyApplication.getDefaultDynasty(mActivity));
         }
     }

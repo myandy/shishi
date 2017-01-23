@@ -55,13 +55,6 @@ public class UsercenterView extends RelativeLayout {
         initView();
     }
 
-    private void layoutItemContainer(View itemContainer) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) itemContainer
-                .getLayoutParams();
-        params.width = LayoutParams.MATCH_PARENT;
-        params.height = ResizeUtil.resize(mContext, 864);
-        itemContainer.setLayoutParams(params);
-    }
 
     private void initView() {
 

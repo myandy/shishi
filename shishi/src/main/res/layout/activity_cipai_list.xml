@@ -18,7 +18,7 @@
             android:background="@drawable/rect_left_selected"
             android:gravity="center"
             android:text="@string/sort_default"
-            android:textColor="@color/white"
+            android:textColor="@color/white_to_black"
             android:textSize="16sp" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:background="@drawable/rect_right"
             android:gravity="center"
             android:text="@string/sort_count"
-            android:textColor="@color/white"
+            android:textColor="@color/white_to_black"
             android:textSize="16sp" />
     </LinearLayout>
 

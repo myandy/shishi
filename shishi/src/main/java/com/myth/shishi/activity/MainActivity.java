@@ -1,10 +1,5 @@
 package com.myth.shishi.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,29 +19,23 @@ import android.widget.RelativeLayout;
 import com.myth.shishi.BaseActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
-import com.myth.shishi.XXXLoginImpl;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.BackupTask;
-import com.myth.shishi.db.FormerDatabaseHelper;
-import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.ColorEntity;
-import com.myth.shishi.entity.Former;
-import com.myth.shishi.entity.Poetry;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DisplayUtil;
 import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.wiget.IntroductionView;
 import com.myth.shishi.wiget.MainView;
+import com.myth.shishi.wiget.ShareView;
 import com.myth.shishi.wiget.TouchEffectImageView;
 import com.myth.shishi.wiget.UsercenterView;
 import com.myth.shishi.wiget.WritingView;
-import com.umeng.analytics.social.UMSocialService;
-import com.umeng.comm.core.sdkmanager.LoginSDKManager;
-import com.umeng.socialize.PlatformConfig;
-import com.umeng.socialize.handler.UMQQSsoHandler;
-import com.umeng.socialize.handler.UMWXHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ViewPager实现画廊效果
@@ -85,7 +74,7 @@ public class MainActivity extends BaseActivity
 
         // to cache all page, or we will see the right item delayed
 
-        viewPager.setPageMargin(ResizeUtil.resize(mActivity, 60));
+        viewPager.setPageMargin(ResizeUtil.getInstance().resize( 60));
         MyOnPageChangeListener myOnPageChangeListener = new MyOnPageChangeListener();
         viewPager.setOnPageChangeListener(myOnPageChangeListener);
 
@@ -110,26 +99,6 @@ public class MainActivity extends BaseActivity
             {
                 Intent intent = new Intent(mActivity, FormerListActivity.class);
                 startActivity(intent);
-
-                //
-                // final List<Former> list = FormerDatabaseHelper.getAll();
-                // String s[] = new String[list.size()];
-                // for (int i = 0; i < list.size(); i++)
-                // {
-                // s[i] = list.get(i).getName();
-                // }
-                // new AlertDialog.Builder(mActivity).setItems(s, new
-                // DialogInterface.OnClickListener()
-                // {
-                // public void onClick(DialogInterface dialog, int which)
-                // {
-                // Intent intent = new Intent(mActivity, EditActivity.class);
-                // intent.putExtra("former", list.get(which));
-                // startActivity(intent);
-                // dialog.dismiss();
-                // }
-                // }).show();
-
             }
         });
         ImageView setting = new TouchEffectImageView(mActivity, null);
@@ -147,19 +116,6 @@ public class MainActivity extends BaseActivity
                 startActivity(intent);
             }
         });
-
-        // new Thread(new Runnable()
-        // {
-        //
-        // @Override
-        // public void run()
-        // {
-        // doIt();
-        //
-        // }
-        // }).start();
-
-
 
     }
 
@@ -184,7 +140,7 @@ public class MainActivity extends BaseActivity
     private void layoutItemContainer(View itemContainer)
     {
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) itemContainer.getLayoutParams();
-        params.width = ResizeUtil.resize(mActivity, 540);
+        params.width = ResizeUtil.getInstance().resize( 540);
         params.height = LayoutParams.MATCH_PARENT;
         itemContainer.setLayoutParams(params);
     }

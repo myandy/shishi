@@ -36,7 +36,7 @@ public class EditActivity extends BaseActivity
 
     private Writing writing;
 
-    ChangeBackgroundFragment changeBackgroundFrament;
+    ChangeBackgroundFragment changeBackgroundFragment;
 
     EditFragment editFragment;
 
@@ -99,7 +99,7 @@ public class EditActivity extends BaseActivity
             {
                 if (currentIndex == 1)
                 {
-                    changeBackgroundFrament.save();
+                    changeBackgroundFragment.save();
                 }
                 else if (currentIndex == 2)
                 {
@@ -185,11 +185,11 @@ public class EditActivity extends BaseActivity
 
         // 创建修改实例
         editFragment = EditFragment.getInstance(former, writing);
-        changeBackgroundFrament = ChangeBackgroundFragment.getInstance(writing);
+        changeBackgroundFragment = ChangeBackgroundFragment.getInstance(writing);
         changePictureFragment = ChangePictureFragment.getInstance(writing);
 
         fragments.add(editFragment);
-        fragments.add(changeBackgroundFrament);
+        fragments.add(changeBackgroundFragment);
         fragments.add(changePictureFragment);
         changeFragment(currentIndex);
     }
@@ -207,7 +207,7 @@ public class EditActivity extends BaseActivity
     {
         if (currentIndex == 1)
         {
-            changeBackgroundFrament.save();
+            changeBackgroundFragment.save();
         }
         else if (currentIndex == 2)
         {

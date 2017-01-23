@@ -34,10 +34,8 @@
         <item name="android:backgroundDimEnabled">true</item>
 
 
-
-
-
-　	</style>
+        　
+    </style>
 
     <!-- popwidnow 显示消失动画 -->
     <style name="detail_popwindow_anim_style">
@@ -58,11 +56,13 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppBaseTheme"  >
+    <style name="AppBaseTheme">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
-    
-    <style name="CustomerTheme"  parent="@android:style/Theme.Light">
+
+    <style name="CustomerTheme" parent="@android:style/Theme.Light">
         <item name="android:windowNoTitle">true</item>
     </style>
 

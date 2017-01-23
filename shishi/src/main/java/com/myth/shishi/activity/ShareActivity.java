@@ -40,17 +40,18 @@ import com.myth.shishi.util.FileUtils;
 import com.myth.shishi.util.OthersUtils;
 import com.myth.shishi.util.ResizeUtil;
 import com.myth.shishi.util.StringUtils;
+import com.myth.shishi.wiget.ShareView;
 import com.myth.shishi.wiget.TouchEffectImageView;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import static com.myth.shishi.R.id.title;
+
 public class ShareActivity extends BaseActivity {
 
     private Writing writing;
-
-    private View content;
 
     private PopupWindow menu;
 
@@ -58,15 +59,11 @@ public class ShareActivity extends BaseActivity {
 
     private View menuView;
 
-    private TextView title;
-
-    private TextView text;
-
-    private TextView author;
-
     private ImageView setting;
 
     private View contentLL;
+
+    private ShareView shareView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,10 +93,7 @@ public class ShareActivity extends BaseActivity {
     }
 
     private void initView() {
-        content = findViewById(R.id.content);
-        title = (TextView) findViewById(R.id.title);
-        text = (TextView) findViewById(R.id.text);
-        author = (TextView) findViewById(R.id.author);
+        shareView = (ShareView) findViewById(R.id.share_view);
         contentLL = findViewById(R.id.content_linear);
         contentLL.setOnClickListener(new OnClickListener() {
 
@@ -110,7 +104,7 @@ public class ShareActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 if (which == 0) {
-                                    OthersUtils.copy(title.getText() + "\n" + text.getText(), mActivity);
+                                    OthersUtils.copy(writing.getTitle() + "\n" + writing.getText(), mActivity);
                                     Toast.makeText(mActivity, R.string.copy_text_done, Toast.LENGTH_SHORT).show();
                                 } else if (which == 1) {
                                     String filePath = saveImage();
@@ -132,45 +126,13 @@ public class ShareActivity extends BaseActivity {
             }
         });
 
-        title.setText(writing.getTitle());
-        //"\\[.*\\]"
-        text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
-        title.setTypeface(myApplication.getTypeface());
-        text.setTypeface(myApplication.getTypeface());
-        author.setTypeface(myApplication.getTypeface());
-        if (TextUtils.isEmpty(writing.getAuthor())) {
-            author.setText(MyApplication.getDefaultUserName(mActivity));
-        } else {
-            author.setText(writing.getAuthor());
-        }
 
-        setTextSize();
-        setGravity();
-        setPadding();
-        setAuthor();
-        setColor();
 
-        if (StringUtils.isNumeric(writing.getBgimg())) {
-            contentLL.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
-        } else if (writing.getBitmap() != null) {
-            contentLL.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBitmap()));
-        } else {
-            contentLL.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
-        }
-        layoutItemContainer(content);
-        scaleRotateIn(content, 1000, 0);
+        shareView.setWriting(writing);
+        ResizeUtil.getInstance().layoutSquareView(shareView);
+        scaleRotateIn(shareView, 1000, 0);
     }
 
-    private void layoutItemContainer(View itemContainer) {
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) itemContainer.getLayoutParams();
-        params.width = ResizeUtil.resize(mActivity, 640);
-        // if (params.height < params.width)
-        // {
-        // params.height = ResizeUtil.resize(mActivity, 640);
-        // }
-        itemContainer.setMinimumHeight(params.width);
-        itemContainer.setLayoutParams(params);
-    }
 
     public final int rela1 = Animation.RELATIVE_TO_SELF;
 
@@ -219,48 +181,19 @@ public class ShareActivity extends BaseActivity {
             size -= 2;
         }
         MyApplication.setDefaultShareSize(mActivity, size);
-        setTextSize();
+        shareView.setTextSize();
     }
 
-    public void setTextSize() {
-        int size = MyApplication.getDefaultShareSize(mActivity);
-        text.setTextSize(size);
-        title.setTextSize(size + 2);
-        author.setTextSize(size - 2);
-    }
 
     private void setGravity(boolean isCenter) {
         MyApplication.setDefaultShareGravity(mActivity, isCenter);
-        setGravity();
+        shareView.setGravity();
     }
 
-    private void setGravity() {
-        boolean isCenter = MyApplication.getDefaultShareGravity(mActivity);
-        if (isCenter) {
-            text.setGravity(Gravity.CENTER_HORIZONTAL);
-        } else {
-            text.setGravity(Gravity.LEFT);
-        }
-    }
-
-    private void setPadding() {
-        int margin = MyApplication.getDefaultSharePadding(mActivity);
-        LinearLayout.LayoutParams lps = (android.widget.LinearLayout.LayoutParams) text.getLayoutParams();
-        lps.leftMargin = margin;
-        text.setLayoutParams(lps);
-    }
-
-    private void setAuthor() {
-        if (MyApplication.getDefaultShareAuthor(mActivity)) {
-            author.setVisibility(View.VISIBLE);
-        } else {
-            author.setVisibility(View.GONE);
-        }
-    }
 
     private void setAuthor(boolean showAuthor) {
         MyApplication.setDefaultShareAuthor(mActivity, showAuthor);
-        setAuthor();
+        shareView.setAuthor();
     }
 
     private void setPadding(boolean isAdd) {
@@ -271,24 +204,13 @@ public class ShareActivity extends BaseActivity {
             margin -= 10;
         }
         MyApplication.setDefaultSharePadding(mActivity, margin);
-        setPadding();
+        shareView.setPadding();
     }
 
-    private void setColor() {
-
-        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mActivity));
-        int color = 0x000000;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-        }
-        text.setTextColor(color);
-        title.setTextColor(color);
-        author.setTextColor(color);
-    }
 
     private void setColor(int color) {
         MyApplication.setDefaultShareColor(mActivity, color);
-        setColor();
+        shareView.setColor();
     }
 
     private void showMenu() {

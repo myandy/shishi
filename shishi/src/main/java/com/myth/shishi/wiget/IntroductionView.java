@@ -36,12 +36,6 @@ public class IntroductionView extends RelativeLayout {
         initView();
     }
 
-    private void layoutItemContainer(View itemContainer) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) itemContainer.getLayoutParams();
-        params.width = LayoutParams.MATCH_PARENT;
-        params.height = ResizeUtil.resize(mContext, 864);
-        itemContainer.setLayoutParams(params);
-    }
 
     private void initView() {
         myApplication = (MyApplication) ((Activity) mContext).getApplication();
@@ -52,11 +46,11 @@ public class IntroductionView extends RelativeLayout {
         TextView title = (TextView) root.findViewById(R.id.title);
         title.setTypeface(myApplication.getTypeface());
         final StackView stackView = (StackView) root.findViewById(R.id.stack_view);
-        layoutItemContainer(stackView);
+        ResizeUtil.getInstance().layoutSquareView(stackView);
 
         IntroAdapter colorAdapter = new IntroAdapter(mContext, mColors);
         stackView.setAdapter(colorAdapter);
-        stackView.getLayoutParams().height = ResizeUtil.resize(mContext, 600);
+        stackView.getLayoutParams().height = ResizeUtil.getInstance().resize(600);
         // stackView.setLayoutParams(new LayoutParams(-1, ));
 
         addView(root, new LayoutParams(-1, -1));

@@ -10,6 +10,7 @@ import com.myth.shishi.db.ColorDatabaseHelper;
 import com.myth.shishi.db.DBManager;
 import com.myth.shishi.db.YunDatabaseHelper;
 import com.myth.shishi.entity.ColorEntity;
+import com.myth.shishi.util.ResizeUtil;
 import com.umeng.analytics.social.UMSocialService;
 import com.umeng.comm.core.sdkmanager.LocationSDKManager;
 import com.umeng.community.location.DefaultLocationImpl;
@@ -28,9 +29,12 @@ public class MyApplication extends Application {
 
     public final static String TypefaceString[] = {"简体", "繁体"};
 
+    public static MyApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         DBManager.initDatabase(getApplicationContext());
         YunDatabaseHelper.getYunList(this);
         setTypeface(getApplicationContext(), getDefaulTypeface(this));
@@ -39,6 +43,8 @@ public class MyApplication extends Application {
         PlatformConfig.setWeixin("wx96110a1e3af63a39", "c60e3d3ff109a5d17013df272df99199");
         PlatformConfig.setSinaWeibo("944955993", "4b6e97140e9417bec7b225bc4477262d");
         PlatformConfig.setQQZone("1104581811", "KEYlj8gnlPCd4j4vA22");
+
+        ResizeUtil.getInstance().init(this);
 
     }
 

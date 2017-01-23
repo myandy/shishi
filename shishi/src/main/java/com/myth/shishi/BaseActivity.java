@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -39,18 +41,23 @@ public class BaseActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏应用程序的标题栏，即当前activity的label
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.setContentView(R.layout.activity_base);
         if (VERSION.SDK_INT >= 19)
         {
             // 透明状态栏
-            getWindow().addFlags(0x4000000);
+//            getWindow().addFlags(0x4000000);
             // 透明导航栏
 //            getWindow().addFlags(0x8000000);
 
-            if (statusBarHeight == 0)
-            {
-                statusBarHeight = getStatusBarHeight(this);
-            }
+//            requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏应用程序的标题栏，即当前activity的label
+//            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+//            if (statusBarHeight == 0)
+//            {
+//                statusBarHeight = getStatusBarHeight(this);
+//            }
 
         }
         mActivity = this;
@@ -146,10 +153,10 @@ public class BaseActivity extends Activity
     public void setContentView(int layoutId)
     {
         getLayoutInflater().inflate(layoutId, mContentLayout);
-        if (VERSION.SDK_INT >= 19)
-        {
-            mContentLayout.setPadding(0, statusBarHeight, 0, 0);
-        }
+//        if (VERSION.SDK_INT >= 19)
+//        {
+//            mContentLayout.setPadding(0, statusBarHeight, 0, 0);
+//        }
     }
 
 }

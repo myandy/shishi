@@ -1,12 +1,9 @@
 package com.myth.shishi.wiget;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -16,31 +13,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.EditActivity;
 import com.myth.shishi.activity.MainActivity;
 import com.myth.shishi.activity.ShareActivity;
 import com.myth.shishi.db.FormerDatabaseHelper;
 import com.myth.shishi.db.WritingDatabaseHelper;
-import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.DateUtils;
 import com.myth.shishi.util.ResizeUtil;
-import com.myth.shishi.util.StringUtils;
 import com.myth.shishi.wiget.GCDialog.OnCustomDialogListener;
 
-public class WritingView extends RelativeLayout {
+public class WritingView extends LinearLayout {
 
     private Context mContext;
 
     private Writing writing;
 
-    private TextView text;
-
-    private TextView title;
-
-    private TextView author;
 
     public WritingView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -61,42 +50,20 @@ public class WritingView extends RelativeLayout {
     }
 
     private void initView() {
-        MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View root = inflater.inflate(R.layout.layout_writing, null);
+        View root = inflater.inflate(R.layout.layout_writing, this);
 
-        View content = root.findViewById(R.id.content);
+        setOrientation(VERTICAL);
+        setGravity(Gravity.CENTER_HORIZONTAL);
 
-        if (StringUtils.isNumeric(writing.getBgimg())) {
-            content.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
-        } else {
-            content.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
-        }
+        ShareView shareView = (ShareView) findViewById(R.id.share_view);
+        ResizeUtil.getInstance().layoutSquareView(shareView);
 
-        layoutItemContainer(content);
+        shareView.setWriting(writing);
 
         TextView time = (TextView) root.findViewById(R.id.time);
-
-        title = (TextView) root.findViewById(R.id.title);
-
-        text = (TextView) root.findViewById(R.id.text);
-
-        author = (TextView) root.findViewById(R.id.author);
-
         time.setText(DateUtils.longToFormat(writing.getUpdate_dt(), DateUtils.YMD_HM_FORMAT));
 
-        title.setText(writing.getTitle());
-        text.setText(writing.getText());
-        author.setText(myApplication.getDefaultUserName(mContext));
-        title.setTypeface(myApplication.getTypeface());
-        text.setTypeface(myApplication.getTypeface());
-        author.setTypeface(myApplication.getTypeface());
-
-        setTextSize();
-        setGravity();
-        setPadding();
-        setColor();
-        setAuthor();
 
         final AlertDialog dialog = new AlertDialog.Builder(mContext).setItems(new String[]{"分享", "编辑", "删除"},
                 new DialogInterface.OnClickListener() {
@@ -147,58 +114,6 @@ public class WritingView extends RelativeLayout {
             }
         });
 
-        addView(root, new LayoutParams(-1, -1));
-
-    }
-
-    private void layoutItemContainer(View itemContainer) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) itemContainer.getLayoutParams();
-        params.width = ResizeUtil.resize(mContext, 540);
-        params.height = ResizeUtil.resize(mContext, 540);
-        itemContainer.setLayoutParams(params);
-    }
-
-    private void setPadding() {
-        int margin = MyApplication.getDefaultSharePadding(mContext);
-        LinearLayout.LayoutParams lps = (android.widget.LinearLayout.LayoutParams) text.getLayoutParams();
-        lps.leftMargin = margin;
-        text.setLayoutParams(lps);
-    }
-
-    private void setGravity() {
-        boolean isCenter = MyApplication.getDefaultShareGravity(mContext);
-        if (isCenter) {
-            text.setGravity(Gravity.CENTER_HORIZONTAL);
-        } else {
-            text.setGravity(Gravity.LEFT);
-        }
-    }
-
-    private void setTextSize() {
-        int size = MyApplication.getDefaultShareSize(mContext);
-        text.setTextSize(size);
-        title.setTextSize(size + 2);
-        author.setTextSize(size - 2);
-    }
-
-    private void setColor() {
-
-        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
-        int color = 0x000000;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-        }
-        text.setTextColor(color);
-        title.setTextColor(color);
-        author.setTextColor(color);
-    }
-
-    private void setAuthor() {
-        if (MyApplication.getDefaultShareAuthor(mContext)) {
-            author.setVisibility(View.VISIBLE);
-        } else {
-            author.setVisibility(View.GONE);
-        }
     }
 
 }

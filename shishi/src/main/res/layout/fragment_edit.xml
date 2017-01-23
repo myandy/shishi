@@ -1,15 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dust"
-    android:paddingLeft="20dp"
-    android:paddingTop="30dp" >
-
+    >
     <RelativeLayout
         android:id="@+id/edit_top"
         android:layout_width="match_parent"
-        android:layout_height="35dp" >
+        android:layout_height="60dp"
+        >
+
+        <ImageView
+            android:id="@+id/edit_top_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            />
 
         <EditText
             android:id="@+id/getfocus"
@@ -62,21 +66,35 @@
             android:src="@drawable/info" />
     </RelativeLayout>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/edit_top"
-        android:layout_marginTop="20dp"
-        android:paddingBottom="8dp"
-        android:scrollbars="@null"
-        android:orientation="vertical" >
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:scrollbars="@null">
 
-        <LinearLayout
-            android:id="@+id/edit_content"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
+            android:orientation="vertical">
+
+            <com.myth.shishi.wiget.MirrorLoaderView
+                android:id="@+id/background_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"></LinearLayout>
+
+
+        </FrameLayout>
     </ScrollView>
 
 </RelativeLayout>

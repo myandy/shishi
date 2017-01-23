@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.CheckUtils;
 import com.myth.shishi.util.StringUtils;
 import com.myth.shishi.wiget.GCDialog;
+import com.myth.shishi.wiget.MirrorLoaderView;
 import com.myth.shishi.wiget.PasteEditText;
 import com.myth.shishi.wiget.PingzeLinearlayout;
 
@@ -38,8 +40,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EditFragment extends Fragment
-{
+public class EditFragment extends Fragment {
 
     private LinearLayout editContent;
 
@@ -56,13 +57,14 @@ public class EditFragment extends Fragment
     private Writing writing;
 
     private TextView title;
+    private MirrorLoaderView editContentBackground;
 
-    public EditFragment()
-    {
+    private ImageView editTopBackground;
+
+    public EditFragment() {
     }
 
-    public static EditFragment getInstance(Former former, Writing writing)
-    {
+    public static EditFragment getInstance(Former former, Writing writing) {
         EditFragment fileViewFragment = new EditFragment();
         fileViewFragment.former = former;
         fileViewFragment.writing = writing;
@@ -71,53 +73,42 @@ public class EditFragment extends Fragment
 
     @Override
     public View onCreateView(android.view.LayoutInflater inflater, android.view.ViewGroup container,
-            Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
-        root = inflater.inflate(R.layout.fragment_edit, null);
+        root = inflater.inflate(R.layout.fragment_edit, container, false);
         initViews(root);
         return root;
 
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        if (StringUtils.isNumeric(writing.getBgimg()))
-        {
-            root.setBackgroundResource(MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())]);
-        }
-        else if (writing.getBitmap() != null)
-        {
+        if (StringUtils.isNumeric(writing.getBgimg())) {
+            int id = MyApplication.bgimgList[Integer.parseInt(writing.getBgimg())];
+            editTopBackground.setImageResource(id);
+            editContentBackground.setDrawableId(id);
+        } else if (writing.getBitmap() != null) {
             root.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBitmap()));
-        }
-        else
-        {
+        } else {
             root.setBackgroundDrawable(new BitmapDrawable(getResources(), writing.getBgimg()));
         }
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         super.onStop();
         save();
     }
 
-    public void save()
-    {
+    public void save() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < editTexts.size(); i++)
-        {
-            if (i == editTexts.size() - 1)
-            {
+        for (int i = 0; i < editTexts.size(); i++) {
+            if (i == editTexts.size() - 1) {
                 sb.append(editTexts.get(i).getEditableText().toString());
-            }
-            else
-            {
+            } else {
                 sb.append(editTexts.get(i).getEditableText().toString() + "\n");
             }
 
@@ -125,43 +116,35 @@ public class EditFragment extends Fragment
         writing.setText(sb.toString());
     }
 
-    private void initViews(View view)
-    {
+    private void initViews(View view) {
         editTexts.clear();
         final View keyboard = view.findViewById(R.id.edit_keyboard);
         editContent = (LinearLayout) view.findViewById(R.id.edit_content);
         String s = former.getYun();
 
         MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
-        if (s == null)
-        {
+        if (s == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
             edittext.setTypeface(myApplication.getTypeface());
             edittext.setTextColor(getColor());
-            if (writing.getText() != null)
-            {
+            if (writing.getText() != null) {
                 edittext.setText(writing.getText());
             }
             edittext.setBackgroundDrawable(null);
             editTexts.add(edittext);
             edittext.requestFocus();
             editContent.addView(edittext);
-        }
-        else
-        {
+        } else {
             sList = s.split("。");
-            if (sList != null)
-            {
+            if (sList != null) {
                 String[] tList = null;
-                if (writing.getText() != null)
-                {
+                if (writing.getText() != null) {
                     tList = writing.getText().split("\n");
                 }
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                for (int i = 0; i < sList.length; i++)
-                {
+                for (int i = 0; i < sList.length; i++) {
                     HorizontalScrollView scrollView = new HorizontalScrollView(mContext);
                     scrollView.setHorizontalScrollBarEnabled(false);
                     View view1 = new PingzeLinearlayout(mContext, sList[i]);
@@ -180,20 +163,14 @@ public class EditFragment extends Fragment
 
                     edittext.setLines(1);
                     final int index = i;
-                    edittext.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener()
-                    {
+                    edittext.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
                         @Override
-                        public void onFocusChange(View v, boolean hasFocus)
-                        {
-                            if (!hasFocus)
-                            {
-                                if (MyApplication.getCheckAble(mContext))
-                                {
+                        public void onFocusChange(View v, boolean hasFocus) {
+                            if (!hasFocus) {
+                                if (MyApplication.getCheckAble(mContext)) {
                                     CheckUtils.checkEditText(edittext, sList[index]);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 keyboard.setVisibility(View.VISIBLE);
                                 ((BaseActivity) mContext).setBottomGone();
                             }
@@ -203,19 +180,15 @@ public class EditFragment extends Fragment
                     editContent.addView(edittext);
                     editTexts.add(edittext);
 
-                    if (i == 0)
-                    {
+                    if (i == 0) {
                         edittext.requestFocus();
                     }
 
-                    if (tList != null && tList.length > i)
-                    {
+                    if (tList != null && tList.length > i) {
                         edittext.setText(tList[i]);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 Log.e("EditFragment", "sList is null");
             }
         }
@@ -225,30 +198,23 @@ public class EditFragment extends Fragment
         title.setTypeface(myApplication.getTypeface());
         title.setTextColor(getColor());
 
-        if (TextUtils.isEmpty(writing.getTitle()))
-        {
+        if (TextUtils.isEmpty(writing.getTitle())) {
             title.setText("点击输入标题");
-        }
-        else
-        {
+        } else {
             title.setText(writing.getTitle());
         }
 
-        title.setOnClickListener(new OnClickListener()
-        {
+        title.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 final EditText et = new EditText(getActivity());
                 new AlertDialog.Builder(getActivity()).setTitle("请输入标题").setIcon(android.R.drawable.ic_dialog_info).setView(
-                        et).setPositiveButton("确定", new DialogInterface.OnClickListener()
-                {
+                        et).setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
                     @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                    public void onClick(DialogInterface dialog, int which) {
                         title.setText(et.getText().toString().trim());
                         writing.setTitle(title.getText().toString());
                     }
@@ -257,22 +223,18 @@ public class EditFragment extends Fragment
             }
         });
 
-        view.findViewById(R.id.edit_dict).setOnClickListener(new OnClickListener()
-        {
+        view.findViewById(R.id.edit_dict).setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(mContext, YunSearchActivity.class);
                 mContext.startActivity(intent);
             }
         });
-        view.findViewById(R.id.edit_info).setOnClickListener(new OnClickListener()
-        {
+        view.findViewById(R.id.edit_info).setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(mContext, WebviewActivity.class);
                 startActivity(intent);
             }
@@ -281,12 +243,10 @@ public class EditFragment extends Fragment
         getfocus.setFocusable(true);
         getfocus.setFocusableInTouchMode(true);
 
-        keyboard.setOnClickListener(new OnClickListener()
-        {
+        keyboard.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 keyboard.setVisibility(View.GONE);
                 ((BaseActivity) mContext).setBottomVisible();
                 hideSoftInputFromWindow();
@@ -294,24 +254,23 @@ public class EditFragment extends Fragment
                 getfocus.requestFocusFromTouch();
             }
         });
+
+        editContentBackground = (MirrorLoaderView) view.findViewById(R.id.background_image);
+        editTopBackground = (ImageView) view.findViewById(R.id.edit_top_background);
     }
 
-    private void hideSoftInputFromWindow()
-    {
+    private void hideSoftInputFromWindow() {
         View view = ((Activity) mContext).getWindow().peekDecorView();
-        if (view != null)
-        {
+        if (view != null) {
             InputMethodManager inputmanger = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
-    private int getColor()
-    {
+    private int getColor() {
         ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
         int color = 0x000000;
-        if (colorEntity != null)
-        {
+        if (colorEntity != null) {
             color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
         }
         return color;

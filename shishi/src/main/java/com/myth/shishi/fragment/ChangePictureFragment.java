@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
@@ -24,32 +23,24 @@ import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
-import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
-import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.Fastblur;
 import com.myth.shishi.util.ImageUtils;
 import com.myth.shishi.util.ResizeUtil;
+import com.myth.shishi.wiget.ShareView;
 
 public class ChangePictureFragment extends Fragment {
 
     private static final int REQUEST_PICK_IMG = 0x8887;
 
     private Context mContext;
-
-    private View content;
-
-    private TextView text;
 
     private Bitmap srcBitmap;
 
@@ -61,9 +52,7 @@ public class ChangePictureFragment extends Fragment {
 
     private int radius = 0;
 
-    private TextView title;
-
-    private View contnetLL;
+    private ShareView shareView;
 
     public ChangePictureFragment() {
     }
@@ -74,14 +63,12 @@ public class ChangePictureFragment extends Fragment {
         return fileViewFragment;
     }
 
-    private MyApplication myApplication;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
-        myApplication = (MyApplication) ((Activity) mContext).getApplication();
-        View view = inflater.inflate(R.layout.fragment_picture, null);
+        View view = inflater.inflate(R.layout.fragment_picture, container, false);
         initViews(view);
         return view;
     }
@@ -104,9 +91,8 @@ public class ChangePictureFragment extends Fragment {
     }
 
     private void refresh() {
-        text.setText(writing.getText().replaceAll("[\\[\\]0-9]", ""));
-        contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), destBitmap));
-        title.setText(writing.getTitle());
+        shareView.setWriting(writing);
+        shareView.getPictureView().setImageDrawable(new BitmapDrawable(getResources(), destBitmap));
     }
 
     @Override
@@ -134,10 +120,13 @@ public class ChangePictureFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        content = view.findViewById(R.id.content);
+        shareView = (ShareView) view.findViewById(R.id.share_view);
+        ResizeUtil.getInstance().layoutSquareView(shareView);
+        shareView.setType(ShareView.TYPE_PICTURE);
+        shareView.setWriting(writing);
 
-        contnetLL = view.findViewById(R.id.content_linear);
-        contnetLL.setOnClickListener(new OnClickListener() {
+        View contentLL = view.findViewById(R.id.content_linear);
+        contentLL.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -147,17 +136,6 @@ public class ChangePictureFragment extends Fragment {
 
             }
         });
-        layoutItemContainer(content);
-        title = (TextView) view.findViewById(R.id.title);
-
-        text = (TextView) view.findViewById(R.id.text);
-        title.setTypeface(myApplication.getTypeface());
-        text.setTypeface(myApplication.getTypeface());
-
-        setTextSize();
-        setGravity();
-        setPadding();
-        setColor();
 
         // srcBitmap = BitmapFactory.decodeFile(pathName);
         if (srcBitmap == null) {
@@ -254,46 +232,8 @@ public class ChangePictureFragment extends Fragment {
         }
 
         destBitmap = bmp;
-        contnetLL.setBackgroundDrawable(new BitmapDrawable(getResources(), bmp));
+        refresh();
     }
 
-    private void layoutItemContainer(View itemContainer) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) itemContainer.getLayoutParams();
-        params.width = ResizeUtil.resize(mContext, 720);
-        params.height = ResizeUtil.resize(mContext, 720);
-        itemContainer.setLayoutParams(params);
-    }
 
-    private void setPadding() {
-        int margin = myApplication.getDefaultSharePadding(mContext);
-        LinearLayout.LayoutParams lps = (android.widget.LinearLayout.LayoutParams) text.getLayoutParams();
-        lps.leftMargin = margin;
-        text.setLayoutParams(lps);
-    }
-
-    private void setGravity() {
-        boolean isCenter = myApplication.getDefaultShareGravity(mContext);
-        if (isCenter) {
-            text.setGravity(Gravity.CENTER_HORIZONTAL);
-        } else {
-            text.setGravity(Gravity.LEFT);
-        }
-    }
-
-    private void setTextSize() {
-        int size = myApplication.getDefaultShareSize(mContext);
-        text.setTextSize(size);
-        title.setTextSize(size + 2);
-    }
-
-    private void setColor() {
-
-        ColorEntity colorEntity = myApplication.getColorByPos(myApplication.getDefaultShareColor(mContext));
-        int color = 0x000000;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-        }
-        text.setTextColor(color);
-        title.setTextColor(color);
-    }
 }

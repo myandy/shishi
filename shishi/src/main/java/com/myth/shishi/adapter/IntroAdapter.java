@@ -10,53 +10,44 @@ import android.widget.LinearLayout;
 
 import com.myth.shishi.util.ResizeUtil;
 
-public class IntroAdapter extends BaseAdapter
-{
+public class IntroAdapter extends BaseAdapter {
 
     private Context mContext;
 
     private int[] mColors;
 
-    public IntroAdapter(Context context, int[] colors)
-    {
+    public IntroAdapter(Context context, int[] colors) {
         mContext = context;
         mColors = colors;
     }
 
-    public int getCount()
-    {
+    public int getCount() {
         return mColors == null ? 0 : mColors.length;
     }
 
-    public Object getItem(int position)
-    {
+    public Object getItem(int position) {
         return mColors == null ? null : mColors[position];
     }
 
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return position;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView == null)
-        {
+        if (convertView == null) {
             holder = new ViewHolder();
-            LinearLayout.LayoutParams colorLayoutParams = new LinearLayout.LayoutParams(
-                    ResizeUtil.resize(mContext, 450), ResizeUtil.resize(mContext, 540));
+
 
             convertView = new LinearLayout(mContext);
             holder.imageview = new ImageView(mContext);
 
             holder.imageview.setScaleType(ScaleType.FIT_XY);
-            holder.imageview.setLayoutParams(colorLayoutParams);
+
+            ResizeUtil.getInstance().layoutSquareView(holder.imageview);
             ((LinearLayout) convertView).addView(holder.imageview);
             convertView.setTag(holder);
-        }
-        else
-        {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -65,8 +56,7 @@ public class IntroAdapter extends BaseAdapter
         return convertView;
     }
 
-    public class ViewHolder
-    {
+    public class ViewHolder {
         ImageView imageview;
     }
 
