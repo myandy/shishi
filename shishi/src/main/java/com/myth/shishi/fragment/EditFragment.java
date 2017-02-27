@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
@@ -61,6 +62,8 @@ public class EditFragment extends Fragment {
 
     private ImageView editTopBackground;
 
+    private View keyboard;
+
     public EditFragment() {
     }
 
@@ -74,13 +77,11 @@ public class EditFragment extends Fragment {
     @Override
     public View onCreateView(android.view.LayoutInflater inflater, android.view.ViewGroup container,
                              Bundle savedInstanceState) {
-
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
         root = inflater.inflate(R.layout.fragment_edit, container, false);
         initViews(root);
         return root;
-
     }
 
     @Override
@@ -118,7 +119,7 @@ public class EditFragment extends Fragment {
 
     private void initViews(View view) {
         editTexts.clear();
-        final View keyboard = view.findViewById(R.id.edit_keyboard);
+        keyboard = view.findViewById(R.id.edit_keyboard);
         editContent = (LinearLayout) view.findViewById(R.id.edit_content);
         String s = former.getYun();
 
@@ -161,21 +162,9 @@ public class EditFragment extends Fragment {
                     edittext.setTypeface(myApplication.getTypeface());
                     edittext.setTextColor(getColor());
 
-                    edittext.setLines(1);
-                    final int index = i;
-                    edittext.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
-                        @Override
-                        public void onFocusChange(View v, boolean hasFocus) {
-                            if (!hasFocus) {
-                                if (MyApplication.getCheckAble(mContext)) {
-                                    CheckUtils.checkEditText(edittext, sList[index]);
-                                }
-                            } else {
-                                keyboard.setVisibility(View.VISIBLE);
-                                ((BaseActivity) mContext).setBottomGone();
-                            }
-                        }
-                    });
+                    edittext.setSingleLine();
+                    edittext.setTag(i);
+                    edittext.setOnFocusChangeListener(etOnFocusChangeListener);
                     editContent.addView(scrollView);
                     editContent.addView(edittext);
                     editTexts.add(edittext);
@@ -258,6 +247,22 @@ public class EditFragment extends Fragment {
         editContentBackground = (MirrorLoaderView) view.findViewById(R.id.background_image);
         editTopBackground = (ImageView) view.findViewById(R.id.edit_top_background);
     }
+
+    private View.OnFocusChangeListener etOnFocusChangeListener = new View.OnFocusChangeListener() {
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                if (MyApplication.getCheckAble(mContext)) {
+                    int index = (int) v.getTag();
+                    CheckUtils.checkEditText((EditText) v, sList[index]);
+                }
+            } else {
+                keyboard.setVisibility(View.VISIBLE);
+                ((BaseActivity) mContext).setBottomGone();
+            }
+        }
+    };
 
     private void hideSoftInputFromWindow() {
         View view = ((Activity) mContext).getWindow().peekDecorView();

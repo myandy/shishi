@@ -153,7 +153,7 @@ public class ShareActivity extends BaseActivity {
         String filePath = null;
         try {
             String filename = writing.hashCode() + writing.getUpdate_dt() + "";
-            filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(contentLL), filename);
+            filePath = FileUtils.saveFile(OthersUtils.createViewBitmap(shareView), filename);
             updateMediaFile(mActivity, filePath);
         } catch (IOException e) {
             e.printStackTrace();

@@ -9,8 +9,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
 
-        versionCode 13
-        versionName '1.93'
+        versionCode 14
+        versionName '1.94'
 
     }
 
@@ -29,7 +29,7 @@ android {
         }
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             shrinkResources false
             zipAlignEnabled true
 

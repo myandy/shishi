@@ -51,20 +51,6 @@ public class PoetryView extends LinearLayout {
 
     private View menuView;
 
-//    public void setData(Author author, Poetry poetry) {
-//        this.poetry = poetry;
-//        this.author = author;
-//    }
-
-//    public PoetryView(Context context) {
-//        super(context);
-//        mContext = context;
-//        LayoutInflater inflater = (LayoutInflater) mContext
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        root = inflater.inflate(R.layout.layout_poetry, null);
-//        initView(root);
-//        addView(root);
-//    }
 
     public PoetryView(Context context, Author author, Poetry poetry, String page) {
         super(context);
